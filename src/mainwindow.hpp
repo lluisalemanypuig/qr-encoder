@@ -1,4 +1,5 @@
-/**
+/*********************************************************************
+ *
  * QR Encoder -- A small gui to generate png images of QR codes
  * Copyright (C) 2024  Lluís Alemany Puig
  * 
@@ -16,7 +17,8 @@
  * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+ *
+ *********************************************************************/
 
 #pragma once
 
