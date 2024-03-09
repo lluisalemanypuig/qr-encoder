@@ -189,7 +189,7 @@
          <item>
           <widget class="QComboBox" name="ECCComboBox">
            <property name="currentText">
-            <string>Low</string>
+            <string>High</string>
            </property>
            <item>
             <property name="text">
