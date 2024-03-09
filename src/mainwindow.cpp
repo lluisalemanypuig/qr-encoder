@@ -45,10 +45,11 @@ MainWindow::~MainWindow() {
 }
 
 qrcodegen::QrCode::Ecc string_to_ECC(const std::string& s) noexcept {
-	if (s == "Low") { return qrcodegen::QrCode::Ecc::LOW; }
-	if (s == "Medium") { return qrcodegen::QrCode::Ecc::MEDIUM; }
-	if (s == "Quartile") { return qrcodegen::QrCode::Ecc::QUARTILE; }
-	if (s == "High") { return qrcodegen::QrCode::Ecc::HIGH; }
+	const QString ss = QString::fromStdString(s);
+	if (ss == QObject::tr("Low")) { return qrcodegen::QrCode::Ecc::LOW; }
+	if (ss == QObject::tr("Medium")) { return qrcodegen::QrCode::Ecc::MEDIUM; }
+	if (ss == QObject::tr("Quartile")) { return qrcodegen::QrCode::Ecc::QUARTILE; }
+	if (ss == QObject::tr("High")) { return qrcodegen::QrCode::Ecc::HIGH; }
 	std::cout << "Wrong input string '" << s << '\'' << std::endl;
 	return qrcodegen::QrCode::Ecc::HIGH;
 }
