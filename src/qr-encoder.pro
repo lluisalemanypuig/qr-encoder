@@ -26,7 +26,8 @@ FORMS += \
 
 TRANSLATIONS += \
 	qr-encoder_en_GB.ts \
-	qr-encoder_ca_ES.ts
+	qr-encoder_ca_ES.ts \
+	qr-encoder_es_ES.ts
 
 CONFIG += lrelease
 CONFIG += embed_translations
