@@ -16,12 +16,12 @@
     <message>
         <location filename="mainwindow.ui" line="105"/>
         <source>Generate QR</source>
-        <translation>Genera el QR</translation>
+        <translation>Genera el codi QR</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="112"/>
         <source>Save QR Code</source>
-        <translation>Guarda el QR</translation>
+        <translation>Guarda el codi QR</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="123"/>
