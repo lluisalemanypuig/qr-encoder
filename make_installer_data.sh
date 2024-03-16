@@ -1,8 +1,8 @@
 #!/bin/bash
 
-CONFIG_DIR=installer/qr-encoder/config
-DATA_DIR=installer/qr-encoder/packages/com.vendor.product/data
-META_DIR=installer/qr-encoder/packages/com.vendor.product/meta
+CONFIG_DIR=qr-encoder/config
+DATA_DIR=qr-encoder/packages/com.vendor.product/data
+META_DIR=qr-encoder/packages/com.vendor.product/meta
 VERSION_STR="yy.mm"
 
 mkdir -p $CONFIG_DIR
@@ -78,11 +78,11 @@ elif [ "$OSTYPE" == "linux-gnu" ]; then
 	
 fi
 
-cd installer/qr-encoder
+cd qr-encoder
 
 # run binary creator from Qt Installer Framework
 $Qt_PATH/Tools/QtInstallerFramework/4.7/bin/binarycreator -c config/config.xml -p packages QR-Encoder-Installer
 
-cd ../..
+cd ..
 
-mv installer/qr-encoder/QR-Encoder-Installer .
+mv qr-encoder/QR-Encoder-Installer .
