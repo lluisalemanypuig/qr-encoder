@@ -39,6 +39,8 @@ public:
 public slots:
 	void generateQR() const noexcept;
 	void saveQR() const noexcept;
+	void show_Usage_menu() const noexcept;
+	void show_About_menu() const noexcept;
 
 private:
 	Ui::MainWindow *ui;

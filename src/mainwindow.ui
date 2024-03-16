@@ -183,7 +183,7 @@
           <widget class="QLabel" name="label_2">
            <property name="minimumSize">
             <size>
-             <width>89</width>
+             <width>122</width>
              <height>25</height>
             </size>
            </property>
@@ -240,12 +240,12 @@
           <widget class="QLabel" name="label_3">
            <property name="minimumSize">
             <size>
-             <width>89</width>
+             <width>122</width>
              <height>26</height>
             </size>
            </property>
            <property name="text">
-            <string>Compression</string>
+            <string>PNG Compression</string>
            </property>
           </widget>
          </item>
@@ -288,6 +288,14 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionUsage_2"/>
+    <addaction name="actionAbout_2"/>
+   </widget>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionUsage">
@@ -296,6 +304,16 @@
    </property>
   </action>
   <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionUsage_2">
+   <property name="text">
+    <string>Usage</string>
+   </property>
+  </action>
+  <action name="actionAbout_2">
    <property name="text">
     <string>About</string>
    </property>
@@ -320,8 +338,8 @@
    <slot>generateQR()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>383</x>
-     <y>479</y>
+     <x>393</x>
+     <y>472</y>
     </hint>
     <hint type="destinationlabel">
      <x>165</x>
@@ -336,8 +354,8 @@
    <slot>saveQR()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>762</x>
-     <y>479</y>
+     <x>824</x>
+     <y>472</y>
     </hint>
     <hint type="destinationlabel">
      <x>560</x>
@@ -352,8 +370,8 @@
    <slot>redimensionQR(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
-     <y>440</y>
+     <x>431</x>
+     <y>500</y>
     </hint>
     <hint type="destinationlabel">
      <x>243</x>
@@ -368,12 +386,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>527</x>
-     <y>440</y>
+     <x>652</x>
+     <y>500</y>
     </hint>
     <hint type="destinationlabel">
-     <x>762</x>
-     <y>446</y>
+     <x>824</x>
+     <y>506</y>
     </hint>
    </hints>
   </connection>
@@ -384,12 +402,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>762</x>
-     <y>446</y>
+     <x>824</x>
+     <y>506</y>
     </hint>
     <hint type="destinationlabel">
-     <x>589</x>
-     <y>440</y>
+     <x>714</x>
+     <y>500</y>
     </hint>
    </hints>
   </connection>
@@ -400,12 +418,44 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>487</x>
-     <y>440</y>
+     <x>612</x>
+     <y>500</y>
     </hint>
     <hint type="destinationlabel">
-     <x>762</x>
-     <y>446</y>
+     <x>824</x>
+     <y>506</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionUsage_2</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_Usage_menu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>348</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout_2</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_About_menu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>348</y>
     </hint>
    </hints>
   </connection>
@@ -413,5 +463,7 @@
  <slots>
   <slot>generateQR()</slot>
   <slot>saveQR()</slot>
+  <slot>show_Usage_menu()</slot>
+  <slot>show_About_menu()</slot>
  </slots>
 </ui>
