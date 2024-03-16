@@ -40,8 +40,6 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 " > $CONFIG_DIR/config.xml
 
 Qt_PATH=""
-Qt_BIN_PATH=""
-Qt_PLUGIN_PATH=""
 
 if [ "$OSTYPE" == "msys" ]; then
 	
@@ -51,7 +49,6 @@ if [ "$OSTYPE" == "msys" ]; then
 	cp build/release/qmake_qmake_qm_files.qrc $DATA_DIR
 	
 	Qt_PATH=C:/Qt
-	
 	Qt_BIN_PATH=$Qt_PATH/6.6.1/mingw_64/bin
 	Qt_PLUGIN_PATH=$Qt_PATH/6.6.1/mingw_64/plugins
 	
