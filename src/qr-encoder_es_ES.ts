@@ -160,7 +160,7 @@ Contacto:
 
 	Github: https://github.com/lluisalemanypuig/qr-encoder
 
-Este programa está distribuido bajo la licencia GNU Affero GPL.
+Versión yy.mm -- Este programa está distribuido bajo la licencia GNU Affero GPL.
 
 Distribuye y modifica este programa libremente (siempre que se cumpla con los términos y condiciones de la licencia).
 

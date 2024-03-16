@@ -3,6 +3,7 @@
 CONFIG_DIR=installer/qr-encoder/config
 DATA_DIR=installer/qr-encoder/packages/com.vendor.product/data
 META_DIR=installer/qr-encoder/packages/com.vendor.product/meta
+VERSION_STR="yy.mm"
 
 mkdir -p $CONFIG_DIR
 mkdir -p $DATA_DIR
@@ -24,7 +25,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
     <DisplayName>QR Encoder</DisplayName>
     <Description>This will install QR Encoder.</Description>
     <Version>0.1.0-1</Version>
-    <ReleaseDate>2010-09-21</ReleaseDate>
+    <ReleaseDate>$(date +"%Y/%m/%d")</ReleaseDate>
     <Licenses>
         <License name=\"GNU Affero GPL\" file=\"LICENSE\" />
     </Licenses>
@@ -34,7 +35,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <Installer>
     <Name>QR Encoder</Name>
-    <Version>1.0.0</Version>
+    <Version>$VERSION_STR</Version>
     <Title>Installer of QR Encoder</Title>
     <Publisher>Lluís Alemany Puig</Publisher>
     <StartMenuDir>Desktop</StartMenuDir>
