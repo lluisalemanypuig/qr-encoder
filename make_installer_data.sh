@@ -3,7 +3,7 @@
 CONFIG_DIR=qr-encoder/config
 DATA_DIR=qr-encoder/packages/com.vendor.product/data
 META_DIR=qr-encoder/packages/com.vendor.product/meta
-VERSION_STR="yy.mm"
+VERSION_STR="24.03"
 
 mkdir -p $CONFIG_DIR
 mkdir -p $DATA_DIR

@@ -132,7 +132,7 @@ void MainWindow::show_About_menu() const noexcept {
 		"\n"
 		"\tGithub: https://github.com/lluisalemanypuig/qr-encoder\n"
 		"\n"
-		"Version yy.mm -- Distributed under GNU Affero GPL.\n"
+		"Version 24.03 -- Distributed under GNU Affero GPL.\n"
 		"\n"
 		"Feel free to distribute and modify the program (while complying with the "
 		"terms and conditions imposed by the licence).\n"

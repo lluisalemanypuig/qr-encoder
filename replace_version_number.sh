@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPLACE_WITH="yy.mm"
+REPLACE_WITH="24.03"
 
 sed -i 's/yy.mm/'$REPLACE_WITH'/g' make_installer_data.sh
 sed -i 's/yy.mm/'$REPLACE_WITH'/g' src/mainwindow.cpp
