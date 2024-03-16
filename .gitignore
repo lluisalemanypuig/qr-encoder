@@ -2,5 +2,6 @@
 build-debug/
 build-release/
 build-profile/
+build/
 src/qr-encoder.pro.user
-QR-Encoder-Installer
+QR-Encoder-Installer*
