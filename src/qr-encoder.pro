@@ -14,12 +14,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     qrcode/qrcodegen.cpp \
-    qrrenderer.cpp
+    qrrenderer.cpp \
+    resizablemessagebox.cpp
 
 HEADERS += \
     mainwindow.hpp \
     qrcode/qrcodegen.hpp \
-    qrrenderer.hpp
+    qrrenderer.hpp \
+    resizablemessagebox.hpp
 
 FORMS += \
     mainwindow.ui
