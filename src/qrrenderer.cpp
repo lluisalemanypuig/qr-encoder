@@ -31,6 +31,7 @@ QRrenderer::QRrenderer(QWidget *parent)
 	: QGraphicsView(parent)
 {
 	setScene(&m_scene);
+	setAlignment(Qt::AlignCenter);
 }
 
 void QRrenderer::set_QR_code
@@ -76,8 +77,8 @@ void QRrenderer::update_outer_square() noexcept {
 
 #if defined __PAINT_CONTROL_SHAPES
 	QGraphicsRectItem *outer_square = new QGraphicsRectItem(QRectF(
-		m_outer_square_x0,   m_outer_square_y0,
-		m_outer_square_size, m_outer_square_size
+		m_drawing_area.x(),   m_drawing_area.y(),
+		m_drawing_area.width(), m_drawing_area.height()
 	));
 	outer_square->setPen(QPen(Qt::blue));
 	m_scene.addItem(outer_square);
@@ -142,4 +143,7 @@ void QRrenderer::update() noexcept {
 			++i;
 		}
 	}
+
+	setSceneRect(m_drawing_area);
+	centerOn(m_drawing_area.center());
 }

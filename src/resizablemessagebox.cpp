@@ -43,8 +43,8 @@ void ResizableMessageBox::show(const QString& title, const QString& message) noe
 	layout->addWidget(label);
 
 	QPushButton *okButton = new QPushButton("OK");
-	connect(okButton, &QPushButton::clicked, this, &QDialog::accept); // Close dialog on button click
+	// Close dialog on button click
+	connect(okButton, &QPushButton::clicked, this, &QDialog::accept);
 	layout->addWidget(okButton);
-
 	setLayout(layout);
 }
