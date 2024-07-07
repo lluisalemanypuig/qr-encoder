@@ -24,9 +24,6 @@
 
 #undef __PAINT_CONTROL_SHAPES
 
-// C++ includes
-#include <iostream>
-
 // Qt includes
 #include <QGraphicsRectItem>
 
