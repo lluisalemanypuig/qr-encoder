@@ -46,6 +46,9 @@ public slots:
 	void redimensionQR(int value) noexcept;
 	void update() noexcept;
 
+	void set_fill_color(int color) noexcept;
+	void set_border_color(int color) noexcept;
+
 signals:
 
 protected:
@@ -53,6 +56,13 @@ protected:
 	void update_inner_square() noexcept;
 
 private:
+
+	// Color-related stuff
+	Qt::GlobalColor m_fill_color;
+	Qt::GlobalColor m_border_color;
+
+	// QR-related stuff
+
 	// QR matrix
 	std::vector<int> m_QR_matrix;
 	// size of the QR

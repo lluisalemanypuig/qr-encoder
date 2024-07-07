@@ -24,6 +24,9 @@
 
 #undef __PAINT_CONTROL_SHAPES
 
+// C++ includes
+#include <iostream>
+
 // Qt includes
 #include <QGraphicsRectItem>
 
@@ -32,7 +35,22 @@ QRrenderer::QRrenderer(QWidget *parent)
 {
 	setScene(&m_scene);
 	setAlignment(Qt::AlignCenter);
+
+	m_fill_color = Qt::GlobalColor::black;
+	m_border_color = Qt::GlobalColor::black;
 }
+
+void QRrenderer::set_fill_color(int color) noexcept {
+	m_fill_color = static_cast<Qt::GlobalColor>(color + 2);
+	update();
+}
+
+void QRrenderer::set_border_color(int color) noexcept {
+	m_border_color = static_cast<Qt::GlobalColor>(color + 2);
+	update();
+}
+
+// -----------------------------------------------------------------------------
 
 void QRrenderer::set_QR_code
 (std::vector<int>&& QR_matrix, std::size_t QR_size)
@@ -106,6 +124,10 @@ void QRrenderer::update_inner_square() noexcept {
 #endif
 }
 
+Qt::GlobalColor random_color(int x0, int y0) noexcept {
+	return static_cast<Qt::GlobalColor>(x0*y0/(x0 + y0)%16 + 2);
+}
+
 void QRrenderer::update() noexcept {
 	if (m_QR_size == 0) { return; }
 
@@ -135,10 +157,12 @@ void QRrenderer::update() noexcept {
 				const QRectF QR_cell(x0, y0, width, height);
 
 				// paint the current cell
-				QGraphicsRectItem *filledRectItem = new QGraphicsRectItem(QR_cell);
-				filledRectItem->setBrush(Qt::black);
+				QGraphicsRectItem *rect = new QGraphicsRectItem(QR_cell);
 
-				m_scene.addItem(filledRectItem);
+				rect->setBrush(m_fill_color);
+				rect->setPen(QColor{m_border_color});
+
+				m_scene.addItem(rect);
 			}
 			++i;
 		}
