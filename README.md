@@ -6,7 +6,8 @@ A small GUI to generate QR codes out of a text provided by the user. To implemen
 
 Launch the application and enter the text in the textbox right next to "Text". The text can be anything (including UTF-8 characters) from random characters to an actual sentence. After that click on "Generate QR"; in order to save the QR code as a .png image, click on "Save QR code". The QR code can be shrunk using the slider next to "Shrinking factor" or entering a number next to the slider.
 
-![ ](figures/GUI_high.png)
+![ ](figures/GUI_1.png)
+![ ](figures/GUI_2.png)
 
 ### Advanced options
 
