@@ -42,12 +42,19 @@ public:
 		return m_drawing_area;
 	}
 
+	enum class shapes {
+		squares,
+		circles
+	};
+
 public slots:
 	void redimensionQR(int value) noexcept;
 	void update() noexcept;
 
 	void set_fill_color(int color) noexcept;
 	void set_border_color(int color) noexcept;
+
+	void set_shape(int color) noexcept;
 
 signals:
 
@@ -56,9 +63,26 @@ protected:
 	void update_inner_square() noexcept;
 
 private:
+
+	void draw_control_points(
+		const std::vector<std::pair<int,int>>& points,
+		int outer_x, int outer_y,
+		int outer_w, int outer_h,
+		int blank_x, int blank_y,
+		int blank_w, int blank_h,
+		int inner_x, int inner_y,
+		int inner_w, int inner_h
+	)
+	noexcept;
+	void draw_circles() noexcept;
+
+	void draw_squares() noexcept;
+
+private:
 	// Color-related stuff
 	Qt::GlobalColor m_fill_color;
 	Qt::GlobalColor m_border_color;
+	shapes m_shape;
 
 	// QR matrix
 	qrcodegen::QrCode m_QR_matrix;

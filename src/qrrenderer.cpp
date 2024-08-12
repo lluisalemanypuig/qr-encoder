@@ -36,6 +36,7 @@ QRrenderer::QRrenderer(QWidget *parent) :
 
 	m_fill_color = Qt::GlobalColor::black;
 	m_border_color = Qt::GlobalColor::black;
+	m_shape = shapes::squares;
 }
 
 void QRrenderer::set_fill_color(int color) noexcept {
@@ -45,6 +46,11 @@ void QRrenderer::set_fill_color(int color) noexcept {
 
 void QRrenderer::set_border_color(int color) noexcept {
 	m_border_color = static_cast<Qt::GlobalColor>(color + 2);
+	update();
+}
+
+void QRrenderer::set_shape(int shape) noexcept {
+	m_shape = static_cast<shapes>(shape);
 	update();
 }
 
@@ -124,6 +130,138 @@ Qt::GlobalColor random_color(int x0, int y0) noexcept {
 	return static_cast<Qt::GlobalColor>(x0*y0/(x0 + y0)%16 + 2);
 }
 
+void QRrenderer::draw_control_points(
+	const std::vector<std::pair<int,int>>& points,
+	int outer_x, int outer_y,
+	int outer_w, int outer_h,
+	int blank_x, int blank_y,
+	int blank_w, int blank_h,
+	int inner_x, int inner_y,
+	int inner_w, int inner_h
+)
+noexcept
+{
+	const std::size_t QR_size = m_QR_matrix.getSize();
+	const double QR_cell_size = m_inner_square_size/QR_size;
+
+	for (const auto& [x, y] : points) {
+		const double x0 = m_inner_square_x0 + x*QR_cell_size;
+		const double y0 = m_inner_square_y0 + y*QR_cell_size;
+		const double width = QR_cell_size;
+		const double height = QR_cell_size;
+
+		// erase superfluous circles
+		QGraphicsRectItem *rect = new QGraphicsRectItem(
+			x0 - outer_x*width,
+			y0 - outer_y*height,
+			outer_w*width,
+			outer_h*height
+		);
+		rect->setBrush(Qt::GlobalColor::white);
+		rect->setPen(QColor{Qt::GlobalColor::white});
+		m_scene.addItem(rect);
+
+		{
+		QGraphicsEllipseItem *circle = new QGraphicsEllipseItem(
+			x0 - outer_x*width,
+			y0 - outer_y*height,
+			outer_w*width,
+			outer_h*height
+		);
+		circle->setBrush(m_fill_color);
+		circle->setPen(QColor{m_border_color});
+		m_scene.addItem(circle);
+		}
+
+		{
+		QGraphicsEllipseItem *circle = new QGraphicsEllipseItem(
+			x0 - blank_x*width,
+			y0 - blank_y*height,
+			blank_w*width,
+			blank_h*height
+		);
+		circle->setBrush(Qt::GlobalColor::white);
+		circle->setPen(QColor{Qt::GlobalColor::white});
+		m_scene.addItem(circle);
+		}
+
+		{
+		QGraphicsEllipseItem *circle = new QGraphicsEllipseItem(
+			x0 - inner_x*width,
+			y0 - inner_y*height,
+			inner_w*width,
+			inner_h*height
+		);
+		circle->setBrush(m_fill_color);
+		circle->setPen(QColor{m_border_color});
+		m_scene.addItem(circle);
+		}
+	}
+}
+
+void QRrenderer::draw_circles() noexcept {
+	const std::size_t QR_size = m_QR_matrix.getSize();
+	const double QR_cell_size = m_inner_square_size/QR_size;
+
+	// draw 'normal' circles first
+	for (std::size_t x = 0; x < QR_size; ++x) {
+		for (std::size_t y = 0; y < QR_size; ++y) {
+
+			if (m_QR_matrix.getModule(x, y)) {
+				const double x0 = m_inner_square_x0 + x*QR_cell_size;
+				const double y0 = m_inner_square_y0 + y*QR_cell_size;
+				const double width = QR_cell_size;
+				const double height = QR_cell_size;
+
+				// paint the current cell
+				QGraphicsEllipseItem *circle =
+					new QGraphicsEllipseItem(x0, y0, width, height);
+				circle->setBrush(m_fill_color);
+				circle->setPen(QColor{m_border_color});
+				m_scene.addItem(circle);
+			}
+		}
+	}
+
+	draw_control_points(
+		m_QR_matrix.alignment_centers,
+		2, 2, 5, 5,
+		1, 1, 3, 3,
+		0, 0, 1, 1
+	);
+	draw_control_points(
+		m_QR_matrix.finder_centers,
+		3, 3, 7, 7,
+		2, 2, 5, 5,
+		1, 1, 3, 3
+	);
+}
+
+void QRrenderer::draw_squares() noexcept {
+	const std::size_t QR_size = m_QR_matrix.getSize();
+	const double QR_cell_size = m_inner_square_size/QR_size;
+
+	// draw the QR
+	for (std::size_t x = 0; x < QR_size; ++x) {
+		for (std::size_t y = 0; y < QR_size; ++y) {
+
+			if (m_QR_matrix.getModule(x, y)) {
+				const double x0 = m_inner_square_x0 + x*QR_cell_size;
+				const double y0 = m_inner_square_y0 + y*QR_cell_size;
+				const double width = QR_cell_size;
+				const double height = QR_cell_size;
+
+				// paint the current cell
+				QGraphicsRectItem *rect =
+					new QGraphicsRectItem(x0, y0, width, height);
+				rect->setBrush(m_fill_color);
+				rect->setPen(QColor{m_border_color});
+				m_scene.addItem(rect);
+			}
+		}
+	}
+}
+
 void QRrenderer::update() noexcept {
 	const std::size_t QR_size = m_QR_matrix.getSize();
 
@@ -137,31 +275,11 @@ void QRrenderer::update() noexcept {
 	update_outer_square();
 	update_inner_square();
 
-	// the size of a cell of the QR code
-	const double QR_cell_size = m_inner_square_size/QR_size;
-
-	// draw the QR
-	for (std::size_t x = 0; x < QR_size; ++x) {
-		for (std::size_t y = 0; y < QR_size; ++y) {
-
-			if (m_QR_matrix.getModule(x, y)) {
-				const double x0 = m_inner_square_x0 + x*QR_cell_size;
-				const double y0 = m_inner_square_y0 + y*QR_cell_size;
-				const double width = QR_cell_size;
-				const double height = QR_cell_size;
-
-				// the rectangle for the current QR cell
-				const QRectF QR_cell(x0, y0, width, height);
-
-				// paint the current cell
-				QGraphicsRectItem *rect = new QGraphicsRectItem(QR_cell);
-
-				rect->setBrush(m_fill_color);
-				rect->setPen(QColor{m_border_color});
-
-				m_scene.addItem(rect);
-			}
-		}
+	if (m_shape == shapes::squares) {
+		draw_squares();
+	}
+	else if (m_shape == shapes::circles) {
+		draw_circles();
 	}
 
 	setSceneRect(m_drawing_area);

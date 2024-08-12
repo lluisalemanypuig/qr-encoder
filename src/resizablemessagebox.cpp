@@ -29,7 +29,9 @@
 #include <QWidget>
 #include <QLabel>
 
-ResizableMessageBox::ResizableMessageBox(QWidget *parent) : QDialog(parent) {
+ResizableMessageBox::ResizableMessageBox(QWidget *parent) :
+	QDialog(parent)
+{
 
 }
 

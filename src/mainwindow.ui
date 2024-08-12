@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>846</width>
-    <height>688</height>
+    <height>694</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -136,7 +136,7 @@
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>Coloring</string>
+        <string>Coloring and Shape</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -155,7 +155,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="singleColorModeColor">
+           <widget class="QComboBox" name="fillColorComboBox">
             <property name="minimumSize">
              <size>
               <width>125</width>
@@ -280,7 +280,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="singleColorModeColor_2">
+           <widget class="QComboBox" name="borderColorComboBox">
             <property name="minimumSize">
              <size>
               <width>125</width>
@@ -376,6 +376,56 @@
           </item>
           <item>
            <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QLabel" name="label_7">
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Shape</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="shapeComboBox">
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>25</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string>Squares</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Circles</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_5">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -548,6 +598,7 @@
     <slot>redimensionQR(int)</slot>
     <slot>set_fill_color(int)</slot>
     <slot>set_border_color(int)</slot>
+    <slot>set_shape(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -592,8 +643,8 @@
    <slot>redimensionQR(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>431</x>
-     <y>500</y>
+     <x>556</x>
+     <y>519</y>
     </hint>
     <hint type="destinationlabel">
      <x>243</x>
@@ -608,8 +659,8 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>652</x>
-     <y>500</y>
+     <x>768</x>
+     <y>519</y>
     </hint>
     <hint type="destinationlabel">
      <x>824</x>
@@ -628,8 +679,8 @@
      <y>506</y>
     </hint>
     <hint type="destinationlabel">
-     <x>714</x>
-     <y>500</y>
+     <x>768</x>
+     <y>519</y>
     </hint>
    </hints>
   </connection>
@@ -640,8 +691,8 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>612</x>
-     <y>500</y>
+     <x>737</x>
+     <y>519</y>
     </hint>
     <hint type="destinationlabel">
      <x>824</x>
@@ -682,7 +733,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>singleColorModeColor</sender>
+   <sender>fillColorComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>QRRenderArea</receiver>
    <slot>set_fill_color(int)</slot>
@@ -698,7 +749,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>singleColorModeColor_2</sender>
+   <sender>borderColorComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>QRRenderArea</receiver>
    <slot>set_border_color(int)</slot>
@@ -710,6 +761,22 @@
     <hint type="destinationlabel">
      <x>354</x>
      <y>397</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>shapeComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>QRRenderArea</receiver>
+   <slot>set_shape(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>259</x>
+     <y>641</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>452</x>
+     <y>382</y>
     </hint>
    </hints>
   </connection>
