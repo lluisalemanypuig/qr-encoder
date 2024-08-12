@@ -235,7 +235,14 @@ class QrSegment final {
  * (Note that all ways require supplying the desired error correction level.)
  */
 class QrCode final {
-	
+
+	// ADDED ON 2024/08/12
+	// the centers of the 5x5 alignment patterns
+	public: std::vector<std::pair<int,int>> alignment_centers;
+	// ADDED ON 2024/08/12
+	// the centers of the 9x9 finder patterns
+	public: std::vector<std::pair<int,int>> finder_centers;
+
 	/*---- Public helper enumeration ----*/
 	
 	/* 
