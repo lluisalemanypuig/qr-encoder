@@ -309,17 +309,29 @@
 1. Write the tetx you want to encode (a sentence, a url, random text, ...) into the &apos;Text&apos; text box.
 2. Click on &apos;Generate QR&apos; to generate the QR code.
 3. Resize the code with the slider to an appropriate size.
-4. Finally, click on &apos;Save QR Code&apos;.
+4. Choose the color you like the most and a shape.
+5. Finally, click on &apos;Save QR Code&apos;.
 
 Advanced options:
 1. Quality of the QR code. Make sure your code will be readable (even when it is partially occluded) by setting ECC to &apos;High&apos;. Or if the QR looks too cluttered, though, set it to &apos;Low&apos; or another value. Click &apos;Generate QR&apos; everytime the value of ECC changes.
 
 2. Size of the png file. The QR code will be saved in a png file; you can set the level of compression of the image file by changing the value next to &apos;PNG Compression&apos;. It is a percentage (%) and is currently set at the maximum value.</source>
+        <oldsource>Using QR-Encode is easy! Just follow these steps:
+1. Write the tetx you want to encode (a sentence, a url, random text, ...) into the &apos;Text&apos; text box.
+2. Click on &apos;Generate QR&apos; to generate the QR code.
+3. Resize the code with the slider to an appropriate size.
+4. Finally, click on &apos;Save QR Code&apos;.
+
+Advanced options:
+1. Quality of the QR code. Make sure your code will be readable (even when it is partially occluded) by setting ECC to &apos;High&apos;. Or if the QR looks too cluttered, though, set it to &apos;Low&apos; or another value. Click &apos;Generate QR&apos; everytime the value of ECC changes.
+
+2. Size of the png file. The QR code will be saved in a png file; you can set the level of compression of the image file by changing the value next to &apos;PNG Compression&apos;. It is a percentage (%) and is currently set at the maximum value.</oldsource>
         <translation>És fàcil fer servir el Codificador QR! Només has de seguir aquests passos:
 1. Escriu el text que vols codificar (una frase, una url, text aleatori, ...) a dins de la capsa de text &apos;Text&apos;.
 2. Clica el botó &apos;Genera el codi QR&apos; per a generar el codi QR.
 3. Redimensiona el codi fent servir el control lliscant fins a obtenir la mida adequada pel codi.
-4. Finalment, clica sobre &apos;Guarda el codi QR&apos;.
+4. Tria els colors que més t&apos;agradin i una forma.
+5. Finalment, clica sobre &apos;Guarda el codi QR&apos;.
 
 Opcions avançades:
 1. Qualitat del codi QR. Assegura&apos;t que el codi serà llegible (fins i tot quan hi hagi algun obstacle que l&apos;obstrueixi) tot triant l&apos;opció &apos;Alta&apos; per &apos;ECC&apos;. O bé, si el codi es veu massa atapeït, selecciona l&apos;opció &apos;Baix&apos;. Clica el botó &apos;Genera el codi QR&apos; després de canviar el valor de ECC.
@@ -327,12 +339,12 @@ Opcions avançades:
 2. Mida del fitxer png. El codi QR es guardarà en un fitxer png; es pot seleccionar el nivell de compressió del fitxer tot canviat el valor al costat de &apos;Compressió PNG&apos;. És un percentatge (%) i té el seu valor màxim per defecte.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="116"/>
+        <location filename="mainwindow.cpp" line="117"/>
         <source>About QR-Encoder</source>
         <translation>Quant a Codificar QR</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="117"/>
+        <location filename="mainwindow.cpp" line="118"/>
         <source>Developed and maintained by Lluís Alemany Puig.
 
 Contact:
