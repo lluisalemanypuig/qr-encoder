@@ -9,6 +9,10 @@ Launch the application and enter the text in the textbox right next to "Text". T
 ![ ](figures/GUI_1.png)
 ![ ](figures/GUI_2.png)
 
+### Coloring and Shape
+
+The color and shape of the 'units' of the QR code can be changed. Users can choose the fill color, the border color, and the shape of the units (either squares or circles).
+
 ### Advanced options
 
 The quality of the QR code can be manipulated by setting a value to ECC (which stands for "Error Correcting Codes"). The default setting, "High", is recommended.
