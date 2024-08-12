@@ -27,8 +27,8 @@
 #include <QGraphicsView>
 #include <QWidget>
 
-// C++ includes
-#include <vector>
+// custom includes
+#include "qrcode/qrcodegen.hpp"
 
 class QRrenderer : public QGraphicsView {
 	Q_OBJECT
@@ -36,7 +36,7 @@ class QRrenderer : public QGraphicsView {
 public:
 	explicit QRrenderer(QWidget *parent = nullptr);
 
-	void set_QR_code(std::vector<int>&& QR_matrix, std::size_t QR_size) noexcept;
+	void set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept;
 
 	const QRect& get_drawing_area() const noexcept {
 		return m_drawing_area;
@@ -56,17 +56,12 @@ protected:
 	void update_inner_square() noexcept;
 
 private:
-
 	// Color-related stuff
 	Qt::GlobalColor m_fill_color;
 	Qt::GlobalColor m_border_color;
 
-	// QR-related stuff
-
 	// QR matrix
-	std::vector<int> m_QR_matrix;
-	// size of the QR
-	std::size_t m_QR_size = 0;
+	qrcodegen::QrCode m_QR_matrix;
 
 	// redimension factor from the slide and its spin box
 	double m_redim = 0.05;

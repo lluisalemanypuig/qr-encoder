@@ -27,8 +27,9 @@
 // Qt includes
 #include <QGraphicsRectItem>
 
-QRrenderer::QRrenderer(QWidget *parent)
-	: QGraphicsView(parent)
+QRrenderer::QRrenderer(QWidget *parent) :
+	QGraphicsView(parent),
+	m_QR_matrix(qrcodegen::QrCode::encodeText("", qrcodegen::QrCode::Ecc::LOW))
 {
 	setScene(&m_scene);
 	setAlignment(Qt::AlignCenter);
@@ -49,12 +50,10 @@ void QRrenderer::set_border_color(int color) noexcept {
 
 // -----------------------------------------------------------------------------
 
-void QRrenderer::set_QR_code
-(std::vector<int>&& QR_matrix, std::size_t QR_size)
+void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix)
 noexcept
 {
 	m_QR_matrix = std::move(QR_matrix);
-	m_QR_size = QR_size;
 }
 
 void QRrenderer::redimensionQR(int value) noexcept {
@@ -126,7 +125,9 @@ Qt::GlobalColor random_color(int x0, int y0) noexcept {
 }
 
 void QRrenderer::update() noexcept {
-	if (m_QR_size == 0) { return; }
+	const std::size_t QR_size = m_QR_matrix.getSize();
+
+	if (QR_size == 0) { return; }
 
 	// clean up drawing area
 	m_scene.clear();
@@ -137,14 +138,13 @@ void QRrenderer::update() noexcept {
 	update_inner_square();
 
 	// the size of a cell of the QR code
-	const double QR_cell_size = m_inner_square_size/m_QR_size;
+	const double QR_cell_size = m_inner_square_size/QR_size;
 
 	// draw the QR
-	std::size_t i = 0;
-	for (std::size_t x = 0; x < m_QR_size; ++x) {
-		for (std::size_t y = 0; y < m_QR_size; ++y) {
+	for (std::size_t x = 0; x < QR_size; ++x) {
+		for (std::size_t y = 0; y < QR_size; ++y) {
 
-			if (m_QR_matrix[i] == 1) {
+			if (m_QR_matrix.getModule(x, y)) {
 				const double x0 = m_inner_square_x0 + x*QR_cell_size;
 				const double y0 = m_inner_square_y0 + y*QR_cell_size;
 				const double width = QR_cell_size;
@@ -161,7 +161,6 @@ void QRrenderer::update() noexcept {
 
 				m_scene.addItem(rect);
 			}
-			++i;
 		}
 	}
 

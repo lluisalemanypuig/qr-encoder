@@ -36,14 +36,14 @@
 #include "resizablemessagebox.hpp"
 #include "qrcode/qrcodegen.hpp"
 
-MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent)
-	, ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) noexcept :
+	QMainWindow(parent),
+	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
 }
 
-MainWindow::~MainWindow() {
+MainWindow::~MainWindow() noexcept {
 	delete ui;
 }
 
@@ -66,20 +66,8 @@ void MainWindow::generateQR() const noexcept {
 
 	const qrcodegen::QrCode::Ecc ecc = string_to_ECC(ecc_str);
 
-	const qrcodegen::QrCode qr = qrcodegen::QrCode::encodeText(str.c_str(), ecc);
-	const std::size_t s = qr.getSize() > 0 ? qr.getSize() : 1;
-
-	std::vector<int> QR_matrix(s*s);
-	std::size_t i = 0;
-	for (std::size_t x = 0; x < s; ++x) {
-		for (std::size_t y = 0; y < s; ++y) {
-			const int value = qr.getModule(x, y);
-			QR_matrix[i] = value;
-			++i;
-		}
-	}
-
-	ui->QRRenderArea->set_QR_code(std::move(QR_matrix), s);
+	qrcodegen::QrCode qr = qrcodegen::QrCode::encodeText(str.c_str(), ecc);
+	ui->QRRenderArea->set_QR_code(std::move(qr));
 	ui->QRRenderArea->update();
 }
 
