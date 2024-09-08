@@ -223,12 +223,14 @@ void QRrenderer::draw_circles() noexcept {
 		}
 	}
 
+	/*
 	draw_control_points(
 		m_QR_matrix.alignment_centers,
 		2, 2, 5, 5,
 		1, 1, 3, 3,
 		0, 0, 1, 1
 	);
+	*/
 	draw_control_points(
 		m_QR_matrix.finder_centers,
 		3, 3, 7, 7,
