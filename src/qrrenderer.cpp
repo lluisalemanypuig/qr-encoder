@@ -148,6 +148,40 @@ void QRrenderer::update_inner_square() noexcept {
 #endif
 }
 
+void QRrenderer::draw_circle
+(const std::size_t x, const std::size_t y, const double QR_cell_size)
+noexcept
+{
+	const double x0 = m_inner_square_x0 + x*QR_cell_size;
+	const double y0 = m_inner_square_y0 + y*QR_cell_size;
+	const double width = QR_cell_size;
+	const double height = QR_cell_size;
+
+	// paint the current cell
+	QGraphicsEllipseItem *circle =
+		new QGraphicsEllipseItem(x0, y0, width, height);
+	circle->setBrush(m_point_fill);
+	circle->setPen(QColor{m_point_border});
+	m_scene.addItem(circle);
+}
+
+void QRrenderer::draw_square
+(const std::size_t x, const std::size_t y, const double QR_cell_size)
+noexcept
+{
+	const double x0 = m_inner_square_x0 + x*QR_cell_size;
+	const double y0 = m_inner_square_y0 + y*QR_cell_size;
+	const double width = QR_cell_size;
+	const double height = QR_cell_size;
+
+	// paint the current cell
+	QGraphicsRectItem *rect =
+		new QGraphicsRectItem(x0, y0, width, height);
+	rect->setBrush(m_point_fill);
+	rect->setPen(QColor{m_point_border});
+	m_scene.addItem(rect);
+}
+
 void QRrenderer::draw_alignment_patterns_round(
 	const std::vector<std::pair<int,int>>& points,
 	const int outer_x, const int outer_y,
@@ -227,17 +261,7 @@ void QRrenderer::draw_alignment_patterns_square() noexcept {
 			if (not is_alignment_pattern_point(x, y, QR_size)) { continue; }
 
 			if (m_QR_matrix.getModule(x, y)) {
-				const double x0 = m_inner_square_x0 + x*QR_cell_size;
-				const double y0 = m_inner_square_y0 + y*QR_cell_size;
-				const double width = QR_cell_size;
-				const double height = QR_cell_size;
-
-				// paint the current cell
-				QGraphicsRectItem *rect =
-					new QGraphicsRectItem(x0, y0, width, height);
-				rect->setBrush(m_point_fill);
-				rect->setPen(QColor{m_point_border});
-				m_scene.addItem(rect);
+				draw_square(x, y, QR_cell_size);
 			}
 		}
 	}
@@ -267,17 +291,7 @@ void QRrenderer::draw_circle_points() noexcept {
 			if (is_alignment_pattern_point(x, y, QR_size)) { continue; }
 
 			if (m_QR_matrix.getModule(x, y)) {
-				const double x0 = m_inner_square_x0 + x*QR_cell_size;
-				const double y0 = m_inner_square_y0 + y*QR_cell_size;
-				const double width = QR_cell_size;
-				const double height = QR_cell_size;
-
-				// paint the current cell
-				QGraphicsEllipseItem *circle =
-					new QGraphicsEllipseItem(x0, y0, width, height);
-				circle->setBrush(m_point_fill);
-				circle->setPen(QColor{m_point_border});
-				m_scene.addItem(circle);
+				draw_circle(x, y, QR_cell_size);
 			}
 		}
 	}
@@ -293,17 +307,7 @@ void QRrenderer::draw_square_points() noexcept {
 			if (is_alignment_pattern_point(x, y, QR_size)) { continue; }
 
 			if (m_QR_matrix.getModule(x, y)) {
-				const double x0 = m_inner_square_x0 + x*QR_cell_size;
-				const double y0 = m_inner_square_y0 + y*QR_cell_size;
-				const double width = QR_cell_size;
-				const double height = QR_cell_size;
-
-				// paint the current cell
-				QGraphicsRectItem *rect =
-					new QGraphicsRectItem(x0, y0, width, height);
-				rect->setBrush(m_point_fill);
-				rect->setPen(QColor{m_point_border});
-				m_scene.addItem(rect);
+				draw_square(x, y, QR_cell_size);
 			}
 		}
 	}

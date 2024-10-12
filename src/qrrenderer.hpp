@@ -64,6 +64,12 @@ protected:
 	void update_inner_square() noexcept;
 
 private:
+	void draw_square
+	(const std::size_t x, const std::size_t y, const double QR_cell_size)
+	noexcept;
+	void draw_circle
+	(const std::size_t x, const std::size_t y, const double QR_cell_size)
+	noexcept;
 
 	void draw_alignment_patterns_round(
 		const std::vector<std::pair<int,int>>& points,
