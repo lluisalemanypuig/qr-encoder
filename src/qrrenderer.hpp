@@ -48,14 +48,14 @@ public:
 	};
 
 public slots:
-	void redimensionQR(int value) noexcept;
+	void redimensionQR(const int value) noexcept;
 	void update() noexcept;
 
-	void set_fill_color(int color) noexcept;
-	void set_border_color(int color) noexcept;
+	void set_fill_color(const int color) noexcept;
+	void set_border_color(const int color) noexcept;
 
-	void set_point_shape(int color) noexcept;
-	void set_alignment_pattern_shape(int shape) noexcept;
+	void set_point_shape(const int color) noexcept;
+	void set_alignment_pattern_shape(const int shape) noexcept;
 
 signals:
 
@@ -67,12 +67,12 @@ private:
 
 	void draw_alignment_patterns_round(
 		const std::vector<std::pair<int,int>>& points,
-		int outer_x, int outer_y,
-		int outer_w, int outer_h,
-		int blank_x, int blank_y,
-		int blank_w, int blank_h,
-		int inner_x, int inner_y,
-		int inner_w, int inner_h
+		const int outer_x, const int outer_y,
+		const int outer_w, const int outer_h,
+		const int blank_x, const int blank_y,
+		const int blank_w, const int blank_h,
+		const int inner_x, const int inner_y,
+		const int inner_w, const int inner_h
 	)
 	noexcept;
 	void draw_alignment_patterns_square() noexcept;

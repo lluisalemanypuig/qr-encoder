@@ -27,7 +27,7 @@
 // Qt includes
 #include <QGraphicsRectItem>
 
-Qt::GlobalColor random_color(int x0, int y0) noexcept {
+Qt::GlobalColor random_color(const int x0, const int y0) noexcept {
 	return static_cast<Qt::GlobalColor>(x0*y0/(x0 + y0)%16 + 2);
 }
 
@@ -58,22 +58,22 @@ QRrenderer::QRrenderer(QWidget *parent) :
 	m_alignment_patterns = shapes::squares;
 }
 
-void QRrenderer::set_fill_color(int color) noexcept {
+void QRrenderer::set_fill_color(const int color) noexcept {
 	m_point_fill = static_cast<Qt::GlobalColor>(color + 2);
 	update();
 }
 
-void QRrenderer::set_border_color(int color) noexcept {
+void QRrenderer::set_border_color(const int color) noexcept {
 	m_point_border = static_cast<Qt::GlobalColor>(color + 2);
 	update();
 }
 
-void QRrenderer::set_point_shape(int shape) noexcept {
+void QRrenderer::set_point_shape(const int shape) noexcept {
 	m_points = static_cast<shapes>(shape);
 	update();
 }
 
-void QRrenderer::set_alignment_pattern_shape(int shape) noexcept {
+void QRrenderer::set_alignment_pattern_shape(const int shape) noexcept {
 	m_alignment_patterns = static_cast<shapes>(shape);
 	update();
 }
@@ -84,7 +84,7 @@ noexcept
 	m_QR_matrix = std::move(QR_matrix);
 }
 
-void QRrenderer::redimensionQR(int value) noexcept {
+void QRrenderer::redimensionQR(const int value) noexcept {
 	m_redim = value/1000.0;
 	update();
 }
@@ -150,12 +150,12 @@ void QRrenderer::update_inner_square() noexcept {
 
 void QRrenderer::draw_alignment_patterns_round(
 	const std::vector<std::pair<int,int>>& points,
-	int outer_x, int outer_y,
-	int outer_w, int outer_h,
-	int blank_x, int blank_y,
-	int blank_w, int blank_h,
-	int inner_x, int inner_y,
-	int inner_w, int inner_h
+	const int outer_x, const int outer_y,
+	const int outer_w, const int outer_h,
+	const int blank_x, const int blank_y,
+	const int blank_w, const int blank_h,
+	const int inner_x, const int inner_y,
+	const int inner_w, const int inner_h
 )
 noexcept
 {
