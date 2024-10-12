@@ -54,7 +54,8 @@ public slots:
 	void set_fill_color(int color) noexcept;
 	void set_border_color(int color) noexcept;
 
-	void set_shape(int color) noexcept;
+	void set_point_shape(int color) noexcept;
+	void set_alignment_pattern_shape(int shape) noexcept;
 
 signals:
 
@@ -64,7 +65,7 @@ protected:
 
 private:
 
-	void draw_control_points(
+	void draw_alignment_patterns_round(
 		const std::vector<std::pair<int,int>>& points,
 		int outer_x, int outer_y,
 		int outer_w, int outer_h,
@@ -74,15 +75,21 @@ private:
 		int inner_w, int inner_h
 	)
 	noexcept;
-	void draw_circles() noexcept;
+	void draw_alignment_patterns_square() noexcept;
+	void draw_alignment_patterns() noexcept;
 
-	void draw_squares() noexcept;
+	void draw_circle_points() noexcept;
+	void draw_square_points() noexcept;
+	void draw_points() noexcept;
 
 private:
-	// Color-related stuff
-	Qt::GlobalColor m_fill_color;
-	Qt::GlobalColor m_border_color;
-	shapes m_shape;
+	// Color-related
+	Qt::GlobalColor m_point_fill;
+	Qt::GlobalColor m_point_border;
+
+	// Shape-related
+	shapes m_points;
+	shapes m_alignment_patterns;
 
 	// QR matrix
 	qrcodegen::QrCode m_QR_matrix;
