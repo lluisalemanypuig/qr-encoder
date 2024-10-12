@@ -281,7 +281,7 @@ void QRrenderer::draw_alignment_patterns() noexcept {
 	}
 }
 
-void QRrenderer::draw_circle_points() noexcept {
+void QRrenderer::draw_points_circle() noexcept {
 	const std::size_t QR_size = m_QR_matrix.getSize();
 	const double QR_cell_size = m_inner_square_size/QR_size;
 
@@ -297,7 +297,7 @@ void QRrenderer::draw_circle_points() noexcept {
 	}
 }
 
-void QRrenderer::draw_square_points() noexcept {
+void QRrenderer::draw_points_square() noexcept {
 	const std::size_t QR_size = m_QR_matrix.getSize();
 	const double QR_cell_size = m_inner_square_size/QR_size;
 
@@ -315,10 +315,10 @@ void QRrenderer::draw_square_points() noexcept {
 
 void QRrenderer::draw_points() noexcept {
 	if (m_points == shapes::circles) {
-		draw_circle_points();
+		draw_points_circle();
 	}
 	else if (m_points == shapes::squares) {
-		draw_square_points();
+		draw_points_square();
 	}
 }
 

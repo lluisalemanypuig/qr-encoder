@@ -84,8 +84,8 @@ private:
 	void draw_alignment_patterns_square() noexcept;
 	void draw_alignment_patterns() noexcept;
 
-	void draw_circle_points() noexcept;
-	void draw_square_points() noexcept;
+	void draw_points_circle() noexcept;
+	void draw_points_square() noexcept;
 	void draw_points() noexcept;
 
 private:
