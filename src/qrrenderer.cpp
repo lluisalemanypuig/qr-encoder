@@ -255,11 +255,22 @@ void QRrenderer::draw_alignment_patterns_square() noexcept {
 	const std::size_t QR_size = m_QR_matrix.getSize();
 	const double QR_cell_size = m_inner_square_size/QR_size;
 
-	for (std::size_t x = 0; x < QR_size; ++x) {
-		for (std::size_t y = 0; y < QR_size; ++y) {
+	for (std::size_t x = 0; x <= 7; ++x) {
+		for (std::size_t y = 0; y <= 7; ++y) {
+			if (m_QR_matrix.getModule(x, y)) {
+				draw_square(x, y, QR_cell_size);
+			}
+		}
 
-			if (not is_alignment_pattern_point(x, y, QR_size)) { continue; }
+		for (std::size_t y = QR_size - 7; y < QR_size; ++y) {
+			if (m_QR_matrix.getModule(x, y)) {
+				draw_square(x, y, QR_cell_size);
+			}
+		}
+	}
 
+	for (std::size_t x = QR_size - 7; x < QR_size; ++x) {
+		for (std::size_t y = 0; y <= 7; ++y) {
 			if (m_QR_matrix.getModule(x, y)) {
 				draw_square(x, y, QR_cell_size);
 			}
