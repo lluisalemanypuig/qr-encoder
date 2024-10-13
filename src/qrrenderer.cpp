@@ -388,8 +388,8 @@ void QRrenderer::draw_QR_image_background() noexcept {
 	const double cx = m_inner_square_x0 + m_inner_square_size/2;
 	const double cy = m_inner_square_y0 + m_inner_square_size/2;
 
-	const double w = m_QR_image_background_scale*width;
-	const double h = m_QR_image_background_scale*height;
+	const double w = m_redim*m_QR_image_background_scale*width;
+	const double h = m_redim*m_QR_image_background_scale*height;
 
 	if (m_QR_image_background_shape == shapes::squares) {
 
