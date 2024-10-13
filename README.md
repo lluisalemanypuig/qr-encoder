@@ -26,3 +26,45 @@ This program is available in
 - English
 - Catalan
 - Spanish
+
+## Contributing
+
+This project accepts ideas to enhance the performance of this software and/or add new features to make prettier QR codes.
+
+### Translating
+
+It is important to add the appropriate translations of the messages in the GUI or in pop up messages. To add the translations, use the script `update_translations.sh`; it will help you update the translations for the current existing languages.
+
+1. Choose the language you want to translate to. The target languages currently supported by the script are
+
+	- English: `english`
+	- Catalan: `catalan`
+	- Spanish: `spanish`
+
+	Consider `L` to be the language of choice.
+
+2. Add to your `PATH` environment variable the path to the executable files:
+
+	- `lupdate`: generates the xml files containing the translated texts.
+	- `linguist`: a GUI to aid in the translation process.
+	- `lrelease`: compiles the xml files so that the executable files can use the translations.
+
+	All of these files can be installed using the `Qt Maintenance Tool` which should already be installed in your system. When installed, they can be found in:
+
+		~/Qt/$v/gcc_64/bin/
+	
+	where `v` is the Qt version installed, e.g., `v=6.6.0`.
+
+3. First run the script with parameters
+	
+		$ ./update_translations.sh update $L
+
+	This will update the xml files for the actual translation step.
+
+4. Actually translate the texts:
+
+		$ ./update_translations.sh translate $L
+	
+5. Compile the translation files necessary for distribution
+
+		$ ./update_translations.sh compile $L
