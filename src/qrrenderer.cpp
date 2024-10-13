@@ -60,6 +60,7 @@ QRrenderer::QRrenderer(QWidget *parent) :
 
 void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
 	m_QR_matrix = std::move(QR_matrix);
+	update();
 }
 
 void QRrenderer::load_QR_image(const QString& path) noexcept {
