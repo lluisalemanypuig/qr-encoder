@@ -46,6 +46,7 @@ public:
 	}
 
 	enum class shapes {
+		none,
 		squares,
 		circles
 	};

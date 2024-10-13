@@ -129,7 +129,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="movable">
        <bool>false</bool>
@@ -654,6 +654,11 @@
                 <height>0</height>
                </size>
               </property>
+              <item>
+               <property name="text">
+                <string>None</string>
+               </property>
+              </item>
               <item>
                <property name="text">
                 <string>Square</string>

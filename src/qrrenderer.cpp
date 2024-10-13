@@ -90,12 +90,12 @@ void QRrenderer::set_border_color(const int color) noexcept {
 }
 
 void QRrenderer::set_point_shape(const int shape) noexcept {
-	m_points = static_cast<shapes>(shape);
+	m_points = static_cast<shapes>(shape + 1);
 	update();
 }
 
 void QRrenderer::set_alignment_pattern_shape(const int shape) noexcept {
-	m_alignment_patterns = static_cast<shapes>(shape);
+	m_alignment_patterns = static_cast<shapes>(shape + 1);
 	update();
 }
 
@@ -378,7 +378,17 @@ void QRrenderer::update() noexcept {
 
 	if (m_image != nullptr) {
 		QGraphicsPixmapItem* pixmap_item = new QGraphicsPixmapItem(*m_image);
+
+		const double width = m_image->width();
+		const double height = m_image->height();
+		pixmap_item->setOffset(
+			m_inner_square_x0 + m_inner_square_size/2 - width/2,
+			m_inner_square_y0 + m_inner_square_size/2 - height/2
+		);
+
+		pixmap_item->setTransformOriginPoint(pixmap_item->boundingRect().center());
 		pixmap_item->setScale(m_image_scale);
+
 		m_scene.addItem(pixmap_item);
 	}
 
