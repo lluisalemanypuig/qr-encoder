@@ -94,13 +94,17 @@ void MainWindow::generateQR() noexcept {
 #endif
 	removeImageButton->setEnabled(true);
 
-	enable_buttons_slider_load_image_tab(false);
+	enable_QR_image_resize(false);
+	enable_QR_image_background_shape(false);
+	enable_QR_image_background_size(false);
 
 	ui->QRRenderArea->update();
 }
 
 void MainWindow::loadQRImage() noexcept {
-	enable_buttons_slider_load_image_tab(true);
+	enable_QR_image_resize(true);
+	enable_QR_image_background_shape(true);
+	enable_QR_image_background_size(true);
 
 	QString file_name = QFileDialog::getOpenFileName(
 		this,
@@ -113,8 +117,20 @@ void MainWindow::loadQRImage() noexcept {
 }
 
 void MainWindow::removeQRImage() noexcept {
-	enable_buttons_slider_load_image_tab(false);
+	enable_QR_image_resize(false);
+	enable_QR_image_background_shape(false);
+	enable_QR_image_background_size(false);
+
 	ui->QRRenderArea->remove_QR_image();
+}
+
+void MainWindow::backgroundShapeChosen(const int shape) noexcept {
+	if (shape == 0) {
+		enable_QR_image_background_size(false);
+	}
+	else {
+		enable_QR_image_background_size(true);
+	}
 }
 
 void MainWindow::saveQR() const noexcept {
@@ -182,7 +198,7 @@ void MainWindow::show_About_menu() const noexcept {
 
 /* PRIVATE */
 
-void MainWindow::enable_buttons_slider_load_image_tab(const bool v) noexcept {
+void MainWindow::enable_QR_image_resize(const bool v) noexcept {
 	QWidget *tab = ui->editQRTabWidget->widget(1);
 #if defined DEBUG
 	assert(tab != nullptr);
@@ -199,22 +215,42 @@ void MainWindow::enable_buttons_slider_load_image_tab(const bool v) noexcept {
 	assert(imageSizeSpinner != nullptr);
 #endif
 	imageSizeSpinner->setEnabled(v);
+}
+
+void MainWindow::enable_QR_image_background_shape(const bool v) noexcept {
+	QWidget *tab = ui->editQRTabWidget->widget(1);
+#if defined DEBUG
+	assert(tab != nullptr);
+#endif
 
 	QComboBox *backgroundShapeComboBox = tab->findChild<QComboBox *>("backgroundShapeComboBox");
 #if defined DEBUG
 	assert(backgroundShapeComboBox != nullptr);
 #endif
 	backgroundShapeComboBox->setEnabled(v);
+}
+
+void MainWindow::enable_QR_image_background_size(const bool v) noexcept {
+	QWidget *tab = ui->editQRTabWidget->widget(1);
+#if defined DEBUG
+	assert(tab != nullptr);
+#endif
+
+	QComboBox *backgroundShapeComboBox = tab->findChild<QComboBox *>("backgroundShapeComboBox");
+#if defined DEBUG
+	assert(backgroundShapeComboBox != nullptr);
+#endif
+	const int cur_index = backgroundShapeComboBox->currentIndex();
 
 	QSlider *imageBackgroundSizeSlider = tab->findChild<QSlider *>("imageBackgroundSizeSlider");
 #if defined DEBUG
 	assert(imageBackgroundSizeSlider != nullptr);
 #endif
-	imageBackgroundSizeSlider->setEnabled(v);
+	imageBackgroundSizeSlider->setEnabled(v and (cur_index > 0));
 
 	QSpinBox *imageBackgroundSizeSpinBox = tab->findChild<QSpinBox *>("imageBackgroundSizeSpinBox");
 #if defined DEBUG
 	assert(imageBackgroundSizeSpinBox != nullptr);
 #endif
-	imageBackgroundSizeSpinBox->setEnabled(v);
+	imageBackgroundSizeSpinBox->setEnabled(v and (cur_index > 0));
 }

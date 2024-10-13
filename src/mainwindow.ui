@@ -654,6 +654,9 @@
                 <height>0</height>
                </size>
               </property>
+              <property name="currentIndex">
+               <number>2</number>
+              </property>
               <item>
                <property name="text">
                 <string>None</string>
@@ -1115,8 +1118,8 @@
    <slot>set_point_shape(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>266</x>
-     <y>650</y>
+     <x>683</x>
+     <y>600</y>
     </hint>
     <hint type="destinationlabel">
      <x>452</x>
@@ -1131,8 +1134,8 @@
    <slot>set_alignment_pattern_shape(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>269</x>
-     <y>690</y>
+     <x>683</x>
+     <y>633</y>
     </hint>
     <hint type="destinationlabel">
      <x>514</x>
@@ -1284,6 +1287,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>backgroundShapeComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>backgroundShapeChosen(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>380</x>
+     <y>624</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>347</x>
+     <y>719</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>generateQR()</slot>
@@ -1292,5 +1311,6 @@
   <slot>show_About_menu()</slot>
   <slot>loadQRImage()</slot>
   <slot>removeQRImage()</slot>
+  <slot>backgroundShapeChosen(int)</slot>
  </slots>
 </ui>

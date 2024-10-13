@@ -40,13 +40,16 @@ public slots:
 	void generateQR() noexcept;
 	void loadQRImage() noexcept;
 	void removeQRImage() noexcept;
+	void backgroundShapeChosen(const int shape) noexcept;
 
 	void saveQR() const noexcept;
 	void show_Usage_menu() const noexcept;
 	void show_About_menu() const noexcept;
 
 private:
-	void enable_buttons_slider_load_image_tab(const bool v) noexcept;
+	void enable_QR_image_resize(const bool v) noexcept;
+	void enable_QR_image_background_shape(const bool v) noexcept;
+	void enable_QR_image_background_size(const bool v) noexcept;
 
 private:
 	Ui::MainWindow *ui;
