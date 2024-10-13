@@ -38,6 +38,9 @@ public:
 
 	void set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept;
 
+	// This method should be called only *after* the QR code has been generated
+	void load_QR_image(const QString& path) noexcept;
+
 	const QRect& get_drawing_area() const noexcept {
 		return m_drawing_area;
 	}
@@ -48,7 +51,12 @@ public:
 	};
 
 public slots:
-	void redimensionQR(const int value) noexcept;
+	void resize_QR(const int value) noexcept;
+
+	void resize_QR_image(const int value) noexcept;
+	void set_QR_image_background_shape(const int shape) noexcept;
+	void resize_QR_image_background(const int value) noexcept;
+
 	void update() noexcept;
 
 	void set_fill_color(const int color) noexcept;
@@ -59,11 +67,10 @@ public slots:
 
 signals:
 
-protected:
+private:
 	void update_outer_square() noexcept;
 	void update_inner_square() noexcept;
 
-private:
 	void draw_square
 	(const std::size_t x, const std::size_t y, const double QR_cell_size)
 	noexcept;
@@ -90,12 +97,12 @@ private:
 
 private:
 	// Color-related
-	Qt::GlobalColor m_point_fill;
-	Qt::GlobalColor m_point_border;
+	Qt::GlobalColor m_point_fill = Qt::GlobalColor::black;
+	Qt::GlobalColor m_point_border = Qt::GlobalColor::black;
 
 	// Shape-related
-	shapes m_points;
-	shapes m_alignment_patterns;
+	shapes m_points = shapes::squares;
+	shapes m_alignment_patterns = shapes::squares;
 
 	// QR matrix
 	qrcodegen::QrCode m_QR_matrix;
@@ -103,8 +110,14 @@ private:
 	// redimension factor from the slide and its spin box
 	double m_redim = 0.05;
 
-	// Scene used to render the graphics
+	// Objects used to render the graphics scene
 	QGraphicsScene m_scene;
+
+	// Image loaded into the QR code
+	QPixmap *m_image = nullptr;
+	double m_image_scale = 1;
+	double m_background_image_scale = 1;
+	shapes m_background_shape = shapes::squares;
 
 	// rectangle that describes the drawing area of the widget
 	// (which is a bit larger than the total area of the widget)

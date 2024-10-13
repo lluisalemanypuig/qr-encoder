@@ -37,10 +37,16 @@ public:
 	~MainWindow() noexcept;
 
 public slots:
-	void generateQR() const noexcept;
+	void generateQR() noexcept;
+	void loadQRImage() noexcept;
+	void removeQRImage() noexcept;
+
 	void saveQR() const noexcept;
 	void show_Usage_menu() const noexcept;
 	void show_About_menu() const noexcept;
+
+private:
+	void enable_buttons_slider_load_image_tab(const bool v) noexcept;
 
 private:
 	Ui::MainWindow *ui;

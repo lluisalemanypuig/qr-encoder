@@ -22,10 +22,14 @@
 
 #include "qrrenderer.hpp"
 
-#undef __PAINT_CONTROL_SHAPES
+#define __PAINT_CONTROL_SHAPES
+
+// C++ includes
+#include <iostream>
 
 // Qt includes
 #include <QGraphicsRectItem>
+#include <QPixmap>
 
 Qt::GlobalColor random_color(const int x0, const int y0) noexcept {
 	return static_cast<Qt::GlobalColor>(x0*y0/(x0 + y0)%16 + 2);
@@ -44,19 +48,36 @@ noexcept
 
 // -----------------------------------------------------------------------------
 
+/* PUBLIC */
+
 QRrenderer::QRrenderer(QWidget *parent) :
 	QGraphicsView(parent),
 	m_QR_matrix(qrcodegen::QrCode::encodeText("", qrcodegen::QrCode::Ecc::LOW))
 {
 	setScene(&m_scene);
 	setAlignment(Qt::AlignCenter);
-
-	m_point_fill = Qt::GlobalColor::black;
-	m_point_border = Qt::GlobalColor::black;
-
-	m_points = shapes::squares;
-	m_alignment_patterns = shapes::squares;
 }
+
+void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
+	m_QR_matrix = std::move(QR_matrix);
+}
+
+void QRrenderer::load_QR_image(const QString& path) noexcept {
+	if (m_image != nullptr) {
+		delete m_image;
+	}
+	m_image = new QPixmap(path);
+	if (m_image == nullptr) {
+		std::cerr
+			<< "Error! Image "
+			<< "'" << path.toUtf8().toStdString() << "'"
+			<< " could not be loaded."
+			<< std::endl;
+	}
+	update();
+}
+
+/* PUBLIC SLOTS */
 
 void QRrenderer::set_fill_color(const int color) noexcept {
 	m_point_fill = static_cast<Qt::GlobalColor>(color + 2);
@@ -78,16 +99,27 @@ void QRrenderer::set_alignment_pattern_shape(const int shape) noexcept {
 	update();
 }
 
-void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix)
-noexcept
-{
-	m_QR_matrix = std::move(QR_matrix);
-}
-
-void QRrenderer::redimensionQR(const int value) noexcept {
+void QRrenderer::resize_QR(const int value) noexcept {
 	m_redim = value/1000.0;
 	update();
 }
+
+void QRrenderer::resize_QR_image(const int value) noexcept {
+	m_image_scale = value/1000.0;
+	update();
+}
+
+void QRrenderer::set_QR_image_background_shape(const int shape) noexcept {
+	m_background_shape = static_cast<shapes>(shape);
+	update();
+}
+
+void QRrenderer::resize_QR_image_background(const int value) noexcept {
+	m_background_image_scale = value/1000.0;
+	update();
+}
+
+/* PRIVATE */
 
 void QRrenderer::update_outer_square() noexcept {
 	// dimensions of our drawing area
@@ -158,8 +190,7 @@ noexcept
 	const double height = QR_cell_size;
 
 	// paint the current cell
-	QGraphicsEllipseItem *circle =
-		new QGraphicsEllipseItem(x0, y0, width, height);
+	QGraphicsEllipseItem *circle = new QGraphicsEllipseItem(x0, y0, width, height);
 	circle->setBrush(m_point_fill);
 	circle->setPen(QColor{m_point_border});
 	m_scene.addItem(circle);
@@ -175,8 +206,7 @@ noexcept
 	const double height = QR_cell_size;
 
 	// paint the current cell
-	QGraphicsRectItem *rect =
-		new QGraphicsRectItem(x0, y0, width, height);
+	QGraphicsRectItem *rect = new QGraphicsRectItem(x0, y0, width, height);
 	rect->setBrush(m_point_fill);
 	rect->setPen(QColor{m_point_border});
 	m_scene.addItem(rect);
@@ -334,13 +364,10 @@ void QRrenderer::draw_points() noexcept {
 }
 
 void QRrenderer::update() noexcept {
-	const std::size_t QR_size = m_QR_matrix.getSize();
-
-	if (QR_size == 0) { return; }
+	if (m_QR_matrix.getSize() == 0) { return; }
 
 	// clean up drawing area
 	m_scene.clear();
-	setScene(&m_scene);
 
 	// calculate the coordinates of the outer and inner drawing squares
 	update_outer_square();
@@ -348,6 +375,12 @@ void QRrenderer::update() noexcept {
 
 	draw_points();
 	draw_alignment_patterns();
+
+	if (m_image != nullptr) {
+		QGraphicsPixmapItem* pixmap_item = new QGraphicsPixmapItem(*m_image);
+		pixmap_item->setScale(m_image_scale);
+		m_scene.addItem(pixmap_item);
+	}
 
 	setSceneRect(m_drawing_area);
 	centerOn(m_drawing_area.center());

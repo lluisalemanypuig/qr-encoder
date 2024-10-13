@@ -28,13 +28,19 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QPainter>
+#include <QSpinBox>
 
 // C++ includes
+#if defined DEBUG
+#include <cassert>
+#endif
 #include <iostream>
 
 // custom includes
 #include "resizablemessagebox.hpp"
 #include "qrcode/qrcodegen.hpp"
+
+/* PUBLIC */
 
 MainWindow::MainWindow(QWidget *parent) noexcept :
 	QMainWindow(parent),
@@ -57,7 +63,7 @@ qrcodegen::QrCode::Ecc string_to_ECC(const std::string& s) noexcept {
 	return qrcodegen::QrCode::Ecc::HIGH;
 }
 
-void MainWindow::generateQR() const noexcept {
+void MainWindow::generateQR() noexcept {
 
 	// string to encode
 	const auto str = ui->textToEncode->text().toUtf8().toStdString();
@@ -68,7 +74,46 @@ void MainWindow::generateQR() const noexcept {
 
 	qrcodegen::QrCode qr = qrcodegen::QrCode::encodeText(str.c_str(), ecc);
 	ui->QRRenderArea->set_QR_code(std::move(qr));
+
+	// enable "load image" tab
+	QWidget *tab = ui->editQRTabWidget->widget(1);
+#if defined DEBUG
+	assert(tab != nullptr);
+#endif
+	tab->setEnabled(true);
+
+	QPushButton *loadImageButton = tab->findChild<QPushButton *>("loadQRImageButton");
+#if defined DEBUG
+	assert(loadImageButton != nullptr);
+#endif
+	loadImageButton->setEnabled(true);
+
+	QPushButton *removeImageButton = tab->findChild<QPushButton *>("removeQRImageButton");
+#if defined DEBUG
+	assert(removeImageButton != nullptr);
+#endif
+	removeImageButton->setEnabled(true);
+
+	enable_buttons_slider_load_image_tab(false);
+
 	ui->QRRenderArea->update();
+}
+
+void MainWindow::loadQRImage() noexcept {
+	enable_buttons_slider_load_image_tab(true);
+
+	QString file_name = QFileDialog::getOpenFileName(
+		this,
+		tr("Choose image"),
+		"",
+		tr("Images (*.png *.jpg *.jpeg *.svg *.bmp)")
+	);
+
+	ui->QRRenderArea->load_QR_image(file_name);
+}
+
+void MainWindow::removeQRImage() noexcept {
+	enable_buttons_slider_load_image_tab(false);
 }
 
 void MainWindow::saveQR() const noexcept {
@@ -132,4 +177,43 @@ void MainWindow::show_About_menu() const noexcept {
 
 	// Execute the message box
 	msgBox.exec();
+}
+
+/* PRIVATE */
+
+void MainWindow::enable_buttons_slider_load_image_tab(const bool v) noexcept {
+	QWidget *tab = ui->editQRTabWidget->widget(1);
+#if defined DEBUG
+	assert(tab != nullptr);
+#endif
+
+	QSlider *imageSizeSlider = tab->findChild<QSlider *>("imageSizeSlider");
+#if defined DEBUG
+	assert(imageSizeSlider != nullptr);
+#endif
+	imageSizeSlider->setEnabled(v);
+
+	QSpinBox *imageSizeSpinner = tab->findChild<QSpinBox *>("imageSizeSpinBox");
+#if defined DEBUG
+	assert(imageSizeSpinner != nullptr);
+#endif
+	imageSizeSpinner->setEnabled(v);
+
+	QComboBox *backgroundShapeComboBox = tab->findChild<QComboBox *>("backgroundShapeComboBox");
+#if defined DEBUG
+	assert(backgroundShapeComboBox != nullptr);
+#endif
+	backgroundShapeComboBox->setEnabled(v);
+
+	QSlider *imageBackgroundSizeSlider = tab->findChild<QSlider *>("imageBackgroundSizeSlider");
+#if defined DEBUG
+	assert(imageBackgroundSizeSlider != nullptr);
+#endif
+	imageBackgroundSizeSlider->setEnabled(v);
+
+	QSpinBox *imageBackgroundSizeSpinBox = tab->findChild<QSpinBox *>("imageBackgroundSizeSpinBox");
+#if defined DEBUG
+	assert(imageBackgroundSizeSpinBox != nullptr);
+#endif
+	imageBackgroundSizeSpinBox->setEnabled(v);
 }

@@ -121,7 +121,7 @@
      </layout>
     </item>
     <item>
-     <widget class="QTabWidget" name="tabWidget">
+     <widget class="QTabWidget" name="editQRTabWidget">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -134,130 +134,272 @@
       <property name="movable">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="colorAndShapeTab">
        <attribute name="title">
         <string>Coloring and Shape</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <layout class="QHBoxLayout" name="horizontalLayout_15">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
-           <widget class="QLabel" name="label_5">
-            <property name="minimumSize">
-             <size>
-              <width>125</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Fill</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Fill</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="fillColorComboBox">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>Black</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>White</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Light gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Cyan</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Magenta</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Yellow</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark cyan</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark magenta</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark yellow</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QComboBox" name="fillColorComboBox">
-            <property name="minimumSize">
-             <size>
-              <width>125</width>
-              <height>25</height>
-             </size>
-            </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
             <item>
-             <property name="text">
-              <string>Black</string>
-             </property>
+             <widget class="QLabel" name="label_6">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Border</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <property name="text">
-              <string>White</string>
-             </property>
+             <widget class="QComboBox" name="borderColorComboBox">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>Black</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>White</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Light gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Cyan</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Magenta</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Yellow</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark cyan</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark magenta</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark yellow</string>
+               </property>
+              </item>
+             </widget>
             </item>
             <item>
-             <property name="text">
-              <string>Gray</string>
-             </property>
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
-            <item>
-             <property name="text">
-              <string>Dark gray</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Light gray</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Red</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Green</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Blue</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Cyan</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Magenta</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Yellow</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark red</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark green</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark blue</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark cyan</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark magenta</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark yellow</string>
-             </property>
-            </item>
-           </widget>
+           </layout>
           </item>
           <item>
-           <spacer name="horizontalSpacer_3">
+           <spacer name="verticalSpacer_4">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Vertical</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>40</width>
-              <height>20</height>
+              <width>20</width>
+              <height>40</height>
              </size>
             </property>
            </spacer>
@@ -265,224 +407,116 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QLabel" name="label_6">
-            <property name="minimumSize">
-             <size>
-              <width>125</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Border</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Point shape</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="pointShapeComboBox">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>Squares</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Circles</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QComboBox" name="borderColorComboBox">
-            <property name="minimumSize">
-             <size>
-              <width>125</width>
-              <height>25</height>
-             </size>
-            </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
-             <property name="text">
-              <string>Black</string>
-             </property>
+             <widget class="QLabel" name="label_8">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Alignment shape</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <property name="text">
-              <string>White</string>
-             </property>
+             <widget class="QComboBox" name="alignmentPatternComboBox">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>Squares</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Circles</string>
+               </property>
+              </item>
+             </widget>
             </item>
             <item>
-             <property name="text">
-              <string>Gray</string>
-             </property>
+             <spacer name="horizontalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
-            <item>
-             <property name="text">
-              <string>Dark gray</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Light gray</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Red</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Green</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Blue</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Cyan</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Magenta</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Yellow</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark red</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark green</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark blue</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark cyan</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark magenta</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark yellow</string>
-             </property>
-            </item>
-           </widget>
+           </layout>
           </item>
           <item>
-           <spacer name="horizontalSpacer_4">
+           <spacer name="verticalSpacer_5">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Vertical</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_9">
-          <item>
-           <widget class="QLabel" name="label_7">
-            <property name="minimumSize">
-             <size>
-              <width>125</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Point shape</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="pointShapeComboBox">
-            <property name="minimumSize">
-             <size>
-              <width>125</width>
-              <height>25</height>
-             </size>
-            </property>
-            <item>
-             <property name="text">
-              <string>Squares</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Circles</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_10">
-          <item>
-           <widget class="QLabel" name="label_8">
-            <property name="minimumSize">
-             <size>
-              <width>125</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Alignment shape</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="alignmentPatternComboBox">
-            <property name="minimumSize">
-             <size>
-              <width>125</width>
-              <height>25</height>
-             </size>
-            </property>
-            <item>
-             <property name="text">
-              <string>Squares</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Circles</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
+              <width>20</width>
+              <height>40</height>
              </size>
             </property>
            </spacer>
@@ -491,7 +525,245 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="loadImageTab">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <attribute name="title">
+        <string>Load Image</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_14">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QPushButton" name="loadQRImageButton">
+            <property name="text">
+             <string>Load Image</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="removeQRImageButton">
+            <property name="text">
+             <string>Remove image</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <item>
+             <widget class="QLabel" name="label_9">
+              <property name="minimumSize">
+               <size>
+                <width>135</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Image size</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="imageSizeSlider">
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="maximum">
+               <number>1000</number>
+              </property>
+              <property name="value">
+               <number>1000</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="imageSizeSpinBox">
+              <property name="maximum">
+               <number>1000</number>
+              </property>
+              <property name="value">
+               <number>1000</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QLabel" name="label_10">
+              <property name="minimumSize">
+               <size>
+                <width>135</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Background shape</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="backgroundShapeComboBox">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>0</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>Square</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Circle</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_8">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <item>
+             <widget class="QLabel" name="label_11">
+              <property name="minimumSize">
+               <size>
+                <width>135</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Background size</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="imageBackgroundSizeSlider">
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="value">
+               <number>99</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="imageBackgroundSizeSpinBox">
+              <property name="maximum">
+               <number>1000</number>
+              </property>
+              <property name="value">
+               <number>1000</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_7">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="QRQualityTab">
        <attribute name="title">
         <string>QR Quality</string>
        </attribute>
@@ -593,6 +865,19 @@
           </item>
          </layout>
         </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>56</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -645,11 +930,14 @@
    <extends>QGraphicsView</extends>
    <header>qrrenderer.hpp</header>
    <slots>
-    <slot>redimensionQR(int)</slot>
+    <slot>resize_QR(int)</slot>
     <slot>set_fill_color(int)</slot>
     <slot>set_border_color(int)</slot>
     <slot>set_point_shape(int)</slot>
     <slot>set_alignment_pattern_shape(int)</slot>
+    <slot>resize_QR_image(int)</slot>
+    <slot>resize_QR_image_background(int)</slot>
+    <slot>set_QR_image_background_shape(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -691,7 +979,7 @@
    <sender>redimQR</sender>
    <signal>valueChanged(int)</signal>
    <receiver>QRRenderArea</receiver>
-   <slot>redimensionQR(int)</slot>
+   <slot>resize_QR(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>556</x>
@@ -847,11 +1135,157 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>loadQRImageButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>loadQRImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>112</x>
+     <y>585</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>465</x>
+     <y>531</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeQRImageButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>removeQRImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>75</x>
+     <y>618</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>425</x>
+     <y>527</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageSizeSlider</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>imageSizeSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>513</x>
+     <y>588</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>617</x>
+     <y>588</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageSizeSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>imageSizeSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>643</x>
+     <y>598</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>585</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageBackgroundSizeSlider</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>imageBackgroundSizeSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>573</x>
+     <y>653</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>616</x>
+     <y>653</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageBackgroundSizeSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>imageBackgroundSizeSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>646</x>
+     <y>662</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>463</x>
+     <y>652</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageSizeSlider</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>QRRenderArea</receiver>
+   <slot>resize_QR_image(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>323</x>
+     <y>584</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>360</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageBackgroundSizeSlider</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>QRRenderArea</receiver>
+   <slot>resize_QR_image_background(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>448</x>
+     <y>653</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>450</x>
+     <y>394</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>backgroundShapeComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>QRRenderArea</receiver>
+   <slot>set_QR_image_background_shape(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>395</x>
+     <y>622</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>413</x>
+     <y>395</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>generateQR()</slot>
   <slot>saveQR()</slot>
   <slot>show_Usage_menu()</slot>
   <slot>show_About_menu()</slot>
+  <slot>loadQRImage()</slot>
+  <slot>removeQRImage()</slot>
  </slots>
 </ui>
