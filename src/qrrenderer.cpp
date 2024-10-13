@@ -22,7 +22,7 @@
 
 #include "qrrenderer.hpp"
 
-#define __PAINT_CONTROL_SHAPES
+#undef __PAINT_CONTROL_SHAPES
 
 // C++ includes
 #include <iostream>
