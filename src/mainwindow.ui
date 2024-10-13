@@ -666,8 +666,8 @@
      <y>472</y>
     </hint>
     <hint type="destinationlabel">
-     <x>165</x>
-     <y>547</y>
+     <x>379</x>
+     <y>550</y>
     </hint>
    </hints>
   </connection>
@@ -678,12 +678,12 @@
    <slot>saveQR()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>824</x>
-     <y>472</y>
+     <x>543</x>
+     <y>489</y>
     </hint>
     <hint type="destinationlabel">
-     <x>560</x>
-     <y>548</y>
+     <x>566</x>
+     <y>541</y>
     </hint>
    </hints>
   </connection>
@@ -710,12 +710,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>768</x>
-     <y>519</y>
+     <x>674</x>
+     <y>521</y>
     </hint>
     <hint type="destinationlabel">
      <x>824</x>
-     <y>506</y>
+     <y>521</y>
     </hint>
    </hints>
   </connection>
@@ -742,12 +742,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>737</x>
-     <y>519</y>
+     <x>620</x>
+     <y>522</y>
     </hint>
     <hint type="destinationlabel">
-     <x>824</x>
-     <y>506</y>
+     <x>819</x>
+     <y>528</y>
     </hint>
    </hints>
   </connection>
