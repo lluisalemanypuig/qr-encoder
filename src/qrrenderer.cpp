@@ -160,7 +160,7 @@ void QRrenderer::update_outer_square() noexcept {
 }
 
 void QRrenderer::update_inner_square() noexcept {
-	m_inner_square_size = (1.0 - m_redim)*m_outer_square_size;
+	m_inner_square_size = m_redim*m_outer_square_size;
 
 	const double x_midpoint = (m_outer_square_x0 + m_outer_square_x1)/2;
 	const double y_midpoint = (m_outer_square_y0 + m_outer_square_y1)/2;

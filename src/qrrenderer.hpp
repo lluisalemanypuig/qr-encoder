@@ -108,7 +108,7 @@ private:
 	qrcodegen::QrCode m_QR_matrix;
 
 	// redimension factor from the slide and its spin box
-	double m_redim = 0.05;
+	double m_redim = 1.0;
 
 	// Objects used to render the graphics scene
 	QGraphicsScene m_scene;

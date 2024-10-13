@@ -88,7 +88,7 @@
       <item>
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>Shrinking factor</string>
+         <string>QR Code size</string>
         </property>
        </widget>
       </item>
@@ -101,7 +101,7 @@
          <number>1000</number>
         </property>
         <property name="value">
-         <number>50</number>
+         <number>1000</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -114,7 +114,7 @@
          <number>1000</number>
         </property>
         <property name="value">
-         <number>50</number>
+         <number>1000</number>
         </property>
        </widget>
       </item>
