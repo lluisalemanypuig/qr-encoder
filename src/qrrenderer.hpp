@@ -40,6 +40,7 @@ public:
 
 	// This method should be called only *after* the QR code has been generated
 	void load_QR_image(const QString& path) noexcept;
+	void remove_QR_image() noexcept;
 
 	const QRect& get_drawing_area() const noexcept {
 		return m_drawing_area;

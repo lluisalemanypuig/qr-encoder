@@ -114,6 +114,7 @@ void MainWindow::loadQRImage() noexcept {
 
 void MainWindow::removeQRImage() noexcept {
 	enable_buttons_slider_load_image_tab(false);
+	ui->QRRenderArea->remove_QR_image();
 }
 
 void MainWindow::saveQR() const noexcept {

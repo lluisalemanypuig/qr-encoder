@@ -77,6 +77,12 @@ void QRrenderer::load_QR_image(const QString& path) noexcept {
 	update();
 }
 
+void QRrenderer::remove_QR_image() noexcept {
+	delete m_image;
+	m_image = nullptr;
+	update();
+}
+
 /* PUBLIC SLOTS */
 
 void QRrenderer::set_fill_color(const int color) noexcept {
