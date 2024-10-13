@@ -232,17 +232,6 @@ noexcept
 		const double width = QR_cell_size;
 		const double height = QR_cell_size;
 
-		// erase superfluous circles
-		QGraphicsRectItem *rect = new QGraphicsRectItem(
-			x0 - outer_x*width,
-			y0 - outer_y*height,
-			outer_w*width,
-			outer_h*height
-		);
-		rect->setBrush(Qt::GlobalColor::white);
-		rect->setPen(QColor{Qt::GlobalColor::white});
-		m_scene.addItem(rect);
-
 		{
 		QGraphicsEllipseItem *circle = new QGraphicsEllipseItem(
 			x0 - outer_x*width,
