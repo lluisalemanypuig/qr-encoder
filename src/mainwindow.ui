@@ -129,7 +129,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="movable">
        <bool>false</bool>
@@ -609,7 +609,7 @@
                </size>
               </property>
               <property name="maximum">
-               <number>1000</number>
+               <number>2000</number>
               </property>
               <property name="value">
                <number>1000</number>
@@ -622,7 +622,7 @@
             <item>
              <widget class="QSpinBox" name="imageSizeSpinBox">
               <property name="maximum">
-               <number>1000</number>
+               <number>2000</number>
               </property>
               <property name="value">
                <number>1000</number>
@@ -719,7 +719,7 @@
                </size>
               </property>
               <property name="maximum">
-               <number>1000</number>
+               <number>2000</number>
               </property>
               <property name="value">
                <number>1000</number>
@@ -732,7 +732,7 @@
             <item>
              <widget class="QSpinBox" name="imageBackgroundSizeSpinBox">
               <property name="maximum">
-               <number>1000</number>
+               <number>2000</number>
               </property>
               <property name="value">
                <number>1000</number>

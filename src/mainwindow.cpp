@@ -75,28 +75,32 @@ void MainWindow::generateQR() noexcept {
 	qrcodegen::QrCode qr = qrcodegen::QrCode::encodeText(str.c_str(), ecc);
 	ui->QRRenderArea->set_QR_code(std::move(qr));
 
-	// enable "load image" tab
-	QWidget *tab = ui->editQRTabWidget->widget(1);
+	if (not m_has_QR) {
+		// enable "load image" tab
+		QWidget *tab = ui->editQRTabWidget->widget(1);
 #if defined DEBUG
-	assert(tab != nullptr);
+		assert(tab != nullptr);
 #endif
-	tab->setEnabled(true);
+		tab->setEnabled(true);
 
-	QPushButton *loadImageButton = tab->findChild<QPushButton *>("loadQRImageButton");
+		QPushButton *loadImageButton = tab->findChild<QPushButton *>("loadQRImageButton");
 #if defined DEBUG
-	assert(loadImageButton != nullptr);
+		assert(loadImageButton != nullptr);
 #endif
-	loadImageButton->setEnabled(true);
+		loadImageButton->setEnabled(true);
 
-	QPushButton *removeImageButton = tab->findChild<QPushButton *>("removeQRImageButton");
+		QPushButton *removeImageButton = tab->findChild<QPushButton *>("removeQRImageButton");
 #if defined DEBUG
-	assert(removeImageButton != nullptr);
+		assert(removeImageButton != nullptr);
 #endif
-	removeImageButton->setEnabled(true);
+		removeImageButton->setEnabled(true);
 
-	enable_QR_image_resize(false);
-	enable_QR_image_background_shape(false);
-	enable_QR_image_background_size(false);
+		enable_QR_image_resize(false);
+		enable_QR_image_background_shape(false);
+		enable_QR_image_background_size(false);
+	}
+
+	m_has_QR = true;
 }
 
 void MainWindow::loadQRImage() noexcept {

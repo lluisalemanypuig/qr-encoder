@@ -52,5 +52,8 @@ private:
 	void enable_QR_image_background_size(const bool v) noexcept;
 
 private:
+	bool m_has_QR = false;
+
+	// Qt GUI
 	Ui::MainWindow *ui;
 };

@@ -73,21 +73,31 @@ private:
 	void update_outer_square() noexcept;
 	void update_inner_square() noexcept;
 
-	void draw_square
-	(const std::size_t x, const std::size_t y, const double QR_cell_size)
+	void draw_rectangle
+	(
+		const double x, const double y,
+		const double width, const double height,
+		const QColor& fill_color,
+		const QColor& pen_color
+	)
 	noexcept;
+
 	void draw_circle
-	(const std::size_t x, const std::size_t y, const double QR_cell_size)
+	(
+		const double x, const double y, const double radius,
+		const QColor& fill_color,
+		const QColor& pen_color
+	)
 	noexcept;
 
 	void draw_alignment_patterns_round(
 		const std::vector<std::pair<int,int>>& points,
 		const int outer_x, const int outer_y,
-		const int outer_w, const int outer_h,
+		const int outer_radius,
 		const int blank_x, const int blank_y,
-		const int blank_w, const int blank_h,
+		const int blank_radius,
 		const int inner_x, const int inner_y,
-		const int inner_w, const int inner_h
+		const int inner_radius
 	)
 	noexcept;
 	void draw_alignment_patterns_square() noexcept;
@@ -96,6 +106,9 @@ private:
 	void draw_points_circle() noexcept;
 	void draw_points_square() noexcept;
 	void draw_points() noexcept;
+
+	void draw_QR_image_background() noexcept;
+	void draw_QR_image() noexcept;
 
 private:
 	// Color-related
@@ -116,10 +129,10 @@ private:
 	QGraphicsScene m_scene;
 
 	// Image loaded into the QR code
-	QPixmap *m_image = nullptr;
-	double m_image_scale = 1;
-	double m_background_image_scale = 1;
-	shapes m_background_shape = shapes::squares;
+	QPixmap *m_QR_image = nullptr;
+	double m_QR_image_scale = 1;
+	double m_QR_image_background_scale = 1;
+	shapes m_QR_image_background_shape = shapes::circles;
 
 	// rectangle that describes the drawing area of the widget
 	// (which is a bit larger than the total area of the widget)
