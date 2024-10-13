@@ -4,5 +4,6 @@ build-release/
 build-profile/
 build/
 src/qr-encoder.pro.user
+src/*.qm
 qr-encoder/
 QR-Encoder-Installer*
