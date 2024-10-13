@@ -129,7 +129,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="movable">
        <bool>false</bool>
@@ -532,7 +532,7 @@
        <attribute name="title">
         <string>Load Image</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_14">
+       <layout class="QHBoxLayout" name="horizontalLayout_16">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
@@ -647,7 +647,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="backgroundShapeComboBox">
+             <widget class="QComboBox" name="imageBackgroundShapeComboBox">
               <property name="minimumSize">
                <size>
                 <width>125</width>
@@ -686,6 +686,226 @@
                </size>
               </property>
              </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="QLabel" name="label_12">
+              <property name="minimumSize">
+               <size>
+                <width>135</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Background color</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="imageBackgroundFillColorComboBox">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>0</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>Black</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>White</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Light gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Cyan</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Magenta</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Yellow</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark cyan</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark magenta</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark yellow</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_13">
+              <property name="minimumSize">
+               <size>
+                <width>135</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Background border</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="imageBackgroundBorderColorComboBox">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>0</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>Black</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>White</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark gray</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Light</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Cyan</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Magenta</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Yellow</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark cyan</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark magenta</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dark yellow</string>
+               </property>
+              </item>
+             </widget>
             </item>
            </layout>
           </item>
@@ -740,19 +960,6 @@
              </widget>
             </item>
            </layout>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </item>
@@ -942,13 +1149,15 @@
    <header>qrrenderer.hpp</header>
    <slots>
     <slot>resize_QR(int)</slot>
-    <slot>set_fill_color(int)</slot>
-    <slot>set_border_color(int)</slot>
+    <slot>set_point_fill_color(int)</slot>
+    <slot>set_point_border_color(int)</slot>
     <slot>set_point_shape(int)</slot>
     <slot>set_alignment_pattern_shape(int)</slot>
     <slot>resize_QR_image(int)</slot>
     <slot>resize_QR_image_background(int)</slot>
     <slot>set_QR_image_background_shape(int)</slot>
+    <slot>set_image_background_fill_color(int)</slot>
+    <slot>set_image_background_border_color(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -1086,7 +1295,7 @@
    <sender>fillColorComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>QRRenderArea</receiver>
-   <slot>set_fill_color(int)</slot>
+   <slot>set_point_fill_color(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>260</x>
@@ -1102,7 +1311,7 @@
    <sender>borderColorComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>QRRenderArea</receiver>
-   <slot>set_border_color(int)</slot>
+   <slot>set_point_border_color(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>259</x>
@@ -1217,12 +1426,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>573</x>
-     <y>653</y>
+     <x>588</x>
+     <y>692</y>
     </hint>
     <hint type="destinationlabel">
-     <x>616</x>
-     <y>653</y>
+     <x>685</x>
+     <y>697</y>
     </hint>
    </hints>
   </connection>
@@ -1233,12 +1442,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>646</x>
-     <y>662</y>
+     <x>685</x>
+     <y>697</y>
     </hint>
     <hint type="destinationlabel">
-     <x>463</x>
-     <y>652</y>
+     <x>588</x>
+     <y>692</y>
     </hint>
    </hints>
   </connection>
@@ -1265,8 +1474,8 @@
    <slot>resize_QR_image_background(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>448</x>
-     <y>653</y>
+     <x>588</x>
+     <y>692</y>
     </hint>
     <hint type="destinationlabel">
      <x>450</x>
@@ -1275,7 +1484,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>backgroundShapeComboBox</sender>
+   <sender>imageBackgroundShapeComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>QRRenderArea</receiver>
    <slot>set_QR_image_background_shape(int)</slot>
@@ -1291,7 +1500,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>backgroundShapeComboBox</sender>
+   <sender>imageBackgroundShapeComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>MainWindow</receiver>
    <slot>backgroundShapeChosen(int)</slot>
@@ -1303,6 +1512,38 @@
     <hint type="destinationlabel">
      <x>347</x>
      <y>719</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageBackgroundFillColorComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>QRRenderArea</receiver>
+   <slot>set_image_background_fill_color(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>358</x>
+     <y>652</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>357</x>
+     <y>362</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageBackgroundBorderColorComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>QRRenderArea</receiver>
+   <slot>set_image_background_border_color(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>665</x>
+     <y>654</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>657</x>
+     <y>351</y>
     </hint>
    </hints>
   </connection>

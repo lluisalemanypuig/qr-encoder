@@ -97,6 +97,7 @@ void MainWindow::generateQR() noexcept {
 
 		enable_QR_image_resize(false);
 		enable_QR_image_background_shape(false);
+		enable_QR_image_background_color(false);
 		enable_QR_image_background_size(false);
 	}
 
@@ -114,6 +115,7 @@ void MainWindow::loadQRImage() noexcept {
 	if (file_name.size() > 0) {
 		enable_QR_image_resize(true);
 		enable_QR_image_background_shape(true);
+		enable_QR_image_background_color(true);
 		enable_QR_image_background_size(true);
 		ui->QRRenderArea->load_QR_image(file_name);
 	}
@@ -122,6 +124,7 @@ void MainWindow::loadQRImage() noexcept {
 void MainWindow::removeQRImage() noexcept {
 	enable_QR_image_resize(false);
 	enable_QR_image_background_shape(false);
+	enable_QR_image_background_color(false);
 	enable_QR_image_background_size(false);
 
 	ui->QRRenderArea->remove_QR_image();
@@ -129,9 +132,11 @@ void MainWindow::removeQRImage() noexcept {
 
 void MainWindow::backgroundShapeChosen(const int shape) noexcept {
 	if (shape == 0) {
+		enable_QR_image_background_color(false);
 		enable_QR_image_background_size(false);
 	}
 	else {
+		enable_QR_image_background_color(true);
 		enable_QR_image_background_size(true);
 	}
 }
@@ -226,11 +231,36 @@ void MainWindow::enable_QR_image_background_shape(const bool v) noexcept {
 	assert(tab != nullptr);
 #endif
 
-	QComboBox *backgroundShapeComboBox = tab->findChild<QComboBox *>("backgroundShapeComboBox");
+	QComboBox *imageBackgroundShapeComboBox = tab->findChild<QComboBox *>("imageBackgroundShapeComboBox");
 #if defined DEBUG
-	assert(backgroundShapeComboBox != nullptr);
+	assert(imageBackgroundShapeComboBox != nullptr);
 #endif
-	backgroundShapeComboBox->setEnabled(v);
+	imageBackgroundShapeComboBox->setEnabled(v);
+}
+
+void MainWindow::enable_QR_image_background_color(const bool v) noexcept {
+	QWidget *tab = ui->editQRTabWidget->widget(1);
+#if defined DEBUG
+	assert(tab != nullptr);
+#endif
+
+	QComboBox *imageBackgroundShapeComboBox = tab->findChild<QComboBox *>("imageBackgroundShapeComboBox");
+#if defined DEBUG
+	assert(imageBackgroundShapeComboBox != nullptr);
+#endif
+	const int cur_index = imageBackgroundShapeComboBox->currentIndex();
+
+	QComboBox *imageBackgroundFillColorComboBox = tab->findChild<QComboBox *>("imageBackgroundFillColorComboBox");
+#if defined DEBUG
+	assert(imageBackgroundFillColorComboBox != nullptr);
+#endif
+	imageBackgroundFillColorComboBox->setEnabled(v and (cur_index > 0));
+
+	QComboBox *imageBackgroundBorderColorComboBox = tab->findChild<QComboBox *>("imageBackgroundBorderColorComboBox");
+#if defined DEBUG
+	assert(imageBackgroundBorderColorComboBox != nullptr);
+#endif
+	imageBackgroundBorderColorComboBox->setEnabled(v and (cur_index > 0));
 }
 
 void MainWindow::enable_QR_image_background_size(const bool v) noexcept {
@@ -239,11 +269,11 @@ void MainWindow::enable_QR_image_background_size(const bool v) noexcept {
 	assert(tab != nullptr);
 #endif
 
-	QComboBox *backgroundShapeComboBox = tab->findChild<QComboBox *>("backgroundShapeComboBox");
+	QComboBox *imageBackgroundShapeComboBox = tab->findChild<QComboBox *>("imageBackgroundShapeComboBox");
 #if defined DEBUG
-	assert(backgroundShapeComboBox != nullptr);
+	assert(imageBackgroundShapeComboBox != nullptr);
 #endif
-	const int cur_index = backgroundShapeComboBox->currentIndex();
+	const int cur_index = imageBackgroundShapeComboBox->currentIndex();
 
 	QSlider *imageBackgroundSizeSlider = tab->findChild<QSlider *>("imageBackgroundSizeSlider");
 #if defined DEBUG

@@ -88,12 +88,12 @@ void QRrenderer::remove_QR_image() noexcept {
 
 /* PUBLIC SLOTS */
 
-void QRrenderer::set_fill_color(const int color) noexcept {
+void QRrenderer::set_point_fill_color(const int color) noexcept {
 	m_point_fill = static_cast<Qt::GlobalColor>(color + 2);
 	update();
 }
 
-void QRrenderer::set_border_color(const int color) noexcept {
+void QRrenderer::set_point_border_color(const int color) noexcept {
 	m_point_border = static_cast<Qt::GlobalColor>(color + 2);
 	update();
 }
@@ -105,6 +105,16 @@ void QRrenderer::set_point_shape(const int shape) noexcept {
 
 void QRrenderer::set_alignment_pattern_shape(const int shape) noexcept {
 	m_alignment_patterns = static_cast<shapes>(shape + 1);
+	update();
+}
+
+void QRrenderer::set_image_background_fill_color(const int color) noexcept {
+	m_image_background_fill = static_cast<Qt::GlobalColor>(color + 2);
+	update();
+}
+
+void QRrenderer::set_image_background_border_color(const int color) noexcept {
+	m_image_background_border = static_cast<Qt::GlobalColor>(color + 2);
 	update();
 }
 
@@ -387,7 +397,7 @@ void QRrenderer::draw_QR_image_background() noexcept {
 			cx - w/2,
 			cy - h/2,
 			w, h,
-			Qt::GlobalColor::white, Qt::GlobalColor::white
+			m_image_background_fill, m_image_background_border
 		);
 	}
 	else if (m_QR_image_background_shape == shapes::circles) {
@@ -397,7 +407,7 @@ void QRrenderer::draw_QR_image_background() noexcept {
 			cx - r,
 			cy - r,
 			2*r,
-			Qt::GlobalColor::white, Qt::GlobalColor::white
+			m_image_background_fill, m_image_background_border
 		);
 	}
 }

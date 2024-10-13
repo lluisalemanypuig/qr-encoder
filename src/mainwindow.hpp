@@ -49,6 +49,7 @@ public slots:
 private:
 	void enable_QR_image_resize(const bool v) noexcept;
 	void enable_QR_image_background_shape(const bool v) noexcept;
+	void enable_QR_image_background_color(const bool v) noexcept;
 	void enable_QR_image_background_size(const bool v) noexcept;
 
 private:

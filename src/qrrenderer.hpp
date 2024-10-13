@@ -61,11 +61,14 @@ public slots:
 
 	void update() noexcept;
 
-	void set_fill_color(const int color) noexcept;
-	void set_border_color(const int color) noexcept;
+	void set_point_fill_color(const int color) noexcept;
+	void set_point_border_color(const int color) noexcept;
 
 	void set_point_shape(const int color) noexcept;
 	void set_alignment_pattern_shape(const int shape) noexcept;
+
+	void set_image_background_fill_color(const int color) noexcept;
+	void set_image_background_border_color(const int color) noexcept;
 
 signals:
 
@@ -111,7 +114,7 @@ private:
 	void draw_QR_image() noexcept;
 
 private:
-	// Color-related
+	// 'Points' of the QR code
 	Qt::GlobalColor m_point_fill = Qt::GlobalColor::black;
 	Qt::GlobalColor m_point_border = Qt::GlobalColor::black;
 
@@ -133,6 +136,8 @@ private:
 	double m_QR_image_scale = 1;
 	double m_QR_image_background_scale = 1;
 	shapes m_QR_image_background_shape = shapes::circles;
+	Qt::GlobalColor m_image_background_fill = Qt::GlobalColor::black;
+	Qt::GlobalColor m_image_background_border = Qt::GlobalColor::black;
 
 	// rectangle that describes the drawing area of the widget
 	// (which is a bit larger than the total area of the widget)
