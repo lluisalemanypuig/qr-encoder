@@ -74,6 +74,7 @@ void QRrenderer::load_QR_image(const QString& path) noexcept {
 			<< " could not be loaded."
 			<< std::endl;
 	}
+
 	update();
 }
 
@@ -112,17 +113,23 @@ void QRrenderer::resize_QR(const int value) noexcept {
 
 void QRrenderer::resize_QR_image(const int value) noexcept {
 	m_image_scale = value/1000.0;
-	update();
+	if (m_image != nullptr) {
+		update();
+	}
 }
 
 void QRrenderer::set_QR_image_background_shape(const int shape) noexcept {
 	m_background_shape = static_cast<shapes>(shape);
-	update();
+	if (m_image != nullptr) {
+		update();
+	}
 }
 
 void QRrenderer::resize_QR_image_background(const int value) noexcept {
 	m_background_image_scale = value/1000.0;
-	update();
+	if (m_image != nullptr) {
+		update();
+	}
 }
 
 /* PRIVATE */
