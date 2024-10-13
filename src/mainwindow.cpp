@@ -97,15 +97,9 @@ void MainWindow::generateQR() noexcept {
 	enable_QR_image_resize(false);
 	enable_QR_image_background_shape(false);
 	enable_QR_image_background_size(false);
-
-	ui->QRRenderArea->update();
 }
 
 void MainWindow::loadQRImage() noexcept {
-	enable_QR_image_resize(true);
-	enable_QR_image_background_shape(true);
-	enable_QR_image_background_size(true);
-
 	QString file_name = QFileDialog::getOpenFileName(
 		this,
 		tr("Choose image"),
@@ -113,7 +107,12 @@ void MainWindow::loadQRImage() noexcept {
 		tr("Images (*.png *.jpg *.jpeg *.svg *.bmp)")
 	);
 
-	ui->QRRenderArea->load_QR_image(file_name);
+	if (file_name.size() > 0) {
+		enable_QR_image_resize(true);
+		enable_QR_image_background_shape(true);
+		enable_QR_image_background_size(true);
+		ui->QRRenderArea->load_QR_image(file_name);
+	}
 }
 
 void MainWindow::removeQRImage() noexcept {
