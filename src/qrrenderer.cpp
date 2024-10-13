@@ -390,7 +390,7 @@ void QRrenderer::update() noexcept {
 		);
 
 		pixmap_item->setTransformOriginPoint(pixmap_item->boundingRect().center());
-		pixmap_item->setScale(m_image_scale);
+		pixmap_item->setScale(m_redim*m_image_scale);
 
 		m_scene.addItem(pixmap_item);
 	}
