@@ -577,6 +577,8 @@
 4. Choose the color you like the most and a shape.
 5. Finally, click on &apos;Save QR Code&apos;.
 
+Other options:
+QR-Encoder offers a simple way to add an image at the center of your QR, with a background shape whose color and size you can change. After generating the QR code, open the &apos;Load Image&apos; tab and load an image to be displayed on top of your QR. Change its size using the slider. Add a background by selecting a shape; after that, you will be able to select its color and size.
 Advanced options:
 1. Quality of the QR code. Make sure your code will be readable (even when it is partially occluded) by setting ECC to &apos;High&apos;. Or if the QR looks too cluttered, though, set it to &apos;Low&apos; or another value. Click &apos;Generate QR&apos; everytime the value of ECC changes.
 
@@ -585,8 +587,11 @@ Advanced options:
 1. Write the tetx you want to encode (a sentence, a url, random text, ...) into the &apos;Text&apos; text box.
 2. Click on &apos;Generate QR&apos; to generate the QR code.
 3. Resize the code with the slider to an appropriate size.
-4. Finally, click on &apos;Save QR Code&apos;.
+4. Choose the color you like the most and a shape.
+5. Finally, click on &apos;Save QR Code&apos;.
 
+Other options:
+QR-Encoder offers a simple way to add an image at the center of your QR,with a background shape whose color and size you can change. After generatingthe QR code, open the &apos;Load Image&apos; tab and load an image to be displayedon top of your QR. Change its size using the slider. Add a background byselecting a shape; after that, you will be able to select its color and size.
 Advanced options:
 1. Quality of the QR code. Make sure your code will be readable (even when it is partially occluded) by setting ECC to &apos;High&apos;. Or if the QR looks too cluttered, though, set it to &apos;Low&apos; or another value. Click &apos;Generate QR&apos; everytime the value of ECC changes.
 
@@ -598,18 +603,21 @@ Advanced options:
 4. Escoge los colores que más te gusten y una forma.
 5. Finalmente, haz click en el botón &apos;Gaurda el código QR&apos;.
 
+Otras opciones:
+QR-Encoder ofrece una manera simple para añadir una imagen al centro de tu código QR, con un fondo cuya forma y color son editables. Después de generar el código QR, abre la pestaña &quot;Cargar Imagen&quot; y carga una imagen para mostrar en el centro del código QR. Cambia su tamaño usando el deslizador. Añade un fondo después de seleccionar una forma para el fondo; después podrás cambiar su tamaño y color.
+
 Opciones avanzadas:
 1. Calidad del código QR. Asegúrate de que el código será legible (incluso cuando esté parcialmente oculto) seleccionando la opción &apos;Alta&apos; de ECC. O bien, si el código parece demasiado lleno, selecciona el valor &apos;Bajo&apos;. Haz click sobre el botón &apos;Genera el código QR&apos;  cada vez que el valor de ECC cambie.
 
 2. Tamaño del fichero png. El código QR será guardado en un fichero png; puedes controlar su tamaño cambiando el nivel de compresión al lado de &apos;Compresión PNG&apos;. Es un porcentage (%) i su valor por defecto es el máximo.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="187"/>
+        <location filename="mainwindow.cpp" line="194"/>
         <source>About QR-Encoder</source>
         <translation>Acerca de</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="188"/>
+        <location filename="mainwindow.cpp" line="195"/>
         <source>Developed and maintained by Lluís Alemany Puig.
 
 Contact:
