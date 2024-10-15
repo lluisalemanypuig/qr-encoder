@@ -93,7 +93,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QSlider" name="redimQR">
+       <widget class="SliderAndLabel" name="redimQR">
         <property name="minimum">
          <number>20</number>
         </property>
@@ -101,7 +101,7 @@
          <number>1000</number>
         </property>
         <property name="value">
-         <number>1000</number>
+         <number>900</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -109,12 +109,21 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox">
-        <property name="maximum">
-         <number>1000</number>
+       <widget class="QLabel" name="QRSizeLabel">
+        <property name="minimumSize">
+         <size>
+          <width>75</width>
+          <height>0</height>
+         </size>
         </property>
-        <property name="value">
-         <number>1000</number>
+        <property name="statusTip">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>90.00%</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -595,7 +604,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QSlider" name="imageSizeSlider">
+             <widget class="SliderAndLabel" name="imageSizeSlider">
               <property name="minimumSize">
                <size>
                 <width>300</width>
@@ -620,12 +629,21 @@
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="imageSizeSpinBox">
-              <property name="maximum">
-               <number>2000</number>
+             <widget class="QLabel" name="imageSizeLabel">
+              <property name="minimumSize">
+               <size>
+                <width>75</width>
+                <height>0</height>
+               </size>
               </property>
-              <property name="value">
-               <number>1000</number>
+              <property name="statusTip">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>100%</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -925,7 +943,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QSlider" name="imageBackgroundSizeSlider">
+             <widget class="SliderAndLabel" name="imageBackgroundSizeSlider">
               <property name="minimumSize">
                <size>
                 <width>300</width>
@@ -950,12 +968,21 @@
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="imageBackgroundSizeSpinBox">
-              <property name="maximum">
-               <number>2000</number>
+             <widget class="QLabel" name="imageBackgroundSizeLabel">
+              <property name="minimumSize">
+               <size>
+                <width>75</width>
+                <height>0</height>
+               </size>
               </property>
-              <property name="value">
-               <number>1000</number>
+              <property name="statusTip">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>100%</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -1160,6 +1187,14 @@
     <slot>set_image_background_border_color(int)</slot>
    </slots>
   </customwidget>
+  <customwidget>
+   <class>SliderAndLabel</class>
+   <extends>QSlider</extends>
+   <header>sliderandlabel.hpp</header>
+   <slots>
+    <slot>update_label()</slot>
+   </slots>
+  </customwidget>
  </customwidgets>
  <resources/>
  <connections>
@@ -1170,8 +1205,8 @@
    <slot>generateQR()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>393</x>
-     <y>472</y>
+     <x>403</x>
+     <y>503</y>
     </hint>
     <hint type="destinationlabel">
      <x>379</x>
@@ -1208,54 +1243,6 @@
     <hint type="destinationlabel">
      <x>243</x>
      <y>380</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>redimQR</sender>
-   <signal>sliderMoved(int)</signal>
-   <receiver>spinBox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>674</x>
-     <y>521</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>824</x>
-     <y>521</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>spinBox</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>redimQR</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>824</x>
-     <y>506</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>768</x>
-     <y>519</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>redimQR</sender>
-   <signal>sliderMoved(int)</signal>
-   <receiver>spinBox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>620</x>
-     <y>522</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>819</x>
-     <y>528</y>
     </hint>
    </hints>
   </connection>
@@ -1388,88 +1375,8 @@
    </hints>
   </connection>
   <connection>
-   <sender>imageSizeSlider</sender>
-   <signal>sliderMoved(int)</signal>
-   <receiver>imageSizeSpinBox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>513</x>
-     <y>588</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>617</x>
-     <y>588</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>imageSizeSpinBox</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>imageSizeSlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>643</x>
-     <y>598</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>430</x>
-     <y>585</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>imageBackgroundSizeSlider</sender>
-   <signal>sliderMoved(int)</signal>
-   <receiver>imageBackgroundSizeSpinBox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>588</x>
-     <y>692</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>685</x>
-     <y>697</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>imageBackgroundSizeSpinBox</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>imageBackgroundSizeSlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>685</x>
-     <y>697</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>588</x>
-     <y>692</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>imageSizeSlider</sender>
-   <signal>sliderMoved(int)</signal>
-   <receiver>QRRenderArea</receiver>
-   <slot>resize_QR_image(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>323</x>
-     <y>584</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>327</x>
-     <y>360</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>imageBackgroundSizeSlider</sender>
-   <signal>sliderMoved(int)</signal>
    <receiver>QRRenderArea</receiver>
    <slot>resize_QR_image_background(int)</slot>
    <hints>
@@ -1544,6 +1451,70 @@
     <hint type="destinationlabel">
      <x>657</x>
      <y>351</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>redimQR</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>redimQR</receiver>
+   <slot>update_label()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>703</x>
+     <y>521</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>726</x>
+     <y>523</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageBackgroundSizeSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>imageBackgroundSizeSlider</receiver>
+   <slot>update_label()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>505</x>
+     <y>686</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>541</x>
+     <y>691</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageSizeSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>QRRenderArea</receiver>
+   <slot>resize_QR_image(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>303</x>
+     <y>584</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>386</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageSizeSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>imageSizeSlider</receiver>
+   <slot>update_label()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>465</x>
+     <y>587</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>489</x>
+     <y>588</y>
     </hint>
    </hints>
   </connection>

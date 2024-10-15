@@ -51,7 +51,7 @@ noexcept
 
 /* PUBLIC */
 
-QRrenderer::QRrenderer(QWidget *parent) :
+QRrenderer::QRrenderer(QWidget *parent) noexcept :
 	QGraphicsView(parent),
 	m_QR_matrix(qrcodegen::QrCode::encodeText("", qrcodegen::QrCode::Ecc::LOW))
 {

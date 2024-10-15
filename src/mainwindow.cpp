@@ -47,6 +47,15 @@ MainWindow::MainWindow(QWidget *parent) noexcept :
 	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
+
+	ui->redimQR->set_label(ui->QRSizeLabel);
+	ui->redimQR->set_value_at_100(ui->redimQR->maximum());
+
+	ui->imageSizeSlider->set_label(ui->imageSizeLabel);
+	ui->imageSizeSlider->set_value_at_100(1000);
+
+	ui->imageBackgroundSizeSlider->set_label(ui->imageBackgroundSizeLabel);
+	ui->imageBackgroundSizeSlider->set_value_at_100(1000);
 }
 
 MainWindow::~MainWindow() noexcept {
@@ -219,30 +228,12 @@ void MainWindow::enable_QR_image_resize(const bool v) noexcept {
 	assert(tab != nullptr);
 #endif
 
-	QSlider *imageSizeSlider = tab->findChild<QSlider *>("imageSizeSlider");
-#if defined DEBUG
-	assert(imageSizeSlider != nullptr);
-#endif
-	imageSizeSlider->setEnabled(v);
-
-	QSpinBox *imageSizeSpinner = tab->findChild<QSpinBox *>("imageSizeSpinBox");
-#if defined DEBUG
-	assert(imageSizeSpinner != nullptr);
-#endif
-	imageSizeSpinner->setEnabled(v);
+	ui->imageSizeSlider->setEnabled(v);
+	ui->imageSizeLabel->setEnabled(v);
 }
 
 void MainWindow::enable_QR_image_background_shape(const bool v) noexcept {
-	QWidget *tab = ui->editQRTabWidget->widget(1);
-#if defined DEBUG
-	assert(tab != nullptr);
-#endif
-
-	QComboBox *imageBackgroundShapeComboBox = tab->findChild<QComboBox *>("imageBackgroundShapeComboBox");
-#if defined DEBUG
-	assert(imageBackgroundShapeComboBox != nullptr);
-#endif
-	imageBackgroundShapeComboBox->setEnabled(v);
+	ui->imageBackgroundShapeComboBox->setEnabled(v);
 }
 
 void MainWindow::enable_QR_image_background_color(const bool v) noexcept {
@@ -251,23 +242,10 @@ void MainWindow::enable_QR_image_background_color(const bool v) noexcept {
 	assert(tab != nullptr);
 #endif
 
-	QComboBox *imageBackgroundShapeComboBox = tab->findChild<QComboBox *>("imageBackgroundShapeComboBox");
-#if defined DEBUG
-	assert(imageBackgroundShapeComboBox != nullptr);
-#endif
-	const int cur_index = imageBackgroundShapeComboBox->currentIndex();
+	const int cur_index = ui->imageBackgroundShapeComboBox->currentIndex();
 
-	QComboBox *imageBackgroundFillColorComboBox = tab->findChild<QComboBox *>("imageBackgroundFillColorComboBox");
-#if defined DEBUG
-	assert(imageBackgroundFillColorComboBox != nullptr);
-#endif
-	imageBackgroundFillColorComboBox->setEnabled(v and (cur_index > 0));
-
-	QComboBox *imageBackgroundBorderColorComboBox = tab->findChild<QComboBox *>("imageBackgroundBorderColorComboBox");
-#if defined DEBUG
-	assert(imageBackgroundBorderColorComboBox != nullptr);
-#endif
-	imageBackgroundBorderColorComboBox->setEnabled(v and (cur_index > 0));
+	ui->imageBackgroundFillColorComboBox->setEnabled(v and (cur_index > 0));
+	ui->imageBackgroundBorderColorComboBox->setEnabled(v and (cur_index > 0));
 }
 
 void MainWindow::enable_QR_image_background_size(const bool v) noexcept {
@@ -276,21 +254,8 @@ void MainWindow::enable_QR_image_background_size(const bool v) noexcept {
 	assert(tab != nullptr);
 #endif
 
-	QComboBox *imageBackgroundShapeComboBox = tab->findChild<QComboBox *>("imageBackgroundShapeComboBox");
-#if defined DEBUG
-	assert(imageBackgroundShapeComboBox != nullptr);
-#endif
-	const int cur_index = imageBackgroundShapeComboBox->currentIndex();
+	const int cur_index = ui->imageBackgroundShapeComboBox->currentIndex();
 
-	QSlider *imageBackgroundSizeSlider = tab->findChild<QSlider *>("imageBackgroundSizeSlider");
-#if defined DEBUG
-	assert(imageBackgroundSizeSlider != nullptr);
-#endif
-	imageBackgroundSizeSlider->setEnabled(v and (cur_index > 0));
-
-	QSpinBox *imageBackgroundSizeSpinBox = tab->findChild<QSpinBox *>("imageBackgroundSizeSpinBox");
-#if defined DEBUG
-	assert(imageBackgroundSizeSpinBox != nullptr);
-#endif
-	imageBackgroundSizeSpinBox->setEnabled(v and (cur_index > 0));
+	ui->imageBackgroundSizeSlider->setEnabled(v and (cur_index > 0));
+	ui->imageBackgroundSizeLabel->setEnabled(v and (cur_index > 0));
 }

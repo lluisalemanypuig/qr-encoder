@@ -34,7 +34,7 @@ class QRrenderer : public QGraphicsView {
 	Q_OBJECT
 
 public:
-	explicit QRrenderer(QWidget *parent = nullptr);
+	explicit QRrenderer(QWidget *parent = nullptr) noexcept;
 
 	void set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept;
 
@@ -126,7 +126,7 @@ private:
 	qrcodegen::QrCode m_QR_matrix;
 
 	// redimension factor from the slide and its spin box
-	double m_redim = 1.0;
+	double m_redim = 0.9;
 
 	// Objects used to render the graphics scene
 	QGraphicsScene m_scene;

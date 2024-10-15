@@ -19,13 +19,15 @@ SOURCES += \
     mainwindow.cpp \
     qrcode/qrcodegen.cpp \
     qrrenderer.cpp \
-    resizablemessagebox.cpp
+    resizablemessagebox.cpp \
+    sliderandlabel.cpp
 
 HEADERS += \
     mainwindow.hpp \
     qrcode/qrcodegen.hpp \
     qrrenderer.hpp \
-    resizablemessagebox.hpp
+    resizablemessagebox.hpp \
+    sliderandlabel.hpp
 
 FORMS += \
     mainwindow.ui
