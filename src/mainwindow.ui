@@ -1185,6 +1185,7 @@
     <slot>set_QR_image_background_shape(int)</slot>
     <slot>set_image_background_fill_color(int)</slot>
     <slot>set_image_background_border_color(int)</slot>
+    <slot>set_ECC(int)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -1515,6 +1516,22 @@
     <hint type="destinationlabel">
      <x>489</x>
      <y>588</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ECCComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>generateQRButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>191</x>
+     <y>587</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>193</x>
+     <y>488</y>
     </hint>
    </hints>
   </connection>
