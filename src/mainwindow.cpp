@@ -223,11 +223,6 @@ void MainWindow::show_About_menu() const noexcept {
 /* PRIVATE */
 
 void MainWindow::enable_QR_image_resize(const bool v) noexcept {
-	QWidget *tab = ui->editQRTabWidget->widget(1);
-#if defined DEBUG
-	assert(tab != nullptr);
-#endif
-
 	ui->imageSizeSlider->setEnabled(v);
 	ui->imageSizeLabel->setEnabled(v);
 }
@@ -237,11 +232,6 @@ void MainWindow::enable_QR_image_background_shape(const bool v) noexcept {
 }
 
 void MainWindow::enable_QR_image_background_color(const bool v) noexcept {
-	QWidget *tab = ui->editQRTabWidget->widget(1);
-#if defined DEBUG
-	assert(tab != nullptr);
-#endif
-
 	const int cur_index = ui->imageBackgroundShapeComboBox->currentIndex();
 
 	ui->imageBackgroundFillColorComboBox->setEnabled(v and (cur_index > 0));
@@ -249,11 +239,6 @@ void MainWindow::enable_QR_image_background_color(const bool v) noexcept {
 }
 
 void MainWindow::enable_QR_image_background_size(const bool v) noexcept {
-	QWidget *tab = ui->editQRTabWidget->widget(1);
-#if defined DEBUG
-	assert(tab != nullptr);
-#endif
-
 	const int cur_index = ui->imageBackgroundShapeComboBox->currentIndex();
 
 	ui->imageBackgroundSizeSlider->setEnabled(v and (cur_index > 0));
