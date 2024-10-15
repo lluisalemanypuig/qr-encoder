@@ -5,317 +5,567 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
-        <location filename="../build-release/ui_mainwindow.h" line="398"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="650"/>
+        <location filename="../build-release/ui_mainwindow.h" line="650"/>
         <source>QR Encoder</source>
         <translation>Codificador QR</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="43"/>
-        <location filename="../build-release/ui_mainwindow.h" line="403"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="655"/>
+        <location filename="../build-release/ui_mainwindow.h" line="655"/>
         <source>Text</source>
         <translation>Text</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="73"/>
-        <location filename="../build-release/ui_mainwindow.h" line="404"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="656"/>
+        <location filename="../build-release/ui_mainwindow.h" line="656"/>
         <source>Generate QR</source>
         <translation>Genera el codi QR</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="80"/>
-        <location filename="../build-release/ui_mainwindow.h" line="405"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="657"/>
+        <location filename="../build-release/ui_mainwindow.h" line="657"/>
         <source>Save QR Code</source>
         <translation>Guarda el codi QR</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="91"/>
-        <location filename="../build-release/ui_mainwindow.h" line="406"/>
         <source>Shrinking factor</source>
-        <translation>Factor reductor</translation>
+        <translation type="vanished">Factor reductor</translation>
     </message>
     <message>
         <source>Advanced options</source>
         <translation type="vanished">Opcions avançades</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="510"/>
-        <location filename="../build-release/ui_mainwindow.h" line="454"/>
+        <location filename="mainwindow.ui" line="1000"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="754"/>
+        <location filename="../build-release/ui_mainwindow.h" line="754"/>
         <source>ECC                  </source>
         <translation>ECC                  </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="536"/>
-        <location filename="../build-release/ui_mainwindow.h" line="458"/>
+        <location filename="mainwindow.ui" line="1026"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="758"/>
+        <location filename="../build-release/ui_mainwindow.h" line="758"/>
         <source>High</source>
         <translation>Alt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="567"/>
-        <location filename="../build-release/ui_mainwindow.h" line="461"/>
+        <location filename="mainwindow.ui" line="1057"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="761"/>
+        <location filename="../build-release/ui_mainwindow.h" line="761"/>
         <source>PNG Compression</source>
         <translation>Compressió PNG</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="613"/>
-        <location filename="../build-release/ui_mainwindow.h" line="463"/>
+        <location filename="mainwindow.ui" line="1116"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="763"/>
+        <location filename="../build-release/ui_mainwindow.h" line="763"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="623"/>
-        <location filename="mainwindow.ui" line="633"/>
-        <location filename="../build-release/ui_mainwindow.h" line="399"/>
-        <location filename="../build-release/ui_mainwindow.h" line="401"/>
+        <location filename="mainwindow.ui" line="1126"/>
+        <location filename="mainwindow.ui" line="1136"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="651"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="653"/>
+        <location filename="../build-release/ui_mainwindow.h" line="651"/>
+        <location filename="../build-release/ui_mainwindow.h" line="653"/>
         <source>Usage</source>
         <translation>Com fer servir el programa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="628"/>
-        <location filename="mainwindow.ui" line="638"/>
-        <location filename="../build-release/ui_mainwindow.h" line="400"/>
-        <location filename="../build-release/ui_mainwindow.h" line="402"/>
+        <location filename="mainwindow.ui" line="1131"/>
+        <location filename="mainwindow.ui" line="1141"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="652"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="654"/>
+        <location filename="../build-release/ui_mainwindow.h" line="652"/>
+        <location filename="../build-release/ui_mainwindow.h" line="654"/>
         <source>About</source>
         <translation>Quant a</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="517"/>
-        <location filename="mainwindow.ui" line="521"/>
-        <location filename="../build-release/ui_mainwindow.h" line="455"/>
-        <location filename="../build-release/ui_mainwindow.h" line="460"/>
+        <location filename="mainwindow.ui" line="1007"/>
+        <location filename="mainwindow.ui" line="1011"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="755"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="760"/>
+        <location filename="../build-release/ui_mainwindow.h" line="755"/>
+        <location filename="../build-release/ui_mainwindow.h" line="760"/>
         <source>Low</source>
         <translation>Baix</translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="91"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="658"/>
+        <location filename="../build-release/ui_mainwindow.h" line="658"/>
+        <source>QR Code size</source>
+        <translation>Mida codi QR</translation>
+    </message>
+    <message>
         <location filename="mainwindow.ui" line="139"/>
-        <location filename="../build-release/ui_mainwindow.h" line="453"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="705"/>
+        <location filename="../build-release/ui_mainwindow.h" line="705"/>
         <source>Coloring and Shape</source>
         <translation>Colorat i Forma</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="167"/>
-        <location filename="mainwindow.ui" line="292"/>
-        <location filename="../build-release/ui_mainwindow.h" line="408"/>
-        <location filename="../build-release/ui_mainwindow.h" line="427"/>
+        <location filename="mainwindow.ui" line="169"/>
+        <location filename="mainwindow.ui" line="294"/>
+        <location filename="mainwindow.ui" line="717"/>
+        <location filename="mainwindow.ui" line="825"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="660"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="679"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="715"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="734"/>
+        <location filename="../build-release/ui_mainwindow.h" line="660"/>
+        <location filename="../build-release/ui_mainwindow.h" line="679"/>
+        <location filename="../build-release/ui_mainwindow.h" line="715"/>
+        <location filename="../build-release/ui_mainwindow.h" line="734"/>
         <source>Black</source>
         <translation>Negre</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="172"/>
-        <location filename="mainwindow.ui" line="297"/>
-        <location filename="../build-release/ui_mainwindow.h" line="409"/>
-        <location filename="../build-release/ui_mainwindow.h" line="428"/>
+        <location filename="mainwindow.ui" line="174"/>
+        <location filename="mainwindow.ui" line="299"/>
+        <location filename="mainwindow.ui" line="722"/>
+        <location filename="mainwindow.ui" line="830"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="661"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="680"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="716"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="735"/>
+        <location filename="../build-release/ui_mainwindow.h" line="661"/>
+        <location filename="../build-release/ui_mainwindow.h" line="680"/>
+        <location filename="../build-release/ui_mainwindow.h" line="716"/>
+        <location filename="../build-release/ui_mainwindow.h" line="735"/>
         <source>White</source>
         <translation>Blanc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="177"/>
-        <location filename="mainwindow.ui" line="302"/>
-        <location filename="../build-release/ui_mainwindow.h" line="410"/>
-        <location filename="../build-release/ui_mainwindow.h" line="429"/>
+        <location filename="mainwindow.ui" line="179"/>
+        <location filename="mainwindow.ui" line="304"/>
+        <location filename="mainwindow.ui" line="727"/>
+        <location filename="mainwindow.ui" line="835"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="662"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="681"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="717"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="736"/>
+        <location filename="../build-release/ui_mainwindow.h" line="662"/>
+        <location filename="../build-release/ui_mainwindow.h" line="681"/>
+        <location filename="../build-release/ui_mainwindow.h" line="717"/>
+        <location filename="../build-release/ui_mainwindow.h" line="736"/>
         <source>Gray</source>
         <translation>Gris</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="182"/>
-        <location filename="mainwindow.ui" line="307"/>
-        <location filename="../build-release/ui_mainwindow.h" line="411"/>
-        <location filename="../build-release/ui_mainwindow.h" line="430"/>
+        <location filename="mainwindow.ui" line="184"/>
+        <location filename="mainwindow.ui" line="309"/>
+        <location filename="mainwindow.ui" line="732"/>
+        <location filename="mainwindow.ui" line="840"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="663"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="682"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="718"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="737"/>
+        <location filename="../build-release/ui_mainwindow.h" line="663"/>
+        <location filename="../build-release/ui_mainwindow.h" line="682"/>
+        <location filename="../build-release/ui_mainwindow.h" line="718"/>
+        <location filename="../build-release/ui_mainwindow.h" line="737"/>
         <source>Dark gray</source>
         <translation>Gris fosc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="187"/>
-        <location filename="mainwindow.ui" line="312"/>
-        <location filename="../build-release/ui_mainwindow.h" line="412"/>
-        <location filename="../build-release/ui_mainwindow.h" line="431"/>
+        <location filename="mainwindow.ui" line="189"/>
+        <location filename="mainwindow.ui" line="314"/>
+        <location filename="mainwindow.ui" line="737"/>
+        <location filename="mainwindow.ui" line="845"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="664"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="683"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="719"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="738"/>
+        <location filename="../build-release/ui_mainwindow.h" line="664"/>
+        <location filename="../build-release/ui_mainwindow.h" line="683"/>
+        <location filename="../build-release/ui_mainwindow.h" line="719"/>
+        <location filename="../build-release/ui_mainwindow.h" line="738"/>
         <source>Light gray</source>
         <translation>Gris clar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="192"/>
-        <location filename="mainwindow.ui" line="317"/>
-        <location filename="../build-release/ui_mainwindow.h" line="413"/>
-        <location filename="../build-release/ui_mainwindow.h" line="432"/>
+        <location filename="mainwindow.ui" line="194"/>
+        <location filename="mainwindow.ui" line="319"/>
+        <location filename="mainwindow.ui" line="742"/>
+        <location filename="mainwindow.ui" line="850"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="665"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="684"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="720"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="739"/>
+        <location filename="../build-release/ui_mainwindow.h" line="665"/>
+        <location filename="../build-release/ui_mainwindow.h" line="684"/>
+        <location filename="../build-release/ui_mainwindow.h" line="720"/>
+        <location filename="../build-release/ui_mainwindow.h" line="739"/>
         <source>Red</source>
         <translation>Vermell</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="197"/>
-        <location filename="mainwindow.ui" line="322"/>
-        <location filename="../build-release/ui_mainwindow.h" line="414"/>
-        <location filename="../build-release/ui_mainwindow.h" line="433"/>
+        <location filename="mainwindow.ui" line="199"/>
+        <location filename="mainwindow.ui" line="324"/>
+        <location filename="mainwindow.ui" line="747"/>
+        <location filename="mainwindow.ui" line="855"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="666"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="685"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="721"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="740"/>
+        <location filename="../build-release/ui_mainwindow.h" line="666"/>
+        <location filename="../build-release/ui_mainwindow.h" line="685"/>
+        <location filename="../build-release/ui_mainwindow.h" line="721"/>
+        <location filename="../build-release/ui_mainwindow.h" line="740"/>
         <source>Green</source>
         <translation>Verd</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="202"/>
-        <location filename="mainwindow.ui" line="327"/>
-        <location filename="../build-release/ui_mainwindow.h" line="415"/>
-        <location filename="../build-release/ui_mainwindow.h" line="434"/>
+        <location filename="mainwindow.ui" line="204"/>
+        <location filename="mainwindow.ui" line="329"/>
+        <location filename="mainwindow.ui" line="752"/>
+        <location filename="mainwindow.ui" line="860"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="667"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="686"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="722"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="741"/>
+        <location filename="../build-release/ui_mainwindow.h" line="667"/>
+        <location filename="../build-release/ui_mainwindow.h" line="686"/>
+        <location filename="../build-release/ui_mainwindow.h" line="722"/>
+        <location filename="../build-release/ui_mainwindow.h" line="741"/>
         <source>Blue</source>
         <translation>Blau</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="207"/>
-        <location filename="mainwindow.ui" line="332"/>
-        <location filename="../build-release/ui_mainwindow.h" line="416"/>
-        <location filename="../build-release/ui_mainwindow.h" line="435"/>
+        <location filename="mainwindow.ui" line="209"/>
+        <location filename="mainwindow.ui" line="334"/>
+        <location filename="mainwindow.ui" line="757"/>
+        <location filename="mainwindow.ui" line="865"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="668"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="687"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="723"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="742"/>
+        <location filename="../build-release/ui_mainwindow.h" line="668"/>
+        <location filename="../build-release/ui_mainwindow.h" line="687"/>
+        <location filename="../build-release/ui_mainwindow.h" line="723"/>
+        <location filename="../build-release/ui_mainwindow.h" line="742"/>
         <source>Cyan</source>
         <translation>Cian</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="212"/>
-        <location filename="mainwindow.ui" line="337"/>
-        <location filename="../build-release/ui_mainwindow.h" line="417"/>
-        <location filename="../build-release/ui_mainwindow.h" line="436"/>
+        <location filename="mainwindow.ui" line="214"/>
+        <location filename="mainwindow.ui" line="339"/>
+        <location filename="mainwindow.ui" line="762"/>
+        <location filename="mainwindow.ui" line="870"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="669"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="688"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="724"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="743"/>
+        <location filename="../build-release/ui_mainwindow.h" line="669"/>
+        <location filename="../build-release/ui_mainwindow.h" line="688"/>
+        <location filename="../build-release/ui_mainwindow.h" line="724"/>
+        <location filename="../build-release/ui_mainwindow.h" line="743"/>
         <source>Magenta</source>
         <translation>Magenta</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="217"/>
-        <location filename="mainwindow.ui" line="342"/>
-        <location filename="../build-release/ui_mainwindow.h" line="418"/>
-        <location filename="../build-release/ui_mainwindow.h" line="437"/>
+        <location filename="mainwindow.ui" line="219"/>
+        <location filename="mainwindow.ui" line="344"/>
+        <location filename="mainwindow.ui" line="767"/>
+        <location filename="mainwindow.ui" line="875"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="670"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="689"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="725"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="744"/>
+        <location filename="../build-release/ui_mainwindow.h" line="670"/>
+        <location filename="../build-release/ui_mainwindow.h" line="689"/>
+        <location filename="../build-release/ui_mainwindow.h" line="725"/>
+        <location filename="../build-release/ui_mainwindow.h" line="744"/>
         <source>Yellow</source>
         <translation>Groc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="222"/>
-        <location filename="mainwindow.ui" line="347"/>
-        <location filename="../build-release/ui_mainwindow.h" line="419"/>
-        <location filename="../build-release/ui_mainwindow.h" line="438"/>
+        <location filename="mainwindow.ui" line="224"/>
+        <location filename="mainwindow.ui" line="349"/>
+        <location filename="mainwindow.ui" line="772"/>
+        <location filename="mainwindow.ui" line="885"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="671"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="690"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="726"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="746"/>
+        <location filename="../build-release/ui_mainwindow.h" line="671"/>
+        <location filename="../build-release/ui_mainwindow.h" line="690"/>
+        <location filename="../build-release/ui_mainwindow.h" line="726"/>
+        <location filename="../build-release/ui_mainwindow.h" line="746"/>
         <source>Dark red</source>
         <translation>Vermell fosc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="227"/>
-        <location filename="mainwindow.ui" line="352"/>
-        <location filename="../build-release/ui_mainwindow.h" line="420"/>
-        <location filename="../build-release/ui_mainwindow.h" line="439"/>
+        <location filename="mainwindow.ui" line="229"/>
+        <location filename="mainwindow.ui" line="354"/>
+        <location filename="mainwindow.ui" line="777"/>
+        <location filename="mainwindow.ui" line="880"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="672"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="691"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="727"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="745"/>
+        <location filename="../build-release/ui_mainwindow.h" line="672"/>
+        <location filename="../build-release/ui_mainwindow.h" line="691"/>
+        <location filename="../build-release/ui_mainwindow.h" line="727"/>
+        <location filename="../build-release/ui_mainwindow.h" line="745"/>
         <source>Dark green</source>
         <translation>Verd fosc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="232"/>
-        <location filename="mainwindow.ui" line="357"/>
-        <location filename="../build-release/ui_mainwindow.h" line="421"/>
-        <location filename="../build-release/ui_mainwindow.h" line="440"/>
+        <location filename="mainwindow.ui" line="234"/>
+        <location filename="mainwindow.ui" line="359"/>
+        <location filename="mainwindow.ui" line="782"/>
+        <location filename="mainwindow.ui" line="890"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="673"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="692"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="728"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="747"/>
+        <location filename="../build-release/ui_mainwindow.h" line="673"/>
+        <location filename="../build-release/ui_mainwindow.h" line="692"/>
+        <location filename="../build-release/ui_mainwindow.h" line="728"/>
+        <location filename="../build-release/ui_mainwindow.h" line="747"/>
         <source>Dark blue</source>
         <translation>Blau fosc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="237"/>
-        <location filename="mainwindow.ui" line="362"/>
-        <location filename="../build-release/ui_mainwindow.h" line="422"/>
-        <location filename="../build-release/ui_mainwindow.h" line="441"/>
+        <location filename="mainwindow.ui" line="239"/>
+        <location filename="mainwindow.ui" line="364"/>
+        <location filename="mainwindow.ui" line="787"/>
+        <location filename="mainwindow.ui" line="895"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="674"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="693"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="729"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="748"/>
+        <location filename="../build-release/ui_mainwindow.h" line="674"/>
+        <location filename="../build-release/ui_mainwindow.h" line="693"/>
+        <location filename="../build-release/ui_mainwindow.h" line="729"/>
+        <location filename="../build-release/ui_mainwindow.h" line="748"/>
         <source>Dark cyan</source>
         <translation>Cian fosc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="242"/>
-        <location filename="mainwindow.ui" line="367"/>
-        <location filename="../build-release/ui_mainwindow.h" line="423"/>
-        <location filename="../build-release/ui_mainwindow.h" line="442"/>
+        <location filename="mainwindow.ui" line="244"/>
+        <location filename="mainwindow.ui" line="369"/>
+        <location filename="mainwindow.ui" line="792"/>
+        <location filename="mainwindow.ui" line="900"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="675"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="694"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="730"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="749"/>
+        <location filename="../build-release/ui_mainwindow.h" line="675"/>
+        <location filename="../build-release/ui_mainwindow.h" line="694"/>
+        <location filename="../build-release/ui_mainwindow.h" line="730"/>
+        <location filename="../build-release/ui_mainwindow.h" line="749"/>
         <source>Dark magenta</source>
         <translation>Magenta fosc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="247"/>
-        <location filename="mainwindow.ui" line="372"/>
-        <location filename="../build-release/ui_mainwindow.h" line="424"/>
-        <location filename="../build-release/ui_mainwindow.h" line="443"/>
+        <location filename="mainwindow.ui" line="249"/>
+        <location filename="mainwindow.ui" line="374"/>
+        <location filename="mainwindow.ui" line="797"/>
+        <location filename="mainwindow.ui" line="905"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="676"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="695"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="731"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="750"/>
+        <location filename="../build-release/ui_mainwindow.h" line="676"/>
+        <location filename="../build-release/ui_mainwindow.h" line="695"/>
+        <location filename="../build-release/ui_mainwindow.h" line="731"/>
+        <location filename="../build-release/ui_mainwindow.h" line="750"/>
         <source>Dark yellow</source>
         <translation>Groc fosc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="153"/>
-        <location filename="../build-release/ui_mainwindow.h" line="407"/>
+        <location filename="mainwindow.ui" line="155"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="659"/>
+        <location filename="../build-release/ui_mainwindow.h" line="659"/>
         <source>Fill</source>
         <translation>Interior</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="278"/>
-        <location filename="../build-release/ui_mainwindow.h" line="426"/>
+        <location filename="mainwindow.ui" line="280"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="678"/>
+        <location filename="../build-release/ui_mainwindow.h" line="678"/>
         <source>Border</source>
         <translation>Contorn</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="403"/>
-        <location filename="../build-release/ui_mainwindow.h" line="445"/>
+        <location filename="mainwindow.ui" line="422"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="697"/>
+        <location filename="../build-release/ui_mainwindow.h" line="697"/>
         <source>Point shape</source>
         <oldsource>Shape</oldsource>
         <translation>Forma punts</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="417"/>
-        <location filename="mainwindow.ui" line="467"/>
-        <location filename="../build-release/ui_mainwindow.h" line="446"/>
-        <location filename="../build-release/ui_mainwindow.h" line="450"/>
+        <location filename="mainwindow.ui" line="436"/>
+        <location filename="mainwindow.ui" line="486"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="698"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="702"/>
+        <location filename="../build-release/ui_mainwindow.h" line="698"/>
+        <location filename="../build-release/ui_mainwindow.h" line="702"/>
         <source>Squares</source>
         <translation>Quadrats</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="422"/>
-        <location filename="mainwindow.ui" line="472"/>
-        <location filename="../build-release/ui_mainwindow.h" line="447"/>
-        <location filename="../build-release/ui_mainwindow.h" line="451"/>
+        <location filename="mainwindow.ui" line="441"/>
+        <location filename="mainwindow.ui" line="491"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="699"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="703"/>
+        <location filename="../build-release/ui_mainwindow.h" line="699"/>
+        <location filename="../build-release/ui_mainwindow.h" line="703"/>
         <source>Circles</source>
         <translation>Cercles</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="453"/>
-        <location filename="../build-release/ui_mainwindow.h" line="449"/>
+        <location filename="mainwindow.ui" line="472"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="701"/>
+        <location filename="../build-release/ui_mainwindow.h" line="701"/>
         <source>Alignment shape</source>
         <translation>Forma control</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="496"/>
-        <location filename="../build-release/ui_mainwindow.h" line="462"/>
+        <location filename="mainwindow.ui" line="533"/>
+        <location filename="mainwindow.ui" line="541"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="706"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="753"/>
+        <location filename="../build-release/ui_mainwindow.h" line="706"/>
+        <location filename="../build-release/ui_mainwindow.h" line="753"/>
+        <source>Load Image</source>
+        <translation>Carrega Imatge</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="548"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="707"/>
+        <location filename="../build-release/ui_mainwindow.h" line="707"/>
+        <source>Remove image</source>
+        <translation>Treu imatge</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="593"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="708"/>
+        <location filename="../build-release/ui_mainwindow.h" line="708"/>
+        <source>Image size</source>
+        <translation>Mida imatge</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="645"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="709"/>
+        <location filename="../build-release/ui_mainwindow.h" line="709"/>
+        <source>Background shape</source>
+        <translation>Forma de fons</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="662"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="710"/>
+        <location filename="../build-release/ui_mainwindow.h" line="710"/>
+        <source>None</source>
+        <translation>Cap</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="667"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="711"/>
+        <location filename="../build-release/ui_mainwindow.h" line="711"/>
+        <source>Square</source>
+        <translation>Quadrat</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="672"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="712"/>
+        <location filename="../build-release/ui_mainwindow.h" line="712"/>
+        <source>Circle</source>
+        <translation>Cercle</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="703"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="714"/>
+        <location filename="../build-release/ui_mainwindow.h" line="714"/>
+        <source>Background color</source>
+        <translation>Color de fons</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="811"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="733"/>
+        <location filename="../build-release/ui_mainwindow.h" line="733"/>
+        <source>Background border</source>
+        <translation>Frontera del fons</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="923"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="752"/>
+        <location filename="../build-release/ui_mainwindow.h" line="752"/>
+        <source>Background size</source>
+        <translation>Mida del fons</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="986"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="762"/>
+        <location filename="../build-release/ui_mainwindow.h" line="762"/>
         <source>QR Quality</source>
         <translation>Qualitat del QR</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="526"/>
-        <location filename="../build-release/ui_mainwindow.h" line="456"/>
+        <location filename="mainwindow.ui" line="1016"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="756"/>
+        <location filename="../build-release/ui_mainwindow.h" line="756"/>
         <source>Medium</source>
         <translation>Mitjà</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="531"/>
-        <location filename="../build-release/ui_mainwindow.h" line="457"/>
+        <location filename="mainwindow.ui" line="1021"/>
+        <location filename="../build-debug/ui_mainwindow.h" line="757"/>
+        <location filename="../build-release/ui_mainwindow.h" line="757"/>
         <source>Quartile</source>
         <translation>Quartil</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="110"/>
+        <source>Choose image</source>
+        <translation>Escull imatge</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="112"/>
+        <source>Images (*.png *.jpg *.jpeg *.svg *.bmp)</source>
+        <translation>Imatges (*.png *.jpg *.jpeg *.svg *.bmp)</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="mainwindow.cpp" line="52"/>
+        <location filename="mainwindow.cpp" line="58"/>
         <source>Low</source>
         <translation>Baix</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="53"/>
+        <location filename="mainwindow.cpp" line="59"/>
         <source>Medium</source>
         <translation>Mitjà</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="54"/>
+        <location filename="mainwindow.cpp" line="60"/>
         <source>Quartile</source>
         <translation>Quartil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="55"/>
+        <location filename="mainwindow.cpp" line="61"/>
         <source>High</source>
         <translation>Alt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="89"/>
+        <location filename="mainwindow.cpp" line="159"/>
         <source>How to use QR-Encoder</source>
         <translation>Com fer servir el codificador QR</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="90"/>
+        <location filename="mainwindow.cpp" line="160"/>
         <source>Using QR-Encode is easy! Just follow these steps:
 1. Write the tetx you want to encode (a sentence, a url, random text, ...) into the &apos;Text&apos; text box.
 2. Click on &apos;Generate QR&apos; to generate the QR code.
@@ -350,12 +600,12 @@ Opcions avançades:
 2. Mida del fitxer png. El codi QR es guardarà en un fitxer png; es pot seleccionar el nivell de compressió del fitxer tot canviat el valor al costat de &apos;Compressió PNG&apos;. És un percentatge (%) i té el seu valor màxim per defecte.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="117"/>
+        <location filename="mainwindow.cpp" line="187"/>
         <source>About QR-Encoder</source>
         <translation>Quant a Codificar QR</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="118"/>
+        <location filename="mainwindow.cpp" line="188"/>
         <source>Developed and maintained by Lluís Alemany Puig.
 
 Contact:
