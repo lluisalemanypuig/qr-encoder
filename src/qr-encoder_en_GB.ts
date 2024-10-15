@@ -623,7 +623,7 @@ Contact:
 
 	Github: https://github.com/lluisalemanypuig/qr-encoder
 
-Version yy.mm -- Distributed under GNU Affero GPL.
+Version 24.10 -- Distributed under GNU Affero GPL.
 
 Feel free to distribute and modify the program (while complying with the terms and conditions imposed by the licence).
 
@@ -645,7 +645,7 @@ Contact:
 
 	Github: https://github.com/lluisalemanypuig/qr-encoder
 
-Version yy.mm -- Distributed under GNU Affero GPL.
+Version 24.10 -- Distributed under GNU Affero GPL.
 
 Feel free to distribute and modify the program (while complying with the terms and conditions imposed by the licence).
 
