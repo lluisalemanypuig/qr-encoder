@@ -32,7 +32,7 @@
 #include <QSlider>
 #include <QLabel>
 
-std::string double_to_string(const double d) noexcept {
+[[nodiscard]] std::string double_to_string(const double d) noexcept {
 	std::ostringstream out;
 	out.precision(2);
 	out << std::fixed << d;

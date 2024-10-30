@@ -42,7 +42,7 @@ public:
 	void load_QR_image(const QString& path) noexcept;
 	void remove_QR_image() noexcept;
 
-	const QRect& get_drawing_area() const noexcept {
+	[[nodiscard]] const QRect& get_drawing_area() const noexcept {
 		return m_drawing_area;
 	}
 

@@ -32,11 +32,13 @@
 #include <QGraphicsRectItem>
 #include <QPixmap>
 
-Qt::GlobalColor random_color(const int x0, const int y0) noexcept {
+[[nodiscard]]
+inline Qt::GlobalColor random_color(const int x0, const int y0) noexcept {
 	return static_cast<Qt::GlobalColor>(x0*y0/(x0 + y0)%16 + 2);
 }
 
-static constexpr
+[[nodiscard]]
+static constexpr inline
 bool is_alignment_pattern_point
 (const std::size_t x, const std::size_t y, const std::size_t S)
 noexcept
