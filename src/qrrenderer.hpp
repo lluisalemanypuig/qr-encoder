@@ -53,14 +53,6 @@ public:
 	};
 
 public slots:
-	void resize_QR(const int value) noexcept;
-
-	void resize_QR_image(const int value) noexcept;
-	void set_QR_image_background_shape(const int shape) noexcept;
-	void resize_QR_image_background(const int value) noexcept;
-
-	void update() noexcept;
-
 	void set_point_fill_color(const int color) noexcept;
 	void set_point_border_color(const int color) noexcept;
 
@@ -69,6 +61,16 @@ public slots:
 
 	void set_image_background_fill_color(const int color) noexcept;
 	void set_image_background_border_color(const int color) noexcept;
+
+	void set_transparent_background(const bool alpha) noexcept;
+
+	void resize_QR(const int value) noexcept;
+
+	void resize_QR_image(const int value) noexcept;
+	void set_QR_image_background_shape(const int shape) noexcept;
+	void resize_QR_image_background(const int value) noexcept;
+
+	void update() noexcept;
 
 signals:
 

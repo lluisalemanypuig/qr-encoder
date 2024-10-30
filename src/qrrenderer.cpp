@@ -59,6 +59,9 @@ QRrenderer::QRrenderer(QWidget *parent) noexcept :
 {
 	setScene(&m_scene);
 	setAlignment(Qt::AlignCenter);
+
+	setStyleSheet("background:transparent");
+	setBackgroundBrush(QBrush(QColor(255,255,255, 255)));
 }
 
 void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
@@ -122,6 +125,11 @@ void QRrenderer::set_image_background_border_color(const int color) noexcept {
 
 void QRrenderer::resize_QR(const int value) noexcept {
 	m_redim = value/1000.0;
+	update();
+}
+
+void QRrenderer::set_transparent_background(const bool alpha) noexcept {
+	setBackgroundBrush(QBrush(QColor(255,255,255, 255*(1 - alpha))));
 	update();
 }
 

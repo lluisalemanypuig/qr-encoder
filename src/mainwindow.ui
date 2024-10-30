@@ -147,9 +147,9 @@
        <attribute name="title">
         <string>Coloring and Shape</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_15">
+       <layout class="QVBoxLayout" name="verticalLayout_8">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
+         <layout class="QHBoxLayout" name="horizontalLayout_29">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_7">
             <item>
@@ -276,6 +276,60 @@
            </layout>
           </item>
           <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Point shape</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="pointShapeComboBox">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>25</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>Squares</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Circles</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_30">
+          <item>
            <layout class="QHBoxLayout" name="horizontalLayout_8">
             <item>
              <widget class="QLabel" name="label_6">
@@ -401,73 +455,6 @@
            </layout>
           </item>
           <item>
-           <spacer name="verticalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
-            <item>
-             <widget class="QLabel" name="label_7">
-              <property name="minimumSize">
-               <size>
-                <width>125</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Point shape</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="pointShapeComboBox">
-              <property name="minimumSize">
-               <size>
-                <width>125</width>
-                <height>25</height>
-               </size>
-              </property>
-              <item>
-               <property name="text">
-                <string>Squares</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Circles</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
            <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
              <widget class="QLabel" name="label_8">
@@ -517,20 +504,44 @@
             </item>
            </layout>
           </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_15">
           <item>
-           <spacer name="verticalSpacer_5">
+           <widget class="QCheckBox" name="transparentBackgroundCheckBox">
+            <property name="text">
+             <string>Transparent background</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_9">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>20</width>
-              <height>40</height>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
            </spacer>
           </item>
          </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>22</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -1186,6 +1197,7 @@
     <slot>set_image_background_fill_color(int)</slot>
     <slot>set_image_background_border_color(int)</slot>
     <slot>set_ECC(int)</slot>
+    <slot>set_transparent_background(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -1318,8 +1330,8 @@
    <slot>set_point_shape(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>683</x>
-     <y>600</y>
+     <x>682</x>
+     <y>599</y>
     </hint>
     <hint type="destinationlabel">
      <x>452</x>
@@ -1334,8 +1346,8 @@
    <slot>set_alignment_pattern_shape(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>683</x>
-     <y>633</y>
+     <x>682</x>
+     <y>634</y>
     </hint>
     <hint type="destinationlabel">
      <x>514</x>
@@ -1532,6 +1544,22 @@
     <hint type="destinationlabel">
      <x>193</x>
      <y>488</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>transparentBackgroundCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>QRRenderArea</receiver>
+   <slot>set_transparent_background(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>661</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>94</x>
+     <y>375</y>
     </hint>
    </hints>
   </connection>
