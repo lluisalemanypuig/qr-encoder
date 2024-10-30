@@ -49,7 +49,8 @@ public:
 	enum class shapes {
 		none,
 		squares,
-		circles
+		circles,
+		corrugate
 	};
 
 public slots:
@@ -94,6 +95,24 @@ private:
 		const QColor& pen_color
 	)
 	noexcept;
+
+	void draw_complementary_quarter_circle(
+		const double x, const double y,
+		const double radius,
+		const double start,
+		const QColor& fill_color,
+		const QColor& pen_color
+	) noexcept;
+
+	void draw_quarter_circle(
+		const double x, const double y,
+		const double radius,
+		const double start,
+		const QColor& fill_color,
+		const QColor& pen_color
+	) noexcept;
+
+	void draw_corrugate(const bool draw_alignment_patterns) noexcept;
 
 	void draw_alignment_patterns_round(
 		const std::vector<std::pair<int,int>>& points,
@@ -144,6 +163,9 @@ private:
 	// rectangle that describes the drawing area of the widget
 	// (which is a bit larger than the total area of the widget)
 	QRect m_drawing_area;
+
+	// background
+	int m_background_alpha;
 
 	// Outer square
 	double m_outer_square_size;

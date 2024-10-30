@@ -39,7 +39,7 @@ inline Qt::GlobalColor random_color(const int x0, const int y0) noexcept {
 
 [[nodiscard]]
 static constexpr inline
-bool is_alignment_pattern_point
+bool is_point_within_alignment_pattern
 (const std::size_t x, const std::size_t y, const std::size_t S)
 noexcept
 {
@@ -60,8 +60,10 @@ QRrenderer::QRrenderer(QWidget *parent) noexcept :
 	setScene(&m_scene);
 	setAlignment(Qt::AlignCenter);
 
+	m_background_alpha = 255;
+
 	setStyleSheet("background:transparent");
-	setBackgroundBrush(QBrush(QColor(255,255,255, 255)));
+	setBackgroundBrush(QBrush(QColor(255,255,255, m_background_alpha)));
 }
 
 void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
@@ -129,7 +131,8 @@ void QRrenderer::resize_QR(const int value) noexcept {
 }
 
 void QRrenderer::set_transparent_background(const bool alpha) noexcept {
-	setBackgroundBrush(QBrush(QColor(255,255,255, 255*(1 - alpha))));
+	m_background_alpha = 255*(1 - alpha);
+	setBackgroundBrush(QColor{255,255,255, m_background_alpha});
 	update();
 }
 
@@ -246,6 +249,176 @@ noexcept
 	m_scene.addItem(rect);
 }
 
+void QRrenderer::draw_complementary_quarter_circle(
+	const double x, const double y,
+	const double radius,
+	const double start,
+	const QColor& fill_color,
+	const QColor& pen_color
+)
+noexcept
+{
+	double xx = x;
+	double yy = y;
+	if (start == 0) {
+		xx += radius;
+	}
+	else if (start == 90) {
+
+	}
+	else if (start == 180) {
+		yy += radius;
+	}
+	else if (start == 270) {
+		xx += radius;
+		yy += radius;
+	}
+
+	QPainterPath complementary;
+	complementary.addRect(xx, yy, radius, radius);
+
+	QPainterPath quarter_circle(QPointF{x + radius, y + radius});
+	quarter_circle.arcTo(x, y, 2*radius, 2*radius, start, 90);
+
+	complementary = complementary.subtracted(quarter_circle);
+
+	QGraphicsPathItem *item = new QGraphicsPathItem(complementary);
+
+	item->setBrush(fill_color);
+	item->setPen(pen_color);
+
+	m_scene.addItem(item);
+}
+
+void QRrenderer::draw_quarter_circle(
+	const double x, const double y,
+	const double radius,
+	const double start,
+	const QColor& fill_color,
+	const QColor& pen_color
+)
+noexcept
+{
+	QPainterPath quarter_circle(QPointF{x + radius, y + radius});
+	quarter_circle.arcTo(x, y, 2*radius, 2*radius, start, 90);
+
+	QGraphicsPathItem *item = new QGraphicsPathItem(quarter_circle);
+
+	item->setBrush(fill_color);
+	item->setPen(pen_color);
+
+	m_scene.addItem(item);
+}
+
+void QRrenderer::draw_corrugate(const bool draw_alignment_patterns) noexcept {
+	const std::size_t QR_size = m_QR_matrix.getSize();
+	const double QR_cell_size = m_inner_square_size/QR_size;
+	const double s = QR_cell_size/2;
+
+	const auto is_cell_set =
+		[&](std::size_t i, std::size_t j) noexcept -> bool {
+		if (i >= QR_size or j >= QR_size) { return false; }
+		return m_QR_matrix.getModule(i, j);
+	};
+
+	for (std::size_t x = 0; x < QR_size; ++x) {
+		for (std::size_t y = 0; y < QR_size; ++y) {
+
+			if (not draw_alignment_patterns and
+				is_point_within_alignment_pattern(x, y, QR_size))
+			{ continue; }
+
+			if (draw_alignment_patterns and not
+				is_point_within_alignment_pattern(x, y, QR_size))
+			{ continue; }
+
+			const double base_x = m_inner_square_x0 + x*QR_cell_size;
+			const double base_y = m_inner_square_y0 + y*QR_cell_size;
+
+			if (m_QR_matrix.getModule(x, y)) {
+
+				if (not is_cell_set(x - 1, y) and not is_cell_set(x - 1, y - 1) and not is_cell_set(x, y - 1)) {
+					draw_quarter_circle(
+						base_x, base_y, s, 90,
+						m_point_fill, m_point_border
+					);
+				}
+				else {
+					draw_rectangle(
+						base_x, base_y, s, s,
+						m_point_fill, m_point_border
+					);
+				}
+
+				if (not is_cell_set(x, y - 1) and not is_cell_set(x + 1, y - 1) and not is_cell_set(x + 1, y)) {
+					draw_quarter_circle(
+						base_x, base_y, s, 0,
+						m_point_fill, m_point_border
+					);
+				}
+				else {
+					draw_rectangle(
+						base_x + s, base_y, s, s,
+						m_point_fill, m_point_border
+					);
+				}
+
+				if (not is_cell_set(x + 1, y) and not is_cell_set(x + 1, y + 1) and not is_cell_set(x, y + 1)) {
+					draw_quarter_circle(
+						base_x, base_y, s, 270,
+						m_point_fill, m_point_border
+					);
+				}
+				else {
+					draw_rectangle(
+						base_x + s, base_y + s, s, s,
+						m_point_fill, m_point_border
+					);
+				}
+
+				if (not is_cell_set(x, y + 1) and not is_cell_set(x - 1, y + 1) and not is_cell_set(x - 1, y)) {
+					draw_quarter_circle(
+						base_x, base_y, s, 180,
+						m_point_fill, m_point_border
+					);
+				}
+				else {
+					draw_rectangle(
+						base_x, base_y + s, s, s,
+						m_point_fill, m_point_border
+					);
+				}
+			}
+			else {
+				if (is_cell_set(x - 1, y) and is_cell_set(x, y - 1)) {
+					draw_complementary_quarter_circle(
+						base_x, base_y, s, 90,
+						m_point_fill, m_point_border
+					);
+				}
+				if (is_cell_set(x, y - 1) and is_cell_set(x + 1, y)) {
+					draw_complementary_quarter_circle(
+						base_x, base_y, s, 0,
+						m_point_fill, m_point_border
+					);
+				}
+				if (is_cell_set(x + 1, y) and is_cell_set(x, y + 1)) {
+					draw_complementary_quarter_circle(
+						base_x, base_y, s, 270,
+						m_point_fill, m_point_border
+					);
+				}
+				if (is_cell_set(x, y + 1) and is_cell_set(x - 1, y)) {
+					draw_complementary_quarter_circle(
+						base_x, base_y, s, 180,
+						m_point_fill, m_point_border
+					);
+				}
+			}
+		}
+	}
+}
+
 void QRrenderer::draw_alignment_patterns_round(
 	const std::vector<std::pair<int,int>>& points,
 	const int outer_x, const int outer_y, const int outer_radius,
@@ -338,6 +511,9 @@ void QRrenderer::draw_alignment_patterns() noexcept {
 	else if (m_alignment_patterns == shapes::squares) {
 		draw_alignment_patterns_square();
 	}
+	else if (m_alignment_patterns == shapes::corrugate) {
+		draw_corrugate(true);
+	}
 }
 
 void QRrenderer::draw_points_circle() noexcept {
@@ -347,7 +523,7 @@ void QRrenderer::draw_points_circle() noexcept {
 	for (std::size_t x = 0; x < QR_size; ++x) {
 		for (std::size_t y = 0; y < QR_size; ++y) {
 
-			if (is_alignment_pattern_point(x, y, QR_size)) { continue; }
+			if (is_point_within_alignment_pattern(x, y, QR_size)) { continue; }
 
 			if (m_QR_matrix.getModule(x, y)) {
 				draw_circle(
@@ -368,7 +544,7 @@ void QRrenderer::draw_points_square() noexcept {
 	for (std::size_t x = 0; x < QR_size; ++x) {
 		for (std::size_t y = 0; y < QR_size; ++y) {
 
-			if (is_alignment_pattern_point(x, y, QR_size)) { continue; }
+			if (is_point_within_alignment_pattern(x, y, QR_size)) { continue; }
 
 			if (m_QR_matrix.getModule(x, y)) {
 				draw_rectangle(
@@ -388,6 +564,9 @@ void QRrenderer::draw_points() noexcept {
 	}
 	else if (m_points == shapes::squares) {
 		draw_points_square();
+	}
+	else if (m_points == shapes::corrugate) {
+		draw_corrugate(false);
 	}
 }
 
