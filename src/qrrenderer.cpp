@@ -511,7 +511,7 @@ void QRrenderer::draw_alignment_patterns() noexcept {
 	else if (m_alignment_patterns == shapes::squares) {
 		draw_alignment_patterns_square();
 	}
-	else if (m_alignment_patterns == shapes::corrugate) {
+	else if (m_alignment_patterns == shapes::round_edges) {
 		draw_corrugate(true);
 	}
 }
@@ -565,7 +565,7 @@ void QRrenderer::draw_points() noexcept {
 	else if (m_points == shapes::squares) {
 		draw_points_square();
 	}
-	else if (m_points == shapes::corrugate) {
+	else if (m_points == shapes::round_edges) {
 		draw_corrugate(false);
 	}
 }

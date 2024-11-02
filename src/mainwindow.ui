@@ -310,7 +310,7 @@
               </item>
               <item>
                <property name="text">
-                <string>Corrugate</string>
+                <string>Round edges</string>
                </property>
               </item>
              </widget>
@@ -494,7 +494,7 @@
               </item>
               <item>
                <property name="text">
-                <string>Corrugate</string>
+                <string>Round edges</string>
                </property>
               </item>
              </widget>

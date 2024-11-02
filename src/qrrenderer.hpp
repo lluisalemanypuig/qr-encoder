@@ -50,7 +50,7 @@ public:
 		none,
 		squares,
 		circles,
-		corrugate
+		round_edges
 	};
 
 public slots:
