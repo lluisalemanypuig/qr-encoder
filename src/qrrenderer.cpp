@@ -22,7 +22,7 @@
 
 #include "qrrenderer.hpp"
 
-#define __PAINT_CONTROL_SHAPES
+#undef __PAINT_CONTROL_SHAPES
 
 // C++ includes
 #include <iostream>
@@ -547,9 +547,7 @@ void QRrenderer::add_QR_image_background() noexcept {
 	if (m_QR_image_background_shape == shapes::squares) {
 
 		add_rectangle(
-			cx - w/2,
-			cy - h/2,
-			w, h,
+			cx - w/2, cy - h/2, w, h,
 			m_image_background_fill, m_image_background_border
 		);
 	}
@@ -638,8 +636,7 @@ void QRrenderer::update() noexcept {
 		setSceneRect(m_drawing_area);
 		centerOn(m_drawing_area.center());
 
-		set_transformations();
-
+		m_transformations_to_be_updated = true;
 		m_scene_to_be_updated = false;
 	}
 
