@@ -52,6 +52,8 @@ private:
 	void enable_QR_image_background_color(const bool v) noexcept;
 	void enable_QR_image_background_size(const bool v) noexcept;
 
+	void resizeEvent(QResizeEvent *event) override;
+
 private:
 	bool m_has_QR = false;
 

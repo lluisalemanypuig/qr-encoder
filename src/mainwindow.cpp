@@ -244,3 +244,7 @@ void MainWindow::enable_QR_image_background_size(const bool v) noexcept {
 	ui->imageBackgroundSizeSlider->setEnabled(v and (cur_index > 0));
 	ui->imageBackgroundSizeLabel->setEnabled(v and (cur_index > 0));
 }
+
+void MainWindow::resizeEvent(QResizeEvent *) {
+	ui->QRRenderArea->window_was_resized();
+}

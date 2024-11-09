@@ -72,6 +72,7 @@ public slots:
 	void resize_QR_image_background(const int value) noexcept;
 
 	void set_transformations() noexcept;
+	void window_was_resized() noexcept;
 
 	void update() noexcept;
 

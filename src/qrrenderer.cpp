@@ -600,6 +600,11 @@ void QRrenderer::set_transformations() noexcept {
 	}
 }
 
+void QRrenderer::window_was_resized() noexcept {
+	m_scene_to_be_updated = true;
+	update();
+}
+
 void QRrenderer::update() noexcept {
 	if (m_QR_matrix.getSize() == 0) { return; }
 
