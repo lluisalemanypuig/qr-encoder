@@ -152,6 +152,7 @@ private:
 
 	// QR matrix
 	qrcodegen::QrCode m_QR_matrix;
+	bool m_QR_set;
 	bool m_scene_to_be_updated;
 	bool m_transformations_to_be_updated;
 

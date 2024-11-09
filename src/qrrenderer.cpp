@@ -65,12 +65,14 @@ QRrenderer::QRrenderer(QWidget *parent) noexcept :
 	setStyleSheet("background:transparent");
 	setBackgroundBrush(QBrush(QColor(255,255,255, m_background_alpha)));
 
+	m_QR_set = false;
 	m_scene_to_be_updated = false;
 	m_transformations_to_be_updated = false;
 }
 
 void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
 	m_QR_matrix = std::move(QR_matrix);
+	m_QR_set = true;
 	m_scene_to_be_updated = true;
 	update();
 }
@@ -606,7 +608,9 @@ void QRrenderer::window_was_resized() noexcept {
 }
 
 void QRrenderer::update() noexcept {
-	if (m_QR_matrix.getSize() == 0) { return; }
+	if (not m_QR_set) {
+		return;
+	}
 
 	// calculate the coordinates of the outer and inner drawing squares
 	update_outer_square();
