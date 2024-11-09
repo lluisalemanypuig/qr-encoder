@@ -645,6 +645,6 @@ void QRrenderer::update() noexcept {
 
 	if (m_transformations_to_be_updated) {
 		set_transformations();
-		m_transformations_to_be_updated = true;
+		m_transformations_to_be_updated = false;
 	}
 }
