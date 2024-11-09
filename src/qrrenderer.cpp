@@ -66,6 +66,7 @@ QRrenderer::QRrenderer(QWidget *parent) noexcept :
 	setBackgroundBrush(QBrush(QColor(255,255,255, m_background_alpha)));
 
 	m_scene_to_be_updated = false;
+	m_transformations_to_be_updated = false;
 }
 
 void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
@@ -136,6 +137,7 @@ void QRrenderer::set_image_background_border_color(const int color) noexcept {
 
 void QRrenderer::resize_QR(const int value) noexcept {
 	m_redim = value/1000.0;
+	m_transformations_to_be_updated = true;
 	update();
 }
 
@@ -636,8 +638,13 @@ void QRrenderer::update() noexcept {
 		setSceneRect(m_drawing_area);
 		centerOn(m_drawing_area.center());
 
+		set_transformations();
+
 		m_scene_to_be_updated = false;
 	}
 
-	set_transformations();
+	if (m_transformations_to_be_updated) {
+		set_transformations();
+		m_transformations_to_be_updated = true;
+	}
 }

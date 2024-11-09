@@ -153,6 +153,7 @@ private:
 	// QR matrix
 	qrcodegen::QrCode m_QR_matrix;
 	bool m_scene_to_be_updated;
+	bool m_transformations_to_be_updated;
 
 	// redimension factor from the slide and its spin box
 	double m_redim = 0.9;
