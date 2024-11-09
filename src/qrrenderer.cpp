@@ -80,6 +80,7 @@ void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
 void QRrenderer::load_QR_image(const QString& path) noexcept {
 	if (m_QR_image != nullptr) {
 		delete m_QR_image;
+		m_QR_image = nullptr;
 	}
 	m_QR_image = new QPixmap(path);
 	if (m_QR_image == nullptr) {
@@ -90,6 +91,7 @@ void QRrenderer::load_QR_image(const QString& path) noexcept {
 			<< std::endl;
 	}
 
+	m_scene_to_be_updated = true;
 	update();
 }
 
@@ -125,6 +127,19 @@ void QRrenderer::set_alignment_pattern_shape(const int shape) noexcept {
 	update();
 }
 
+void QRrenderer::set_transparent_background(const bool alpha) noexcept {
+	m_background_alpha = 255*(1 - alpha);
+	setBackgroundBrush(QColor{255,255,255, m_background_alpha});
+	m_scene_to_be_updated = true;
+	update();
+}
+
+void QRrenderer::resize_QR(const int value) noexcept {
+	m_redim = value/1000.0;
+	m_transformations_to_be_updated = true;
+	update();
+}
+
 void QRrenderer::set_image_background_fill_color(const int color) noexcept {
 	m_image_background_fill = static_cast<Qt::GlobalColor>(color + 2);
 	m_scene_to_be_updated = true;
@@ -137,22 +152,10 @@ void QRrenderer::set_image_background_border_color(const int color) noexcept {
 	update();
 }
 
-void QRrenderer::resize_QR(const int value) noexcept {
-	m_redim = value/1000.0;
-	m_transformations_to_be_updated = true;
-	update();
-}
-
-void QRrenderer::set_transparent_background(const bool alpha) noexcept {
-	m_background_alpha = 255*(1 - alpha);
-	setBackgroundBrush(QColor{255,255,255, m_background_alpha});
-	m_scene_to_be_updated = true;
-	update();
-}
-
 void QRrenderer::resize_QR_image(const int value) noexcept {
 	m_QR_image_scale = value/1000.0;
 	if (m_QR_image != nullptr) {
+		m_transformations_to_be_updated = true;
 		update();
 	}
 }
@@ -160,6 +163,7 @@ void QRrenderer::resize_QR_image(const int value) noexcept {
 void QRrenderer::set_QR_image_background_shape(const int shape) noexcept {
 	m_QR_image_background_shape = static_cast<shapes>(shape);
 	if (m_QR_image != nullptr) {
+		m_scene_to_be_updated = true;
 		update();
 	}
 }
@@ -167,6 +171,7 @@ void QRrenderer::set_QR_image_background_shape(const int shape) noexcept {
 void QRrenderer::resize_QR_image_background(const int value) noexcept {
 	m_QR_image_background_scale = value/1000.0;
 	if (m_QR_image != nullptr) {
+		m_transformations_to_be_updated = true;
 		update();
 	}
 }

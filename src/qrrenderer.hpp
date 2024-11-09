@@ -60,39 +60,34 @@ public slots:
 	void set_point_shape(const int color) noexcept;
 	void set_alignment_pattern_shape(const int shape) noexcept;
 
-	void set_image_background_fill_color(const int color) noexcept;
-	void set_image_background_border_color(const int color) noexcept;
-
 	void set_transparent_background(const bool alpha) noexcept;
 
 	void resize_QR(const int value) noexcept;
 
+	void set_image_background_fill_color(const int color) noexcept;
+	void set_image_background_border_color(const int color) noexcept;
+
 	void resize_QR_image(const int value) noexcept;
 	void set_QR_image_background_shape(const int shape) noexcept;
 	void resize_QR_image_background(const int value) noexcept;
-
-	void set_transformations() noexcept;
-	void window_was_resized() noexcept;
-
-	void update() noexcept;
 
 signals:
 
 private:
 	void update_outer_square() noexcept;
 
-	void add_rectangle
+	void add_circle
 	(
-		const double x, const double y,
-		const double width, const double height,
+		const double x, const double y, const double radius,
 		const QColor& fill_color,
 		const QColor& pen_color
 	)
 	noexcept;
 
-	void add_circle
+	void add_rectangle
 	(
-		const double x, const double y, const double radius,
+		const double x, const double y,
+		const double width, const double height,
 		const QColor& fill_color,
 		const QColor& pen_color
 	)
@@ -140,6 +135,12 @@ private:
 
 	void add_QR_image_background() noexcept;
 	void add_QR_image() noexcept;
+
+public slots:
+	void set_transformations() noexcept;
+	void window_was_resized() noexcept;
+
+	void update() noexcept;
 
 private:
 	// 'Points' of the QR code
