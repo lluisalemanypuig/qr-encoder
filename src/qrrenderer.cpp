@@ -40,7 +40,7 @@ inline Qt::GlobalColor random_color(const int x0, const int y0) noexcept {
 [[nodiscard]]
 static constexpr inline
 bool is_point_within_alignment_pattern
-(const std::size_t x, const std::size_t y, const std::size_t S)
+(const int x, const int y, const int S)
 noexcept
 {
 	return
@@ -303,18 +303,18 @@ noexcept
 }
 
 void QRrenderer::add_points_corrugate(const bool draw_alignment_patterns) noexcept {
-	const std::size_t QR_size = m_QR_matrix.getSize();
-	const double QR_cell_size = m_outer_square_size/QR_size;
+	const int QR_size = m_QR_matrix.getSize();
+	const double QR_cell_size = m_outer_square_size/static_cast<double>(QR_size);
 	const double s = QR_cell_size/2;
 
 	const auto is_cell_set =
-	[&](std::size_t i, std::size_t j) noexcept -> bool {
+	[&](int i, int j) noexcept -> bool {
 		if (i >= QR_size or j >= QR_size) { return false; }
 		return m_QR_matrix.getModule(i, j);
 	};
 
-	for (std::size_t x = 0; x < QR_size; ++x) {
-		for (std::size_t y = 0; y < QR_size; ++y) {
+	for (int x = 0; x < QR_size; ++x) {
+		for (int y = 0; y < QR_size; ++y) {
 
 			if (not draw_alignment_patterns and
 				is_point_within_alignment_pattern(x, y, QR_size))
@@ -419,7 +419,7 @@ void QRrenderer::add_alignment_patterns_round(
 )
 noexcept
 {
-	const std::size_t QR_size = m_QR_matrix.getSize();
+	const int QR_size = m_QR_matrix.getSize();
 	const double QR_cell_size = m_outer_square_size/QR_size;
 
 	for (const auto& [x, y] : points) {
@@ -450,11 +450,11 @@ noexcept
 }
 
 void QRrenderer::add_alignment_patterns_square() noexcept {
-	const std::size_t QR_size = m_QR_matrix.getSize();
+	const int QR_size = m_QR_matrix.getSize();
 	const double QR_cell_size = m_outer_square_size/QR_size;
 
-	for (std::size_t x = 0; x <= 7; ++x) {
-		for (std::size_t y = 0; y <= 7; ++y) {
+	for (int x = 0; x <= 7; ++x) {
+		for (int y = 0; y <= 7; ++y) {
 			if (m_QR_matrix.getModule(x, y)) {
 				add_rectangle(
 					m_outer_square_x0 + x*QR_cell_size,
@@ -465,7 +465,7 @@ void QRrenderer::add_alignment_patterns_square() noexcept {
 			}
 		}
 
-		for (std::size_t y = QR_size - 7; y < QR_size; ++y) {
+		for (int y = QR_size - 7; y < QR_size; ++y) {
 			if (m_QR_matrix.getModule(x, y)) {
 				add_rectangle(
 					m_outer_square_x0 + x*QR_cell_size,
@@ -477,8 +477,8 @@ void QRrenderer::add_alignment_patterns_square() noexcept {
 		}
 	}
 
-	for (std::size_t x = QR_size - 7; x < QR_size; ++x) {
-		for (std::size_t y = 0; y <= 7; ++y) {
+	for (int x = QR_size - 7; x < QR_size; ++x) {
+		for (int y = 0; y <= 7; ++y) {
 			if (m_QR_matrix.getModule(x, y)) {
 				add_rectangle(
 					m_outer_square_x0 + x*QR_cell_size,
@@ -509,11 +509,11 @@ void QRrenderer::add_alignment_patterns() noexcept {
 }
 
 void QRrenderer::add_points_circle() noexcept {
-	const std::size_t QR_size = m_QR_matrix.getSize();
+	const int QR_size = m_QR_matrix.getSize();
 	const double QR_cell_size = m_outer_square_size/QR_size;
 
-	for (std::size_t x = 0; x < QR_size; ++x) {
-		for (std::size_t y = 0; y < QR_size; ++y) {
+	for (int x = 0; x < QR_size; ++x) {
+		for (int y = 0; y < QR_size; ++y) {
 
 			if (is_point_within_alignment_pattern(x, y, QR_size)) { continue; }
 
@@ -530,11 +530,11 @@ void QRrenderer::add_points_circle() noexcept {
 }
 
 void QRrenderer::add_points_square() noexcept {
-	const std::size_t QR_size = m_QR_matrix.getSize();
+	const int QR_size = m_QR_matrix.getSize();
 	const double QR_cell_size = m_outer_square_size/QR_size;
 
-	for (std::size_t x = 0; x < QR_size; ++x) {
-		for (std::size_t y = 0; y < QR_size; ++y) {
+	for (int x = 0; x < QR_size; ++x) {
+		for (int y = 0; y < QR_size; ++y) {
 
 			if (is_point_within_alignment_pattern(x, y, QR_size)) { continue; }
 
@@ -663,7 +663,7 @@ void QRrenderer::set_QR_transformations() noexcept {
 	QList<QGraphicsItem*> item_list = m_scene.items();
 	for (qsizetype i = 0; i < item_list.size(); ++i) {
 
-		QGraphicsItem *item = item_list[i];
+		QGraphicsItem *item = item_list[static_cast<qsizetype>(i)];
 		const QVariant d = item->data(1);
 		if (d.isValid()) {
 

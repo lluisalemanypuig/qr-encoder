@@ -155,11 +155,18 @@ void MainWindow::saveQR() const noexcept {
 	QString save = file_dialog.getSaveFileName(nullptr, "Save QR Code");
 	const int compression = 100 - ui->QualitySpinBox->value();
 
-	const QRect& drawing_area = ui->QRRenderArea->get_drawing_area();
 	if (not save.contains(".png")) {
 		save += ".png";
 	}
-	ui->QRRenderArea->grab(drawing_area).save(save, "PNG", compression);
+
+	const QRectF& drawing_area = ui->QRRenderArea->get_drawing_area();
+	QRect render_area{
+		static_cast<int>(drawing_area.x()),
+		static_cast<int>(drawing_area.y()),
+		static_cast<int>(drawing_area.width()),
+		static_cast<int>(drawing_area.height())
+	};
+	ui->QRRenderArea->grab(render_area).save(save, "PNG", compression);
 }
 
 void MainWindow::show_Usage_menu() const noexcept {

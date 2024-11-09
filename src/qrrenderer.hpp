@@ -43,7 +43,7 @@ public:
 	void remove_QR_image() noexcept;
 	void remove_QR_image_background() noexcept;
 
-	[[nodiscard]] const QRect& get_drawing_area() const noexcept {
+	[[nodiscard]] const QRectF& get_drawing_area() const noexcept {
 		return m_drawing_area;
 	}
 
@@ -179,7 +179,7 @@ private:
 
 	// rectangle that describes the drawing area of the widget
 	// (which is a bit larger than the total area of the widget)
-	QRect m_drawing_area;
+	QRectF m_drawing_area;
 
 	// background
 	int m_background_alpha = 255;
