@@ -258,28 +258,14 @@ void QRrenderer::draw_complementary_quarter_circle(
 )
 noexcept
 {
-	double xx = x;
-	double yy = y;
-	if (start == 0) {
-		xx += radius;
-	}
-	else if (start == 90) {
+	double quarter_circle_x = x + radius;
+	double quarter_circle_y = y + radius;
 
-	}
-	else if (start == 180) {
-		yy += radius;
-	}
-	else if (start == 270) {
-		xx += radius;
-		yy += radius;
-	}
-
-	QPainterPath complementary;
-	complementary.addRect(xx, yy, radius, radius);
-
-	QPainterPath quarter_circle(QPointF{x + radius, y + radius});
+	QPainterPath quarter_circle(QPointF{quarter_circle_x, quarter_circle_y});
 	quarter_circle.arcTo(x, y, 2*radius, 2*radius, start, 90);
 
+	QPainterPath complementary;
+	complementary.addRect(quarter_circle.boundingRect());
 	complementary = complementary.subtracted(quarter_circle);
 
 	QGraphicsPathItem *item = new QGraphicsPathItem(complementary);
