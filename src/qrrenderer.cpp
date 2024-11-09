@@ -72,12 +72,12 @@ void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
 }
 
 void QRrenderer::load_QR_image(const QString& path) noexcept {
-	if (m_QR_image != nullptr) {
-		delete m_QR_image;
-		m_QR_image = nullptr;
+	if (m_QR_pixmap != nullptr) {
+		delete m_QR_pixmap;
+		m_QR_pixmap = nullptr;
 	}
-	m_QR_image = new QPixmap(path);
-	if (m_QR_image == nullptr) {
+	m_QR_pixmap = new QPixmap(path);
+	if (m_QR_pixmap == nullptr) {
 		std::cerr
 			<< "Error! Image "
 			<< "'" << path.toUtf8().toStdString() << "'"
@@ -85,13 +85,28 @@ void QRrenderer::load_QR_image(const QString& path) noexcept {
 			<< std::endl;
 	}
 
-	m_scene_to_be_updated = true;
+	m_QR_image_to_be_updated = true;
+	m_QR_image_background_to_be_updated = true;
 	update();
 }
 
+void QRrenderer::remove_QR_image_background() noexcept {
+	if (m_QR_image_background != nullptr) {
+		m_scene.removeItem(m_QR_image_background);
+		delete m_QR_image_background;
+		m_QR_image_background = nullptr;
+	}
+}
+
 void QRrenderer::remove_QR_image() noexcept {
-	delete m_QR_image;
-	m_QR_image = nullptr;
+	if (m_QR_image != nullptr) {
+		m_scene.removeItem(m_QR_image);
+		delete m_QR_image;
+		delete m_QR_pixmap;
+		m_QR_image = nullptr;
+		m_QR_pixmap = nullptr;
+	}
+	remove_QR_image_background();
 	update();
 }
 
@@ -124,48 +139,54 @@ void QRrenderer::set_alignment_pattern_shape(const int shape) noexcept {
 void QRrenderer::set_transparent_background(const bool alpha) noexcept {
 	m_background_alpha = 255*(1 - alpha);
 	setBackgroundBrush(QColor{255,255,255, m_background_alpha});
-	m_scene_to_be_updated = true;
 	update();
 }
 
 void QRrenderer::resize_QR(const int value) noexcept {
 	m_redim = value/1000.0;
-	m_transformations_to_be_updated = true;
+	set_QR_transformations();
 	update();
 }
 
-void QRrenderer::set_image_background_fill_color(const int color) noexcept {
-	m_image_background_fill = static_cast<Qt::GlobalColor>(color + 2);
-	m_scene_to_be_updated = true;
+void QRrenderer::set_QR_image_background_fill_color(const int color) noexcept {
+	m_QR_image_background_fill = static_cast<Qt::GlobalColor>(color + 2);
+	m_QR_image_background_to_be_updated = true;
 	update();
 }
 
-void QRrenderer::set_image_background_border_color(const int color) noexcept {
-	m_image_background_border = static_cast<Qt::GlobalColor>(color + 2);
-	m_scene_to_be_updated = true;
+void QRrenderer::set_QR_image_background_border_color(const int color) noexcept {
+	m_QR_image_background_border = static_cast<Qt::GlobalColor>(color + 2);
+	m_QR_image_background_to_be_updated = true;
 	update();
 }
 
 void QRrenderer::resize_QR_image(const int value) noexcept {
 	m_QR_image_scale = value/1000.0;
 	if (m_QR_image != nullptr) {
-		m_transformations_to_be_updated = true;
+		set_QR_image_transformations();
 		update();
 	}
 }
 
 void QRrenderer::set_QR_image_background_shape(const int shape) noexcept {
 	m_QR_image_background_shape = static_cast<shapes>(shape);
-	if (m_QR_image != nullptr) {
-		m_scene_to_be_updated = true;
+	if (m_QR_image_background_shape == shapes::none) {
+		remove_QR_image_background();
+	}
+	else {
+		add_QR_image_background();
+	}
+
+	set_QR_image_background_transformations();
+	if (m_QR_image_background != nullptr) {
 		update();
 	}
 }
 
 void QRrenderer::resize_QR_image_background(const int value) noexcept {
 	m_QR_image_background_scale = value/1000.0;
-	if (m_QR_image != nullptr) {
-		m_transformations_to_be_updated = true;
+	set_QR_image_background_transformations();
+	if (m_QR_image_background != nullptr) {
 		update();
 	}
 }
@@ -201,7 +222,7 @@ void QRrenderer::update_outer_square() noexcept {
 	m_drawing_area.setHeight(m_outer_square_size);
 }
 
-void QRrenderer::add_circle
+QGraphicsEllipseItem *QRrenderer::add_circle
 (
 	const double x, const double y, const double radius,
 	const QColor& fill_color,
@@ -210,13 +231,16 @@ void QRrenderer::add_circle
 noexcept
 {
 	// paint the current cell
-	QGraphicsEllipseItem *circle = new QGraphicsEllipseItem(x, y, radius, radius);
+	QGraphicsEllipseItem *circle =
+		new QGraphicsEllipseItem(x, y, radius, radius);
+
 	circle->setBrush(fill_color);
 	circle->setPen(pen_color);
 	m_scene.addItem(circle);
+	return circle;
 }
 
-void QRrenderer::add_rectangle
+QGraphicsRectItem *QRrenderer::add_rectangle
 (
 	const double x, const double y,
 	const double width, const double height,
@@ -226,10 +250,13 @@ void QRrenderer::add_rectangle
 noexcept
 {
 	// paint the current cell
-	QGraphicsRectItem *rect = new QGraphicsRectItem(x, y, width, height);
+	QGraphicsRectItem *rect =
+		new QGraphicsRectItem(x, y, width, height);
+
 	rect->setBrush(fill_color);
 	rect->setPen(pen_color);
 	m_scene.addItem(rect);
+	return rect;
 }
 
 void QRrenderer::add_complementary_quarter_circle(
@@ -536,67 +563,125 @@ void QRrenderer::add_points() noexcept {
 }
 
 void QRrenderer::add_QR_image_background() noexcept {
-	const int width = m_QR_image->width();
-	const int height = m_QR_image->height();
+	if (m_QR_pixmap == nullptr) {
+		return;
+	}
+
+	if (m_QR_image_background != nullptr) {
+		m_scene.removeItem(m_QR_image_background);
+		delete m_QR_image_background;
+		m_QR_image_background = nullptr;
+	}
+
+	const int width = m_QR_pixmap->width();
+	const int height = m_QR_pixmap->height();
 
 	const double cx = m_outer_square_x0 + m_outer_square_size/2;
 	const double cy = m_outer_square_y0 + m_outer_square_size/2;
 
-	const double w = m_redim*m_QR_image_background_scale*width;
-	const double h = m_redim*m_QR_image_background_scale*height;
+	const double w = width;
+	const double h = height;
 
+	bool some_shape = false;
 	if (m_QR_image_background_shape == shapes::squares) {
-
-		add_rectangle(
-			cx - w/2, cy - h/2, w, h,
-			m_image_background_fill, m_image_background_border
-		);
+		m_QR_image_background =
+			add_rectangle(
+				cx - w/2, cy - h/2, w, h,
+				m_QR_image_background_fill, m_QR_image_background_border
+			);
+		some_shape = true;
 	}
 	else if (m_QR_image_background_shape == shapes::circles) {
 		const double r = std::sqrt(w*w + h*h)/2.0;
+		m_QR_image_background =
+			add_circle(
+				cx - r, cy - r, 2*r,
+				m_QR_image_background_fill, m_QR_image_background_border
+			);
+		some_shape = true;
+	}
 
-		add_circle(
-			cx - r,
-			cy - r,
-			2*r,
-			m_image_background_fill, m_image_background_border
-		);
+	if (some_shape) {
+		m_QR_image_background->setData(1, "QR_image_background");
 	}
 }
 
 void QRrenderer::add_QR_image() noexcept {
-	QGraphicsPixmapItem *pixmap_item = new QGraphicsPixmapItem(*m_QR_image);
+	if (m_QR_pixmap == nullptr) {
+		return;
+	}
 
-	const double width = m_QR_image->width();
-	const double height = m_QR_image->height();
-	pixmap_item->setOffset(
+	if (m_QR_image != nullptr) {
+		m_scene.removeItem(m_QR_image);
+		delete m_QR_image;
+		m_QR_image = nullptr;
+	}
+
+	m_QR_image = new QGraphicsPixmapItem(*m_QR_pixmap);
+
+	const double width = m_QR_pixmap->width();
+	const double height = m_QR_pixmap->height();
+	m_QR_image->setOffset(
 		m_outer_square_x0 + m_outer_square_size/2 - width/2,
 		m_outer_square_y0 + m_outer_square_size/2 - height/2
 	);
 
-	pixmap_item->setTransformOriginPoint(pixmap_item->boundingRect().center());
-	pixmap_item->setScale(m_redim*m_QR_image_scale);
+	m_QR_image->setData(1, "QR_image");
 
-	m_scene.addItem(pixmap_item);
+	if (m_QR_image_background != nullptr) {
+		m_QR_image->setZValue(m_QR_image_background->zValue() + 1);
+	}
+
+	m_scene.addItem(m_QR_image);
 }
 
-void QRrenderer::set_transformations() noexcept {
+void QRrenderer::set_QR_image_background_transformations() noexcept {
+	if (m_QR_image_background == nullptr) {
+		return;
+	}
+
+	m_QR_image_background->setTransformOriginPoint(m_drawing_area.center());
+	m_QR_image_background->setScale(m_redim*m_QR_image_background_scale);
+}
+
+void QRrenderer::set_QR_image_transformations() noexcept {
+	if (m_QR_image == nullptr) {
+		return;
+	}
+
+	const auto center = m_QR_image->boundingRect().center();
+	m_QR_image->setTransformOriginPoint(center);
+	m_QR_image->setScale(m_redim*m_QR_image_scale);
+}
+
+void QRrenderer::set_QR_transformations() noexcept {
+	set_QR_image_background_transformations();
+	set_QR_image_transformations();
+
+	const auto center = m_drawing_area.center();
+
 	QList<QGraphicsItem*> item_list = m_scene.items();
 	for (qsizetype i = 0; i < item_list.size(); ++i) {
 
 		QGraphicsItem *item = item_list[i];
-
-#if defined __PAINT_CONTROL_SHAPES
 		const QVariant d = item->data(1);
 		if (d.isValid()) {
+
+#if defined __PAINT_CONTROL_SHAPES
 			const bool is_outer = d.toString() == "outer_square";
 			if (is_outer) {
 				continue;
 			}
-		}
 #endif
 
-		item->setTransformOriginPoint(m_drawing_area.center());
+			const bool is_QR_image = d.toString() == "QR_image";
+			const bool is_QR_image_background = d.toString() == "QR_image_background";
+			if (is_QR_image or is_QR_image_background) {
+				continue;
+			}
+		}
+
+		item->setTransformOriginPoint(center);
 		item->setScale(m_redim);
 	}
 }
@@ -611,20 +696,17 @@ void QRrenderer::update() noexcept {
 		return;
 	}
 
-	// calculate the coordinates of the outer and inner drawing squares
 	update_outer_square();
 
 	if (m_scene_to_be_updated) {
-		// clean up drawing area
+
 		m_scene.clear();
+		m_QR_image = nullptr;
+		m_QR_image_background = nullptr;
 
 		add_points();
 		add_alignment_patterns();
-
-		if (m_QR_image != nullptr) {
-			add_QR_image_background();
-			add_QR_image();
-		}
+		set_QR_transformations();
 
 #if defined __PAINT_CONTROL_SHAPES
 		QGraphicsRectItem *outer_square = new QGraphicsRectItem(QRectF(
@@ -639,12 +721,20 @@ void QRrenderer::update() noexcept {
 		setSceneRect(m_drawing_area);
 		centerOn(m_drawing_area.center());
 
-		m_transformations_to_be_updated = true;
+		m_QR_image_background_to_be_updated = true;
+		m_QR_image_to_be_updated = true;
+
 		m_scene_to_be_updated = false;
 	}
 
-	if (m_transformations_to_be_updated) {
-		set_transformations();
-		m_transformations_to_be_updated = false;
+	if (m_QR_image_background_to_be_updated) {
+		add_QR_image_background();
+		set_QR_image_background_transformations();
+		m_QR_image_background_to_be_updated = false;
+	}
+	if (m_QR_image_to_be_updated) {
+		add_QR_image();
+		set_QR_image_transformations();
+		m_QR_image_to_be_updated = false;
 	}
 }

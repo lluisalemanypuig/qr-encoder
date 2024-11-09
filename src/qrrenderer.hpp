@@ -41,6 +41,7 @@ public:
 	// This method should be called only *after* the QR code has been generated
 	void load_QR_image(const QString& path) noexcept;
 	void remove_QR_image() noexcept;
+	void remove_QR_image_background() noexcept;
 
 	[[nodiscard]] const QRect& get_drawing_area() const noexcept {
 		return m_drawing_area;
@@ -64,8 +65,8 @@ public slots:
 
 	void resize_QR(const int value) noexcept;
 
-	void set_image_background_fill_color(const int color) noexcept;
-	void set_image_background_border_color(const int color) noexcept;
+	void set_QR_image_background_fill_color(const int color) noexcept;
+	void set_QR_image_background_border_color(const int color) noexcept;
 
 	void resize_QR_image(const int value) noexcept;
 	void set_QR_image_background_shape(const int shape) noexcept;
@@ -76,7 +77,7 @@ signals:
 private:
 	void update_outer_square() noexcept;
 
-	void add_circle
+	QGraphicsEllipseItem *add_circle
 	(
 		const double x, const double y, const double radius,
 		const QColor& fill_color,
@@ -84,7 +85,7 @@ private:
 	)
 	noexcept;
 
-	void add_rectangle
+	QGraphicsRectItem *add_rectangle
 	(
 		const double x, const double y,
 		const double width, const double height,
@@ -136,10 +137,12 @@ private:
 	void add_QR_image_background() noexcept;
 	void add_QR_image() noexcept;
 
-public slots:
-	void set_transformations() noexcept;
-	void window_was_resized() noexcept;
+	void set_QR_image_background_transformations() noexcept;
+	void set_QR_image_transformations() noexcept;
+	void set_QR_transformations() noexcept;
 
+public slots:
+	void window_was_resized() noexcept;
 	void update() noexcept;
 
 private:
@@ -155,7 +158,6 @@ private:
 	qrcodegen::QrCode m_QR_matrix;
 	bool m_QR_set = false;
 	bool m_scene_to_be_updated = false;
-	bool m_transformations_to_be_updated = false;
 
 	// redimension factor from the slide and its spin box
 	double m_redim = 0.9;
@@ -164,12 +166,16 @@ private:
 	QGraphicsScene m_scene;
 
 	// Image loaded into the QR code
-	QPixmap *m_QR_image = nullptr;
+	QPixmap *m_QR_pixmap = nullptr;
+	bool m_QR_image_to_be_updated = false;
+	bool m_QR_image_background_to_be_updated = false;
+	QGraphicsPixmapItem *m_QR_image = nullptr;
+	QGraphicsItem *m_QR_image_background = nullptr;
 	double m_QR_image_scale = 1;
 	double m_QR_image_background_scale = 1;
 	shapes m_QR_image_background_shape = shapes::circles;
-	Qt::GlobalColor m_image_background_fill = Qt::GlobalColor::black;
-	Qt::GlobalColor m_image_background_border = Qt::GlobalColor::black;
+	Qt::GlobalColor m_QR_image_background_fill = Qt::GlobalColor::black;
+	Qt::GlobalColor m_QR_image_background_border = Qt::GlobalColor::black;
 
 	// rectangle that describes the drawing area of the widget
 	// (which is a bit larger than the total area of the widget)

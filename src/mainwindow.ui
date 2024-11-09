@@ -1204,8 +1204,8 @@
     <slot>resize_QR_image(int)</slot>
     <slot>resize_QR_image_background(int)</slot>
     <slot>set_QR_image_background_shape(int)</slot>
-    <slot>set_image_background_fill_color(int)</slot>
-    <slot>set_image_background_border_color(int)</slot>
+    <slot>set_QR_image_background_fill_color(int)</slot>
+    <slot>set_QR_image_background_border_color(int)</slot>
     <slot>set_ECC(int)</slot>
     <slot>set_transparent_background(bool)</slot>
    </slots>
@@ -1388,8 +1388,8 @@
    <slot>removeQRImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>75</x>
-     <y>618</y>
+     <x>86</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
      <x>425</x>
@@ -1404,8 +1404,8 @@
    <slot>resize_QR_image_background(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>588</x>
-     <y>692</y>
+     <x>365</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
      <x>450</x>
@@ -1420,8 +1420,8 @@
    <slot>set_QR_image_background_shape(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>395</x>
-     <y>622</y>
+     <x>190</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
      <x>413</x>
@@ -1436,8 +1436,8 @@
    <slot>backgroundShapeChosen(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>380</x>
-     <y>624</y>
+     <x>190</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
      <x>347</x>
@@ -1449,11 +1449,11 @@
    <sender>imageBackgroundFillColorComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>QRRenderArea</receiver>
-   <slot>set_image_background_fill_color(int)</slot>
+   <slot>set_QR_image_background_fill_color(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>358</x>
-     <y>652</y>
+     <x>190</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
      <x>357</x>
@@ -1465,11 +1465,11 @@
    <sender>imageBackgroundBorderColorComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>QRRenderArea</receiver>
-   <slot>set_image_background_border_color(int)</slot>
+   <slot>set_QR_image_background_border_color(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>665</x>
-     <y>654</y>
+     <x>190</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
      <x>657</x>
@@ -1500,12 +1500,12 @@
    <slot>update_label()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>505</x>
-     <y>686</y>
+     <x>365</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
-     <x>541</x>
-     <y>691</y>
+     <x>365</x>
+     <y>603</y>
     </hint>
    </hints>
   </connection>
@@ -1532,12 +1532,12 @@
    <slot>update_label()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>465</x>
-     <y>587</y>
+     <x>365</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
-     <x>489</x>
-     <y>588</y>
+     <x>365</x>
+     <y>603</y>
     </hint>
    </hints>
   </connection>
@@ -1548,8 +1548,8 @@
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>191</x>
-     <y>587</y>
+     <x>119</x>
+     <y>603</y>
     </hint>
     <hint type="destinationlabel">
      <x>193</x>
