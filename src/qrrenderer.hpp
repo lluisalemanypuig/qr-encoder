@@ -153,9 +153,9 @@ private:
 
 	// QR matrix
 	qrcodegen::QrCode m_QR_matrix;
-	bool m_QR_set;
-	bool m_scene_to_be_updated;
-	bool m_transformations_to_be_updated;
+	bool m_QR_set = false;
+	bool m_scene_to_be_updated = false;
+	bool m_transformations_to_be_updated = false;
 
 	// redimension factor from the slide and its spin box
 	double m_redim = 0.9;
@@ -176,7 +176,7 @@ private:
 	QRect m_drawing_area;
 
 	// background
-	int m_background_alpha;
+	int m_background_alpha = 255;
 
 	// Outer square
 	double m_outer_square_size;

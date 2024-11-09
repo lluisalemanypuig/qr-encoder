@@ -60,14 +60,8 @@ QRrenderer::QRrenderer(QWidget *parent) noexcept :
 	setScene(&m_scene);
 	setAlignment(Qt::AlignCenter);
 
-	m_background_alpha = 255;
-
 	setStyleSheet("background:transparent");
 	setBackgroundBrush(QBrush(QColor(255,255,255, m_background_alpha)));
-
-	m_QR_set = false;
-	m_scene_to_be_updated = false;
-	m_transformations_to_be_updated = false;
 }
 
 void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
