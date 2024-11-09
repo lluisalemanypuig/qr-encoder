@@ -71,15 +71,16 @@ public slots:
 	void set_QR_image_background_shape(const int shape) noexcept;
 	void resize_QR_image_background(const int value) noexcept;
 
+	void set_transformations() noexcept;
+
 	void update() noexcept;
 
 signals:
 
 private:
 	void update_outer_square() noexcept;
-	void update_inner_square() noexcept;
 
-	void draw_rectangle
+	void add_rectangle
 	(
 		const double x, const double y,
 		const double width, const double height,
@@ -88,7 +89,7 @@ private:
 	)
 	noexcept;
 
-	void draw_circle
+	void add_circle
 	(
 		const double x, const double y, const double radius,
 		const QColor& fill_color,
@@ -96,25 +97,29 @@ private:
 	)
 	noexcept;
 
-	void draw_complementary_quarter_circle(
+	void add_complementary_quarter_circle
+	(
 		const double x, const double y,
 		const double radius,
 		const double start,
 		const QColor& fill_color,
 		const QColor& pen_color
-	) noexcept;
+	)
+	noexcept;
 
-	void draw_quarter_circle(
+	void add_quarter_circle(
 		const double x, const double y,
 		const double radius,
 		const double start,
 		const QColor& fill_color,
 		const QColor& pen_color
-	) noexcept;
+	)
+	noexcept;
 
-	void draw_corrugate(const bool draw_alignment_patterns) noexcept;
+	void add_points_corrugate(const bool draw_alignment_patterns) noexcept;
 
-	void draw_alignment_patterns_round(
+	void add_alignment_patterns_round
+	(
 		const std::vector<std::pair<int,int>>& points,
 		const int outer_x, const int outer_y,
 		const int outer_radius,
@@ -124,15 +129,16 @@ private:
 		const int inner_radius
 	)
 	noexcept;
-	void draw_alignment_patterns_square() noexcept;
-	void draw_alignment_patterns() noexcept;
 
-	void draw_points_circle() noexcept;
-	void draw_points_square() noexcept;
-	void draw_points() noexcept;
+	void add_alignment_patterns_square() noexcept;
+	void add_alignment_patterns() noexcept;
 
-	void draw_QR_image_background() noexcept;
-	void draw_QR_image() noexcept;
+	void add_points_circle() noexcept;
+	void add_points_square() noexcept;
+	void add_points() noexcept;
+
+	void add_QR_image_background() noexcept;
+	void add_QR_image() noexcept;
 
 private:
 	// 'Points' of the QR code
@@ -145,6 +151,7 @@ private:
 
 	// QR matrix
 	qrcodegen::QrCode m_QR_matrix;
+	bool m_scene_to_be_updated;
 
 	// redimension factor from the slide and its spin box
 	double m_redim = 0.9;
@@ -173,11 +180,4 @@ private:
 	double m_outer_square_x1;
 	double m_outer_square_y0;
 	double m_outer_square_y1;
-
-	// Inner square
-	double m_inner_square_size;
-	double m_inner_square_x0;
-	double m_inner_square_x1;
-	double m_inner_square_y0;
-	double m_inner_square_y1;
 };

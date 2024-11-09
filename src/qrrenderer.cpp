@@ -22,7 +22,7 @@
 
 #include "qrrenderer.hpp"
 
-#undef __PAINT_CONTROL_SHAPES
+#define __PAINT_CONTROL_SHAPES
 
 // C++ includes
 #include <iostream>
@@ -64,10 +64,13 @@ QRrenderer::QRrenderer(QWidget *parent) noexcept :
 
 	setStyleSheet("background:transparent");
 	setBackgroundBrush(QBrush(QColor(255,255,255, m_background_alpha)));
+
+	m_scene_to_be_updated = false;
 }
 
 void QRrenderer::set_QR_code(qrcodegen::QrCode&& QR_matrix) noexcept {
 	m_QR_matrix = std::move(QR_matrix);
+	m_scene_to_be_updated = true;
 	update();
 }
 
@@ -97,31 +100,37 @@ void QRrenderer::remove_QR_image() noexcept {
 
 void QRrenderer::set_point_fill_color(const int color) noexcept {
 	m_point_fill = static_cast<Qt::GlobalColor>(color + 2);
+	m_scene_to_be_updated = true;
 	update();
 }
 
 void QRrenderer::set_point_border_color(const int color) noexcept {
 	m_point_border = static_cast<Qt::GlobalColor>(color + 2);
+	m_scene_to_be_updated = true;
 	update();
 }
 
 void QRrenderer::set_point_shape(const int shape) noexcept {
 	m_points = static_cast<shapes>(shape + 1);
+	m_scene_to_be_updated = true;
 	update();
 }
 
 void QRrenderer::set_alignment_pattern_shape(const int shape) noexcept {
 	m_alignment_patterns = static_cast<shapes>(shape + 1);
+	m_scene_to_be_updated = true;
 	update();
 }
 
 void QRrenderer::set_image_background_fill_color(const int color) noexcept {
 	m_image_background_fill = static_cast<Qt::GlobalColor>(color + 2);
+	m_scene_to_be_updated = true;
 	update();
 }
 
 void QRrenderer::set_image_background_border_color(const int color) noexcept {
 	m_image_background_border = static_cast<Qt::GlobalColor>(color + 2);
+	m_scene_to_be_updated = true;
 	update();
 }
 
@@ -133,6 +142,7 @@ void QRrenderer::resize_QR(const int value) noexcept {
 void QRrenderer::set_transparent_background(const bool alpha) noexcept {
 	m_background_alpha = 255*(1 - alpha);
 	setBackgroundBrush(QColor{255,255,255, m_background_alpha});
+	m_scene_to_be_updated = true;
 	update();
 }
 
@@ -186,39 +196,9 @@ void QRrenderer::update_outer_square() noexcept {
 	m_drawing_area.setY(m_outer_square_y0);
 	m_drawing_area.setWidth(m_outer_square_size);
 	m_drawing_area.setHeight(m_outer_square_size);
-
-#if defined __PAINT_CONTROL_SHAPES
-	QGraphicsRectItem *outer_square = new QGraphicsRectItem(QRectF(
-		m_drawing_area.x(),   m_drawing_area.y(),
-		m_drawing_area.width(), m_drawing_area.height()
-	));
-	outer_square->setPen(QPen(Qt::blue));
-	m_scene.addItem(outer_square);
-#endif
 }
 
-void QRrenderer::update_inner_square() noexcept {
-	m_inner_square_size = m_redim*m_outer_square_size;
-
-	const double x_midpoint = (m_outer_square_x0 + m_outer_square_x1)/2;
-	const double y_midpoint = (m_outer_square_y0 + m_outer_square_y1)/2;
-
-	m_inner_square_x0 = x_midpoint - m_inner_square_size/2;
-	m_inner_square_x1 = x_midpoint + m_inner_square_size/2;
-	m_inner_square_y0 = y_midpoint - m_inner_square_size/2;
-	m_inner_square_y1 = y_midpoint + m_inner_square_size/2;
-
-#if defined __PAINT_CONTROL_SHAPES
-	QGraphicsRectItem *inner_square = new QGraphicsRectItem(QRectF(
-		m_inner_square_x0,   m_inner_square_y0,
-		m_inner_square_size, m_inner_square_size
-	));
-	inner_square->setPen(QPen(Qt::red));
-	m_scene.addItem(inner_square);
-#endif
-}
-
-void QRrenderer::draw_circle
+void QRrenderer::add_circle
 (
 	const double x, const double y, const double radius,
 	const QColor& fill_color,
@@ -233,7 +213,7 @@ noexcept
 	m_scene.addItem(circle);
 }
 
-void QRrenderer::draw_rectangle
+void QRrenderer::add_rectangle
 (
 	const double x, const double y,
 	const double width, const double height,
@@ -249,7 +229,7 @@ noexcept
 	m_scene.addItem(rect);
 }
 
-void QRrenderer::draw_complementary_quarter_circle(
+void QRrenderer::add_complementary_quarter_circle(
 	const double x, const double y,
 	const double radius,
 	const double start,
@@ -269,14 +249,12 @@ noexcept
 	complementary = complementary.subtracted(quarter_circle);
 
 	QGraphicsPathItem *item = new QGraphicsPathItem(complementary);
-
 	item->setBrush(fill_color);
 	item->setPen(pen_color);
-
 	m_scene.addItem(item);
 }
 
-void QRrenderer::draw_quarter_circle(
+void QRrenderer::add_quarter_circle(
 	const double x, const double y,
 	const double radius,
 	const double start,
@@ -289,20 +267,18 @@ noexcept
 	quarter_circle.arcTo(x, y, 2*radius, 2*radius, start, 90);
 
 	QGraphicsPathItem *item = new QGraphicsPathItem(quarter_circle);
-
 	item->setBrush(fill_color);
 	item->setPen(pen_color);
-
 	m_scene.addItem(item);
 }
 
-void QRrenderer::draw_corrugate(const bool draw_alignment_patterns) noexcept {
+void QRrenderer::add_points_corrugate(const bool draw_alignment_patterns) noexcept {
 	const std::size_t QR_size = m_QR_matrix.getSize();
-	const double QR_cell_size = m_inner_square_size/QR_size;
+	const double QR_cell_size = m_outer_square_size/QR_size;
 	const double s = QR_cell_size/2;
 
 	const auto is_cell_set =
-		[&](std::size_t i, std::size_t j) noexcept -> bool {
+	[&](std::size_t i, std::size_t j) noexcept -> bool {
 		if (i >= QR_size or j >= QR_size) { return false; }
 		return m_QR_matrix.getModule(i, j);
 	};
@@ -318,58 +294,58 @@ void QRrenderer::draw_corrugate(const bool draw_alignment_patterns) noexcept {
 				is_point_within_alignment_pattern(x, y, QR_size))
 			{ continue; }
 
-			const double base_x = m_inner_square_x0 + x*QR_cell_size;
-			const double base_y = m_inner_square_y0 + y*QR_cell_size;
+			const double base_x = m_outer_square_x0 + x*QR_cell_size;
+			const double base_y = m_outer_square_y0 + y*QR_cell_size;
 
 			if (m_QR_matrix.getModule(x, y)) {
 
 				if (not is_cell_set(x - 1, y) and not is_cell_set(x - 1, y - 1) and not is_cell_set(x, y - 1)) {
-					draw_quarter_circle(
+					add_quarter_circle(
 						base_x, base_y, s, 90,
 						m_point_fill, m_point_border
 					);
 				}
 				else {
-					draw_rectangle(
+					add_rectangle(
 						base_x, base_y, s, s,
 						m_point_fill, m_point_border
 					);
 				}
 
 				if (not is_cell_set(x, y - 1) and not is_cell_set(x + 1, y - 1) and not is_cell_set(x + 1, y)) {
-					draw_quarter_circle(
+					add_quarter_circle(
 						base_x, base_y, s, 0,
 						m_point_fill, m_point_border
 					);
 				}
 				else {
-					draw_rectangle(
+					add_rectangle(
 						base_x + s, base_y, s, s,
 						m_point_fill, m_point_border
 					);
 				}
 
 				if (not is_cell_set(x + 1, y) and not is_cell_set(x + 1, y + 1) and not is_cell_set(x, y + 1)) {
-					draw_quarter_circle(
+					add_quarter_circle(
 						base_x, base_y, s, 270,
 						m_point_fill, m_point_border
 					);
 				}
 				else {
-					draw_rectangle(
+					add_rectangle(
 						base_x + s, base_y + s, s, s,
 						m_point_fill, m_point_border
 					);
 				}
 
 				if (not is_cell_set(x, y + 1) and not is_cell_set(x - 1, y + 1) and not is_cell_set(x - 1, y)) {
-					draw_quarter_circle(
+					add_quarter_circle(
 						base_x, base_y, s, 180,
 						m_point_fill, m_point_border
 					);
 				}
 				else {
-					draw_rectangle(
+					add_rectangle(
 						base_x, base_y + s, s, s,
 						m_point_fill, m_point_border
 					);
@@ -377,25 +353,25 @@ void QRrenderer::draw_corrugate(const bool draw_alignment_patterns) noexcept {
 			}
 			else {
 				if (is_cell_set(x - 1, y) and is_cell_set(x, y - 1)) {
-					draw_complementary_quarter_circle(
+					add_complementary_quarter_circle(
 						base_x, base_y, s, 90,
 						m_point_fill, m_point_border
 					);
 				}
 				if (is_cell_set(x, y - 1) and is_cell_set(x + 1, y)) {
-					draw_complementary_quarter_circle(
+					add_complementary_quarter_circle(
 						base_x, base_y, s, 0,
 						m_point_fill, m_point_border
 					);
 				}
 				if (is_cell_set(x + 1, y) and is_cell_set(x, y + 1)) {
-					draw_complementary_quarter_circle(
+					add_complementary_quarter_circle(
 						base_x, base_y, s, 270,
 						m_point_fill, m_point_border
 					);
 				}
 				if (is_cell_set(x, y + 1) and is_cell_set(x - 1, y)) {
-					draw_complementary_quarter_circle(
+					add_complementary_quarter_circle(
 						base_x, base_y, s, 180,
 						m_point_fill, m_point_border
 					);
@@ -405,7 +381,7 @@ void QRrenderer::draw_corrugate(const bool draw_alignment_patterns) noexcept {
 	}
 }
 
-void QRrenderer::draw_alignment_patterns_round(
+void QRrenderer::add_alignment_patterns_round(
 	const std::vector<std::pair<int,int>>& points,
 	const int outer_x, const int outer_y, const int outer_radius,
 	const int blank_x, const int blank_y, const int blank_radius,
@@ -414,27 +390,27 @@ void QRrenderer::draw_alignment_patterns_round(
 noexcept
 {
 	const std::size_t QR_size = m_QR_matrix.getSize();
-	const double QR_cell_size = m_inner_square_size/QR_size;
+	const double QR_cell_size = m_outer_square_size/QR_size;
 
 	for (const auto& [x, y] : points) {
-		const double x0 = m_inner_square_x0 + x*QR_cell_size;
-		const double y0 = m_inner_square_y0 + y*QR_cell_size;
+		const double x0 = m_outer_square_x0 + x*QR_cell_size;
+		const double y0 = m_outer_square_y0 + y*QR_cell_size;
 
-		draw_circle(
+		add_circle(
 			x0 - outer_x*QR_cell_size,
 			y0 - outer_y*QR_cell_size,
 			outer_radius*QR_cell_size,
 			m_point_fill, m_point_border
 		);
 
-		draw_circle(
+		add_circle(
 			x0 - blank_x*QR_cell_size,
 			y0 - blank_y*QR_cell_size,
 			blank_radius*QR_cell_size,
 			Qt::GlobalColor::white, Qt::GlobalColor::white
 		);
 
-		draw_circle(
+		add_circle(
 			x0 - inner_x*QR_cell_size,
 			y0 - inner_y*QR_cell_size,
 			inner_radius*QR_cell_size,
@@ -443,16 +419,16 @@ noexcept
 	}
 }
 
-void QRrenderer::draw_alignment_patterns_square() noexcept {
+void QRrenderer::add_alignment_patterns_square() noexcept {
 	const std::size_t QR_size = m_QR_matrix.getSize();
-	const double QR_cell_size = m_inner_square_size/QR_size;
+	const double QR_cell_size = m_outer_square_size/QR_size;
 
 	for (std::size_t x = 0; x <= 7; ++x) {
 		for (std::size_t y = 0; y <= 7; ++y) {
 			if (m_QR_matrix.getModule(x, y)) {
-				draw_rectangle(
-					m_inner_square_x0 + x*QR_cell_size,
-					m_inner_square_y0 + y*QR_cell_size,
+				add_rectangle(
+					m_outer_square_x0 + x*QR_cell_size,
+					m_outer_square_y0 + y*QR_cell_size,
 					QR_cell_size, QR_cell_size,
 					m_point_fill, m_point_border
 				);
@@ -461,9 +437,9 @@ void QRrenderer::draw_alignment_patterns_square() noexcept {
 
 		for (std::size_t y = QR_size - 7; y < QR_size; ++y) {
 			if (m_QR_matrix.getModule(x, y)) {
-				draw_rectangle(
-					m_inner_square_x0 + x*QR_cell_size,
-					m_inner_square_y0 + y*QR_cell_size,
+				add_rectangle(
+					m_outer_square_x0 + x*QR_cell_size,
+					m_outer_square_y0 + y*QR_cell_size,
 					QR_cell_size, QR_cell_size,
 					m_point_fill, m_point_border
 				);
@@ -474,9 +450,9 @@ void QRrenderer::draw_alignment_patterns_square() noexcept {
 	for (std::size_t x = QR_size - 7; x < QR_size; ++x) {
 		for (std::size_t y = 0; y <= 7; ++y) {
 			if (m_QR_matrix.getModule(x, y)) {
-				draw_rectangle(
-					m_inner_square_x0 + x*QR_cell_size,
-					m_inner_square_y0 + y*QR_cell_size,
+				add_rectangle(
+					m_outer_square_x0 + x*QR_cell_size,
+					m_outer_square_y0 + y*QR_cell_size,
 					QR_cell_size, QR_cell_size,
 					m_point_fill, m_point_border
 				);
@@ -485,9 +461,9 @@ void QRrenderer::draw_alignment_patterns_square() noexcept {
 	}
 }
 
-void QRrenderer::draw_alignment_patterns() noexcept {
+void QRrenderer::add_alignment_patterns() noexcept {
 	if (m_alignment_patterns == shapes::circles) {
-		draw_alignment_patterns_round(
+		add_alignment_patterns_round(
 			m_QR_matrix.finder_centers,
 			3, 3, 7,
 			2, 2, 5,
@@ -495,16 +471,16 @@ void QRrenderer::draw_alignment_patterns() noexcept {
 		);
 	}
 	else if (m_alignment_patterns == shapes::squares) {
-		draw_alignment_patterns_square();
+		add_alignment_patterns_square();
 	}
 	else if (m_alignment_patterns == shapes::round_edges) {
-		draw_corrugate(true);
+		add_points_corrugate(true);
 	}
 }
 
-void QRrenderer::draw_points_circle() noexcept {
+void QRrenderer::add_points_circle() noexcept {
 	const std::size_t QR_size = m_QR_matrix.getSize();
-	const double QR_cell_size = m_inner_square_size/QR_size;
+	const double QR_cell_size = m_outer_square_size/QR_size;
 
 	for (std::size_t x = 0; x < QR_size; ++x) {
 		for (std::size_t y = 0; y < QR_size; ++y) {
@@ -512,9 +488,9 @@ void QRrenderer::draw_points_circle() noexcept {
 			if (is_point_within_alignment_pattern(x, y, QR_size)) { continue; }
 
 			if (m_QR_matrix.getModule(x, y)) {
-				draw_circle(
-					m_inner_square_x0 + x*QR_cell_size,
-					m_inner_square_y0 + y*QR_cell_size,
+				add_circle(
+					m_outer_square_x0 + x*QR_cell_size,
+					m_outer_square_y0 + y*QR_cell_size,
 					QR_cell_size,
 					m_point_fill, m_point_border
 				);
@@ -523,9 +499,9 @@ void QRrenderer::draw_points_circle() noexcept {
 	}
 }
 
-void QRrenderer::draw_points_square() noexcept {
+void QRrenderer::add_points_square() noexcept {
 	const std::size_t QR_size = m_QR_matrix.getSize();
-	const double QR_cell_size = m_inner_square_size/QR_size;
+	const double QR_cell_size = m_outer_square_size/QR_size;
 
 	for (std::size_t x = 0; x < QR_size; ++x) {
 		for (std::size_t y = 0; y < QR_size; ++y) {
@@ -533,9 +509,9 @@ void QRrenderer::draw_points_square() noexcept {
 			if (is_point_within_alignment_pattern(x, y, QR_size)) { continue; }
 
 			if (m_QR_matrix.getModule(x, y)) {
-				draw_rectangle(
-					m_inner_square_x0 + x*QR_cell_size,
-					m_inner_square_y0 + y*QR_cell_size,
+				add_rectangle(
+					m_outer_square_x0 + x*QR_cell_size,
+					m_outer_square_y0 + y*QR_cell_size,
 					QR_cell_size, QR_cell_size,
 					m_point_fill, m_point_border
 				);
@@ -544,31 +520,31 @@ void QRrenderer::draw_points_square() noexcept {
 	}
 }
 
-void QRrenderer::draw_points() noexcept {
+void QRrenderer::add_points() noexcept {
 	if (m_points == shapes::circles) {
-		draw_points_circle();
+		add_points_circle();
 	}
 	else if (m_points == shapes::squares) {
-		draw_points_square();
+		add_points_square();
 	}
 	else if (m_points == shapes::round_edges) {
-		draw_corrugate(false);
+		add_points_corrugate(false);
 	}
 }
 
-void QRrenderer::draw_QR_image_background() noexcept {
+void QRrenderer::add_QR_image_background() noexcept {
 	const int width = m_QR_image->width();
 	const int height = m_QR_image->height();
 
-	const double cx = m_inner_square_x0 + m_inner_square_size/2;
-	const double cy = m_inner_square_y0 + m_inner_square_size/2;
+	const double cx = m_outer_square_x0 + m_outer_square_size/2;
+	const double cy = m_outer_square_y0 + m_outer_square_size/2;
 
 	const double w = m_redim*m_QR_image_background_scale*width;
 	const double h = m_redim*m_QR_image_background_scale*height;
 
 	if (m_QR_image_background_shape == shapes::squares) {
 
-		draw_rectangle(
+		add_rectangle(
 			cx - w/2,
 			cy - h/2,
 			w, h,
@@ -578,7 +554,7 @@ void QRrenderer::draw_QR_image_background() noexcept {
 	else if (m_QR_image_background_shape == shapes::circles) {
 		const double r = std::sqrt(w*w + h*h)/2.0;
 
-		draw_circle(
+		add_circle(
 			cx - r,
 			cy - r,
 			2*r,
@@ -587,14 +563,14 @@ void QRrenderer::draw_QR_image_background() noexcept {
 	}
 }
 
-void QRrenderer::draw_QR_image() noexcept {
+void QRrenderer::add_QR_image() noexcept {
 	QGraphicsPixmapItem *pixmap_item = new QGraphicsPixmapItem(*m_QR_image);
 
 	const double width = m_QR_image->width();
 	const double height = m_QR_image->height();
 	pixmap_item->setOffset(
-		m_inner_square_x0 + m_inner_square_size/2 - width/2,
-		m_inner_square_y0 + m_inner_square_size/2 - height/2
+		m_outer_square_x0 + m_outer_square_size/2 - width/2,
+		m_outer_square_y0 + m_outer_square_size/2 - height/2
 	);
 
 	pixmap_item->setTransformOriginPoint(pixmap_item->boundingRect().center());
@@ -603,24 +579,60 @@ void QRrenderer::draw_QR_image() noexcept {
 	m_scene.addItem(pixmap_item);
 }
 
+void QRrenderer::set_transformations() noexcept {
+	QList<QGraphicsItem*> item_list = m_scene.items();
+	for (qsizetype i = 0; i < item_list.size(); ++i) {
+
+		QGraphicsItem *item = item_list[i];
+
+#if defined __PAINT_CONTROL_SHAPES
+		const QVariant d = item->data(1);
+		if (d.isValid()) {
+			const bool is_outer = d.toString() == "outer_square";
+			if (is_outer) {
+				continue;
+			}
+		}
+#endif
+
+		item->setTransformOriginPoint(m_drawing_area.center());
+		item->setScale(m_redim);
+	}
+}
+
 void QRrenderer::update() noexcept {
 	if (m_QR_matrix.getSize() == 0) { return; }
 
-	// clean up drawing area
-	m_scene.clear();
-
 	// calculate the coordinates of the outer and inner drawing squares
 	update_outer_square();
-	update_inner_square();
 
-	draw_points();
-	draw_alignment_patterns();
+	if (m_scene_to_be_updated) {
+		// clean up drawing area
+		m_scene.clear();
 
-	if (m_QR_image != nullptr) {
-		draw_QR_image_background();
-		draw_QR_image();
+		add_points();
+		add_alignment_patterns();
+
+		if (m_QR_image != nullptr) {
+			add_QR_image_background();
+			add_QR_image();
+		}
+
+#if defined __PAINT_CONTROL_SHAPES
+		QGraphicsRectItem *outer_square = new QGraphicsRectItem(QRectF(
+			m_outer_square_x0,   m_outer_square_y0,
+			m_outer_square_size, m_outer_square_size
+		));
+		outer_square->setData(1, "outer_square");
+		outer_square->setPen({Qt::blue});
+		m_scene.addItem(outer_square);
+#endif
+
+		setSceneRect(m_drawing_area);
+		centerOn(m_drawing_area.center());
+
+		m_scene_to_be_updated = false;
 	}
 
-	setSceneRect(m_drawing_area);
-	centerOn(m_drawing_area.center());
+	set_transformations();
 }
