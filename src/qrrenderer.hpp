@@ -113,9 +113,9 @@ private:
 	)
 	noexcept;
 
-	void add_points_corrugate(const bool draw_alignment_patterns) noexcept;
+	void add_points_round_edges(const bool draw_alignment_patterns) noexcept;
 
-	void add_alignment_patterns_round
+	void add_alignment_patterns_circle
 	(
 		const std::vector<std::pair<int,int>>& points,
 		const int outer_x, const int outer_y,
@@ -126,7 +126,6 @@ private:
 		const int inner_radius
 	)
 	noexcept;
-
 	void add_alignment_patterns_square() noexcept;
 	void add_alignment_patterns() noexcept;
 

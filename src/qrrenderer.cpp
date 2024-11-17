@@ -302,7 +302,7 @@ noexcept
 	m_scene.addItem(item);
 }
 
-void QRrenderer::add_points_corrugate(const bool draw_alignment_patterns) noexcept {
+void QRrenderer::add_points_round_edges(const bool draw_alignment_patterns) noexcept {
 	const int QR_size = m_QR_matrix.getSize();
 	const double QR_cell_size = m_outer_square_size/static_cast<double>(QR_size);
 	const double s = QR_cell_size/2;
@@ -411,7 +411,7 @@ void QRrenderer::add_points_corrugate(const bool draw_alignment_patterns) noexce
 	}
 }
 
-void QRrenderer::add_alignment_patterns_round(
+void QRrenderer::add_alignment_patterns_circle(
 	const std::vector<std::pair<int,int>>& points,
 	const int outer_x, const int outer_y, const int outer_radius,
 	const int blank_x, const int blank_y, const int blank_radius,
@@ -493,7 +493,7 @@ void QRrenderer::add_alignment_patterns_square() noexcept {
 
 void QRrenderer::add_alignment_patterns() noexcept {
 	if (m_alignment_patterns == shapes::circles) {
-		add_alignment_patterns_round(
+		add_alignment_patterns_circle(
 			m_QR_matrix.finder_centers,
 			3, 3, 7,
 			2, 2, 5,
@@ -504,7 +504,7 @@ void QRrenderer::add_alignment_patterns() noexcept {
 		add_alignment_patterns_square();
 	}
 	else if (m_alignment_patterns == shapes::round_edges) {
-		add_points_corrugate(true);
+		add_points_round_edges(true);
 	}
 }
 
@@ -558,7 +558,7 @@ void QRrenderer::add_points() noexcept {
 		add_points_square();
 	}
 	else if (m_points == shapes::round_edges) {
-		add_points_corrugate(false);
+		add_points_round_edges(false);
 	}
 }
 
