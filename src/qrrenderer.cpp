@@ -342,69 +342,92 @@ noexcept
 			const double base_x = m_outer_square_x0 + x*s;
 			const double base_y = m_outer_square_y0 + y*s;
 
-			if (m_QR_matrix.getModule(x, y)) {
-				if (not is_cell_set(x - 1, y) and not is_cell_set(x - 1, y - 1) and not is_cell_set(x, y - 1)) {
-					add_triangle(
-						base_x + s2, base_y,
-						base_x + s2, base_y + s2,
-						base_x, base_y + s2,
-						m_point_fill, m_point_border
-					);
-				}
-				else {
-					add_rectangle(
-						base_x, base_y, s2, s2,
-						m_point_fill, m_point_border
-					);
-				}
+			const bool cell_xm1_ym1 = is_cell_set(x - 1, y - 1);
+			const bool cell_xm1_y = is_cell_set(x - 1, y);
+			const bool cell_xm1_yp1 = is_cell_set(x - 1, y + 1);
+			const bool cell_x_ym1 = is_cell_set(x, y - 1);
+			const bool cell_x_y = is_cell_set(x, y);
+			const bool cell_x_yp1 = is_cell_set(x, y + 1);
+			const bool cell_xp1_ym1 = is_cell_set(x + 1, y - 1);
+			const bool cell_xp1_y = is_cell_set(x + 1, y);
+			const bool cell_xp1_yp1 = is_cell_set(x + 1, y + 1);
 
-				if (not is_cell_set(x, y - 1) and not is_cell_set(x + 1, y - 1) and not is_cell_set(x + 1, y)) {
-					add_triangle(
-						base_x + s2, base_y,
-						base_x + s2, base_y + s2,
-						base_x + s, base_y + s2,
-						m_point_fill, m_point_border
-					);
-				}
-				else {
-					add_rectangle(
-						base_x + s2, base_y, s2, s2,
-						m_point_fill, m_point_border
-					);
-				}
+			if (cell_x_y) {
+				const bool A = not cell_xm1_y and not cell_xm1_ym1 and not cell_x_ym1;
+				const bool B = not cell_x_ym1 and not cell_xp1_ym1 and not cell_xp1_y;
+				const bool C = not cell_xp1_y and not cell_xp1_yp1 and not cell_x_yp1;
+				const bool D = not cell_x_yp1 and not cell_xm1_yp1 and not cell_xm1_y;
 
-				if (not is_cell_set(x + 1, y) and not is_cell_set(x + 1, y + 1) and not is_cell_set(x, y + 1)) {
-					add_triangle(
-						base_x + s2, base_y + s2,
-						base_x + s, base_y + s2,
-						base_x + s2, base_y + s,
+				if (not A and not B and not C and not D) {
+					add_rectangle(
+						base_x, base_y, s, s,
 						m_point_fill, m_point_border
 					);
 				}
 				else {
-					add_rectangle(
-						base_x + s2, base_y + s2, s2, s2,
-						m_point_fill, m_point_border
-					);
-				}
+					if (A) {
+						add_triangle(
+							base_x + s2, base_y,
+							base_x + s2, base_y + s2,
+							base_x, base_y + s2,
+							m_point_fill, m_point_border
+						);
+					}
+					else {
+						add_rectangle(
+							base_x, base_y, s2, s2,
+							m_point_fill, m_point_border
+						);
+					}
 
-				if (not is_cell_set(x, y + 1) and not is_cell_set(x - 1, y + 1) and not is_cell_set(x - 1, y)) {
-					add_triangle(
-						base_x, base_y + s2,
-						base_x + s2, base_y + s2,
-						base_x + s2, base_y + s,
-						m_point_fill, m_point_border
-					);
-				}
-				else {
-					add_rectangle(
-						base_x, base_y + s2, s2, s2,
-						m_point_fill, m_point_border
-					);
+					if (B) {
+						add_triangle(
+							base_x + s2, base_y,
+							base_x + s2, base_y + s2,
+							base_x + s, base_y + s2,
+							m_point_fill, m_point_border
+						);
+					}
+					else {
+						add_rectangle(
+							base_x + s2, base_y, s2, s2,
+							m_point_fill, m_point_border
+						);
+					}
+
+					if (C) {
+						add_triangle(
+							base_x + s2, base_y + s2,
+							base_x + s, base_y + s2,
+							base_x + s2, base_y + s,
+							m_point_fill, m_point_border
+						);
+					}
+					else {
+						add_rectangle(
+							base_x + s2, base_y + s2, s2, s2,
+							m_point_fill, m_point_border
+						);
+					}
+
+					if (D) {
+						add_triangle(
+							base_x, base_y + s2,
+							base_x + s2, base_y + s2,
+							base_x + s2, base_y + s,
+							m_point_fill, m_point_border
+						);
+					}
+					else {
+						add_rectangle(
+							base_x, base_y + s2, s2, s2,
+							m_point_fill, m_point_border
+						);
+					}
 				}
 			}
 			else {
-				if (is_cell_set(x - 1, y) and is_cell_set(x, y - 1)) {
+				if (cell_xm1_y and cell_x_ym1) {
 					add_triangle(
 						base_x, base_y,
 						base_x + s2, base_y,
@@ -412,7 +435,7 @@ noexcept
 						m_point_fill, m_point_border
 					);
 				}
-				if (is_cell_set(x, y - 1) and is_cell_set(x + 1, y)) {
+				if (cell_x_ym1 and cell_xp1_y) {
 					add_triangle(
 						base_x + s2, base_y,
 						base_x + s, base_y,
@@ -420,7 +443,7 @@ noexcept
 						m_point_fill, m_point_border
 					);
 				}
-				if (is_cell_set(x + 1, y) and is_cell_set(x, y + 1)) {
+				if (cell_xp1_y and cell_x_yp1) {
 					add_triangle(
 						base_x + s, base_y + s2,
 						base_x + s, base_y + s,
@@ -428,7 +451,7 @@ noexcept
 						m_point_fill, m_point_border
 					);
 				}
-				if (is_cell_set(x, y + 1) and is_cell_set(x - 1, y)) {
+				if (cell_x_yp1 and cell_xm1_y) {
 					add_triangle(
 						base_x + s2, base_y + s,
 						base_x, base_y + s,
@@ -468,80 +491,102 @@ noexcept
 			const double base_x = m_outer_square_x0 + x*QR_cell_size;
 			const double base_y = m_outer_square_y0 + y*QR_cell_size;
 
-			if (m_QR_matrix.getModule(x, y)) {
+			const bool cell_xm1_ym1 = is_cell_set(x - 1, y - 1);
+			const bool cell_xm1_y = is_cell_set(x - 1, y);
+			const bool cell_xm1_yp1 = is_cell_set(x - 1, y + 1);
+			const bool cell_x_ym1 = is_cell_set(x, y - 1);
+			const bool cell_x_y = is_cell_set(x, y);
+			const bool cell_x_yp1 = is_cell_set(x, y + 1);
+			const bool cell_xp1_ym1 = is_cell_set(x + 1, y - 1);
+			const bool cell_xp1_y = is_cell_set(x + 1, y);
+			const bool cell_xp1_yp1 = is_cell_set(x + 1, y + 1);
 
-				if (not is_cell_set(x - 1, y) and not is_cell_set(x - 1, y - 1) and not is_cell_set(x, y - 1)) {
-					add_quarter_circle(
-						base_x, base_y, s, 90,
+			if (cell_x_y) {
+				const bool A = not cell_xm1_y and not cell_xm1_ym1 and not cell_x_ym1;
+				const bool B = not cell_x_ym1 and not cell_xp1_ym1 and not cell_xp1_y;
+				const bool C = not cell_xp1_y and not cell_xp1_yp1 and not cell_x_yp1;
+				const bool D = not cell_x_yp1 and not cell_xm1_yp1 and not cell_xm1_y;
+
+				if (not A and not B and not C and not D) {
+					add_rectangle(
+						base_x, base_y, QR_cell_size, QR_cell_size,
 						m_point_fill, m_point_border
 					);
 				}
 				else {
-					add_rectangle(
-						base_x, base_y, s, s,
-						m_point_fill, m_point_border
-					);
-				}
+					if (A) {
+						add_quarter_circle(
+							base_x, base_y, s, 90,
+							m_point_fill, m_point_border
+						);
+					}
+					else {
+						add_rectangle(
+							base_x, base_y, s, s,
+							m_point_fill, m_point_border
+						);
+					}
 
-				if (not is_cell_set(x, y - 1) and not is_cell_set(x + 1, y - 1) and not is_cell_set(x + 1, y)) {
-					add_quarter_circle(
-						base_x, base_y, s, 0,
-						m_point_fill, m_point_border
-					);
-				}
-				else {
-					add_rectangle(
-						base_x + s, base_y, s, s,
-						m_point_fill, m_point_border
-					);
-				}
+					if (B) {
+						add_quarter_circle(
+							base_x, base_y, s, 0,
+							m_point_fill, m_point_border
+						);
+					}
+					else {
+						add_rectangle(
+							base_x + s, base_y, s, s,
+							m_point_fill, m_point_border
+						);
+					}
 
-				if (not is_cell_set(x + 1, y) and not is_cell_set(x + 1, y + 1) and not is_cell_set(x, y + 1)) {
-					add_quarter_circle(
-						base_x, base_y, s, 270,
-						m_point_fill, m_point_border
-					);
-				}
-				else {
-					add_rectangle(
-						base_x + s, base_y + s, s, s,
-						m_point_fill, m_point_border
-					);
-				}
+					if (C) {
+						add_quarter_circle(
+							base_x, base_y, s, 270,
+							m_point_fill, m_point_border
+						);
+					}
+					else {
+						add_rectangle(
+							base_x + s, base_y + s, s, s,
+							m_point_fill, m_point_border
+						);
+					}
 
-				if (not is_cell_set(x, y + 1) and not is_cell_set(x - 1, y + 1) and not is_cell_set(x - 1, y)) {
-					add_quarter_circle(
-						base_x, base_y, s, 180,
-						m_point_fill, m_point_border
-					);
-				}
-				else {
-					add_rectangle(
-						base_x, base_y + s, s, s,
-						m_point_fill, m_point_border
-					);
+					if (D) {
+						add_quarter_circle(
+							base_x, base_y, s, 180,
+							m_point_fill, m_point_border
+						);
+					}
+					else {
+						add_rectangle(
+							base_x, base_y + s, s, s,
+							m_point_fill, m_point_border
+						);
+					}
 				}
 			}
 			else {
-				if (is_cell_set(x - 1, y) and is_cell_set(x, y - 1)) {
+				if (cell_xm1_y and cell_x_ym1) {
 					add_complementary_quarter_circle(
 						base_x, base_y, s, 90,
 						m_point_fill, m_point_border
 					);
 				}
-				if (is_cell_set(x, y - 1) and is_cell_set(x + 1, y)) {
+				if (cell_x_ym1 and cell_xp1_y) {
 					add_complementary_quarter_circle(
 						base_x, base_y, s, 0,
 						m_point_fill, m_point_border
 					);
 				}
-				if (is_cell_set(x + 1, y) and is_cell_set(x, y + 1)) {
+				if (cell_xp1_y and cell_x_yp1) {
 					add_complementary_quarter_circle(
 						base_x, base_y, s, 270,
 						m_point_fill, m_point_border
 					);
 				}
-				if (is_cell_set(x, y + 1) and is_cell_set(x - 1, y)) {
+				if (cell_x_yp1 and cell_xm1_y) {
 					add_complementary_quarter_circle(
 						base_x, base_y, s, 180,
 						m_point_fill, m_point_border
