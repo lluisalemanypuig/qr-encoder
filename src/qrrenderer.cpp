@@ -231,9 +231,7 @@ QGraphicsEllipseItem *QRrenderer::add_circle
 noexcept
 {
 	// paint the current cell
-	QGraphicsEllipseItem *circle =
-		new QGraphicsEllipseItem(x, y, radius, radius);
-
+	QGraphicsEllipseItem *circle = new QGraphicsEllipseItem(x, y, radius, radius);
 	circle->setBrush(fill_color);
 	circle->setPen(pen_color);
 	m_scene.addItem(circle);
@@ -250,13 +248,28 @@ QGraphicsRectItem *QRrenderer::add_rectangle
 noexcept
 {
 	// paint the current cell
-	QGraphicsRectItem *rect =
-		new QGraphicsRectItem(x, y, width, height);
-
+	QGraphicsRectItem *rect = new QGraphicsRectItem(x, y, width, height);
 	rect->setBrush(fill_color);
 	rect->setPen(pen_color);
 	m_scene.addItem(rect);
 	return rect;
+}
+
+void QRrenderer::add_triangle(
+	const double x0, const double y0,
+	const double x1, const double y1,
+	const double x2, const double y2,
+	const QColor& fill_color,
+	const QColor& pen_color
+)
+noexcept
+{
+	QPolygonF triangle;
+	triangle << QPointF(x0, y0) << QPointF(x1, y1) << QPointF(x2, y2);
+	QGraphicsPolygonItem *item = new QGraphicsPolygonItem(std::move(triangle));
+	item->setBrush(fill_color);
+	item->setPen(pen_color);
+	m_scene.addItem(item);
 }
 
 void QRrenderer::add_complementary_quarter_circle(
@@ -302,7 +315,135 @@ noexcept
 	m_scene.addItem(item);
 }
 
-void QRrenderer::add_points_round_edges(const bool draw_alignment_patterns) noexcept {
+void QRrenderer::add_points_triangle_edges(const bool draw_alignment_patterns)
+noexcept
+{
+	const int QR_size = m_QR_matrix.getSize();
+	const double s = m_outer_square_size/static_cast<double>(QR_size);
+	const double s2 = s/2;
+
+	const auto is_cell_set =
+		[&](int i, int j) noexcept -> bool {
+		if (i >= QR_size or j >= QR_size) { return false; }
+		return m_QR_matrix.getModule(i, j);
+	};
+
+	for (int x = 0; x < QR_size; ++x) {
+		for (int y = 0; y < QR_size; ++y) {
+
+			if (not draw_alignment_patterns and
+				is_point_within_alignment_pattern(x, y, QR_size))
+			{ continue; }
+
+			if (draw_alignment_patterns and not
+				is_point_within_alignment_pattern(x, y, QR_size))
+			{ continue; }
+
+			const double base_x = m_outer_square_x0 + x*s;
+			const double base_y = m_outer_square_y0 + y*s;
+
+			if (m_QR_matrix.getModule(x, y)) {
+				if (not is_cell_set(x - 1, y) and not is_cell_set(x - 1, y - 1) and not is_cell_set(x, y - 1)) {
+					add_triangle(
+						base_x + s2, base_y,
+						base_x + s2, base_y + s2,
+						base_x, base_y + s2,
+						m_point_fill, m_point_border
+					);
+				}
+				else {
+					add_rectangle(
+						base_x, base_y, s2, s2,
+						m_point_fill, m_point_border
+					);
+				}
+
+				if (not is_cell_set(x, y - 1) and not is_cell_set(x + 1, y - 1) and not is_cell_set(x + 1, y)) {
+					add_triangle(
+						base_x + s2, base_y,
+						base_x + s2, base_y + s2,
+						base_x + s, base_y + s2,
+						m_point_fill, m_point_border
+					);
+				}
+				else {
+					add_rectangle(
+						base_x + s2, base_y, s2, s2,
+						m_point_fill, m_point_border
+					);
+				}
+
+				if (not is_cell_set(x + 1, y) and not is_cell_set(x + 1, y + 1) and not is_cell_set(x, y + 1)) {
+					add_triangle(
+						base_x + s2, base_y + s2,
+						base_x + s, base_y + s2,
+						base_x + s2, base_y + s,
+						m_point_fill, m_point_border
+					);
+				}
+				else {
+					add_rectangle(
+						base_x + s2, base_y + s2, s2, s2,
+						m_point_fill, m_point_border
+					);
+				}
+
+				if (not is_cell_set(x, y + 1) and not is_cell_set(x - 1, y + 1) and not is_cell_set(x - 1, y)) {
+					add_triangle(
+						base_x, base_y + s2,
+						base_x + s2, base_y + s2,
+						base_x + s2, base_y + s,
+						m_point_fill, m_point_border
+					);
+				}
+				else {
+					add_rectangle(
+						base_x, base_y + s2, s2, s2,
+						m_point_fill, m_point_border
+					);
+				}
+			}
+			else {
+				if (is_cell_set(x - 1, y) and is_cell_set(x, y - 1)) {
+					add_triangle(
+						base_x, base_y,
+						base_x + s2, base_y,
+						base_x, base_y + s2,
+						m_point_fill, m_point_border
+					);
+				}
+				if (is_cell_set(x, y - 1) and is_cell_set(x + 1, y)) {
+					add_triangle(
+						base_x + s2, base_y,
+						base_x + s, base_y,
+						base_x + s, base_y + s2,
+						m_point_fill, m_point_border
+					);
+				}
+				if (is_cell_set(x + 1, y) and is_cell_set(x, y + 1)) {
+					add_triangle(
+						base_x + s, base_y + s2,
+						base_x + s, base_y + s,
+						base_x + s2, base_y + s,
+						m_point_fill, m_point_border
+					);
+				}
+				if (is_cell_set(x, y + 1) and is_cell_set(x - 1, y)) {
+					add_triangle(
+						base_x + s2, base_y + s,
+						base_x, base_y + s,
+						base_x, base_y + s2,
+						m_point_fill, m_point_border
+					);
+				}
+			}
+		}
+	}
+}
+
+void QRrenderer::add_points_round_edges(const bool draw_alignment_patterns)
+noexcept
+{
 	const int QR_size = m_QR_matrix.getSize();
 	const double QR_cell_size = m_outer_square_size/static_cast<double>(QR_size);
 	const double s = QR_cell_size/2;
@@ -506,6 +647,9 @@ void QRrenderer::add_alignment_patterns() noexcept {
 	else if (m_alignment_patterns == shapes::round_edges) {
 		add_points_round_edges(true);
 	}
+	else if (m_alignment_patterns == shapes::triangle_edges) {
+		add_points_triangle_edges(true);
+	}
 }
 
 void QRrenderer::add_points_circle() noexcept {
@@ -559,6 +703,9 @@ void QRrenderer::add_points() noexcept {
 	}
 	else if (m_points == shapes::round_edges) {
 		add_points_round_edges(false);
+	}
+	else if (m_points == shapes::triangle_edges) {
+		add_points_triangle_edges(false);
 	}
 }
 

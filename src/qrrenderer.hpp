@@ -51,7 +51,8 @@ public:
 		none,
 		squares,
 		circles,
-		round_edges
+		round_edges,
+		triangle_edges
 	};
 
 public slots:
@@ -94,6 +95,15 @@ private:
 	)
 	noexcept;
 
+	void add_triangle(
+		const double x0, const double y0,
+		const double x1, const double y1,
+		const double x2, const double y2,
+		const QColor& fill_color,
+		const QColor& pen_color
+	)
+	noexcept;
+
 	void add_complementary_quarter_circle
 	(
 		const double x, const double y,
@@ -114,6 +124,7 @@ private:
 	noexcept;
 
 	void add_points_round_edges(const bool draw_alignment_patterns) noexcept;
+	void add_points_triangle_edges(const bool draw_alignment_patterns) noexcept;
 
 	void add_alignment_patterns_circle
 	(
