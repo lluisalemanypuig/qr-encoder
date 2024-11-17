@@ -40,7 +40,7 @@ QMAKE_CXXFLAGS_DEBUG += -DDEBUG -D_GLIBCXX_DEBUG -Og
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -UDEBUG -DNDEBUG -fstrict-aliasing -O3
 
-LIBS += -lgmp -fopenmp -lpthread
+LIBS += -fopenmp -lpthread
 
 SOURCES += \
     main.cpp \
