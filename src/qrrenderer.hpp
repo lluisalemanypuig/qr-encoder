@@ -52,7 +52,7 @@ public:
 		squares,
 		circles,
 		round_edges,
-		triangle_edges
+		triangle_mesh
 	};
 
 public slots:

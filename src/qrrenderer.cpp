@@ -692,7 +692,7 @@ void QRrenderer::add_alignment_patterns() noexcept {
 	else if (m_alignment_patterns == shapes::round_edges) {
 		add_points_round_edges(true);
 	}
-	else if (m_alignment_patterns == shapes::triangle_edges) {
+	else if (m_alignment_patterns == shapes::triangle_mesh) {
 		add_points_triangle_edges(true);
 	}
 }
@@ -749,7 +749,7 @@ void QRrenderer::add_points() noexcept {
 	else if (m_points == shapes::round_edges) {
 		add_points_round_edges(false);
 	}
-	else if (m_points == shapes::triangle_edges) {
+	else if (m_points == shapes::triangle_mesh) {
 		add_points_triangle_edges(false);
 	}
 }

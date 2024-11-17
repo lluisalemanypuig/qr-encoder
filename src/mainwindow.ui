@@ -315,7 +315,7 @@
               </item>
               <item>
                <property name="text">
-                <string>Triangle edges</string>
+                <string>Triangle mesh</string>
                </property>
               </item>
              </widget>
@@ -504,7 +504,7 @@
               </item>
               <item>
                <property name="text">
-                <string>Triangle edges</string>
+                <string>Triangle mesh</string>
                </property>
               </item>
              </widget>
