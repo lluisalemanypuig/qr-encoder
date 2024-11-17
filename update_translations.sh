@@ -17,15 +17,20 @@ echo "Language '$language'"
 code=$(language_to_code $language)
 echo "Code: '$code'"
 
+extension=""
+if [ "$OSTYPE" == "msys" ]; then
+	extension=".exe"
+fi
+
 if [ "$1" == "update" ]; then
 	
-	lupdate -recursive . -ts src/qr-encoder_"$code".ts
+	lupdate$extension -recursive . -ts src/qr-encoder_"$code".ts
 	
 elif [ "$1" == "translate" ]; then
 	
-	linguist src/qr-encoder_"$code".ts
+	linguist$extension src/qr-encoder_"$code".ts
 	
 elif [ "$1" == "compile" ]; then
 
-	lrelease src/qr-encoder_"$code".ts
+	lrelease$extension src/qr-encoder_"$code".ts
 fi
